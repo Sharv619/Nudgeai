@@ -1,0 +1,46 @@
+{
+  "timelineObjects": [
+    {
+      "placeVisit": {
+        "location": {
+          "latitudeE7": -339544382,
+          "longitudeE7": 151187854,
+          "placeId": "ChIJh1c37uto5YkRJtB4C-G71JE",
+          "address": "UNSW Sydney, Kensington NSW 2033, Australia",
+          "name": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd",
+          "locationType": "WORK",
+          "confidence": 80
+        },
+        "duration": {
+          "startTimestamp": "2026-02-28T00:50:07.000Z",
+          "endTimestamp": "2026-02-28T00:50:20.000Z"
+        },
+        "centerLatE7": -339544382,
+        "centerLngE7": 151187854,
+        "visitConfidence": 80,
+        "placeConfidence": "LIKELY"
+      }
+    },
+    {
+      "placeVisit": {
+        "location": {
+          "latitudeE7": -338986775,
+          "longitudeE7": 151083443,
+          "placeId": "ChIJc-2jFoVr5YkRYIyO5KIUcRM",
+          "address": "Regents Park NSW 2143, Australia",
+          "name": "Regents Park",
+          "locationType": "HOME",
+          "confidence": 75
+        },
+        "duration": {
+          "startTimestamp": "2026-02-27T22:08:48.000Z",
+          "endTimestamp": "2026-02-27T22:08:50.000Z"
+        },
+        "centerLatE7": -338986775,
+        "centerLngE7": 151083443,
+        "visitConfidence": 75,
+        "placeConfidence": "LIKELY"
+      }
+    }
+  ]
+}

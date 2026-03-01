@@ -1,0 +1,149 @@
+
+> nudgeai-frontend@0.0.0 dev
+> vite
+
+
+  VITE v4.5.14  ready in 409 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
+Failed to resolve import "lucide-react" from "src/pages/DataLogs.jsx". Does the file exist?
+8:28:15 am [vite] Internal server error: Failed to resolve import "lucide-react" from "src/pages/DataLogs.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/lade/Hackathons/Mistral/Final/nudgeai/frontend/src/pages/DataLogs.jsx:18:7
+  16 |  var _s = $RefreshSig$();
+  17 |  import React, { useState, useEffect } from "react";
+  18 |  import { Calendar, MapPin, Activity, FileText, Search, Filter, Download, Eye, Clock, Users, TrendingUp, TrendingDown, RefreshCw, Database, Zap } from "lucide-react";
+     |                                                                                                                                                         ^
+  19 |  import { format } from "date-fns";
+  20 |  import { Calendar as CalendarComponent } from "../components/charts/CalendarChart";
+      at formatError (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:44066:46)
+      at TransformContext.error (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:44062:19)
+      at normalizeUrl (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:41845:33)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:41999:47
+      at async Promise.all (index 4)
+      at async TransformContext.transform (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:41915:13)
+      at async Object.transform (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:44356:30)
+      at async loadAndTransform (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:55088:29)
+      at async viteTransformMiddleware (file:///home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/vite/dist/node/chunks/dep-827b23df.js:64699:32)
+8:29:21 am [vite] hmr update /src/App.jsx, /src/styles/index.css
+/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/src/pages/DataLogs.jsx: Identifier 'loading' has already been declared. (13:9)
+
+  11 |   });
+  12 |   const [selectedType, setSelectedType] = useState('all');
+> 13 |   const [loading, setLoading] = useState(false);
+     |          ^
+  14 |   const [error, setError] = useState(null);
+  15 |   const [dataSources, setDataSources] = useState({
+  16 |     calendar: { data: [], loading: false, error: null },
+8:29:21 am [vite] Internal server error: /home/lade/Hackathons/Mistral/Final/nudgeai/frontend/src/pages/DataLogs.jsx: Identifier 'loading' has already been declared. (13:9)
+
+  11 |   });
+  12 |   const [selectedType, setSelectedType] = useState('all');
+> 13 |   const [loading, setLoading] = useState(false);
+     |          ^
+  14 |   const [error, setError] = useState(null);
+  15 |   const [dataSources, setDataSources] = useState({
+  16 |     calendar: { data: [], loading: false, error: null },
+  Plugin: vite:react-babel
+  File: /home/lade/Hackathons/Mistral/Final/nudgeai/frontend/src/pages/DataLogs.jsx:13:9
+  11 |    });
+  12 |    const [selectedType, setSelectedType] = useState('all');
+  13 |    const [loading, setLoading] = useState(false);
+     |           ^
+  14 |    const [error, setError] = useState(null);
+  15 |    const [dataSources, setDataSources] = useState({
+      at constructor (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at JSXParserMixin.raise (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at ScopeHandler.checkRedeclarationInScope (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:1619:19)
+      at ScopeHandler.declareName (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:1585:12)
+      at JSXParserMixin.declareNameFromIdentifier (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:7567:16)
+      at JSXParserMixin.checkIdentifier (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:7563:12)
+      at JSXParserMixin.checkLVal (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:7500:12)
+      at JSXParserMixin.checkLVal (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:7540:16)
+      at JSXParserMixin.parseVarId (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13412:10)
+      at JSXParserMixin.parseVar (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13383:12)
+      at JSXParserMixin.parseVarStatement (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13230:10)
+      at JSXParserMixin.parseStatementContent (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12851:23)
+      at JSXParserMixin.parseStatementLike (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at JSXParserMixin.parseStatementListItem (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at JSXParserMixin.parseBlockBody (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at JSXParserMixin.parseBlock (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at JSXParserMixin.parseFunctionBody (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at JSXParserMixin.parseArrowExpression (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12075:10)
+      at JSXParserMixin.parseParenAndDistinguishExpression (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:11687:12)
+      at JSXParserMixin.parseExprAtom (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at JSXParserMixin.parseExprAtom (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at JSXParserMixin.parseExprSubscripts (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at JSXParserMixin.parseUpdate (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at JSXParserMixin.parseMaybeUnary (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at JSXParserMixin.parseExprOps (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at JSXParserMixin.parseMaybeConditional (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at JSXParserMixin.parseMaybeAssign (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at JSXParserMixin.allowInAnd (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at JSXParserMixin.parseMaybeAssignAllowIn (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at JSXParserMixin.parseVar (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13384:91)
+      at JSXParserMixin.parseVarStatement (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13230:10)
+      at JSXParserMixin.parseStatementContent (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12851:23)
+      at JSXParserMixin.parseStatementLike (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at JSXParserMixin.parseModuleItem (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12744:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13316:36)
+      at JSXParserMixin.parseBlockBody (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at JSXParserMixin.parseProgram (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12622:10)
+      at JSXParserMixin.parseTopLevel (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:12612:25)
+      at JSXParserMixin.parse (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:14488:25)
+      at parse (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/home/lade/Hackathons/Mistral/Final/nudgeai/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+8:29:51 am [vite] hmr update /src/App.jsx, /src/styles/index.css
+8:29:57 am [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:57 am [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:57 am [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:57 am [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:57 am [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:57 am [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/semantic-search?query=&data_filters=document&max_results=5:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/habits:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/semantic-search?query=&data_filters=document&max_results=5:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+8:29:59 am [vite] http proxy error at /api/habits:
+Error: connect ECONNREFUSED 127.0.0.1:8003
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)

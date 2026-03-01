@@ -1,0 +1,17 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements.txt mcp_requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r mcp_requirements.txt
+
+# Copy the application code
+COPY . .
+
+# Expose the port
+EXPOSE 8000
+
+# Start the MCP server
+CMD ["python", "mcp_server.py"]

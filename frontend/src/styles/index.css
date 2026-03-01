@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for NudgeAI */
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #10b981;
+  --accent-color: #8b5cf6;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animation for loading states */
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Button variants */
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700 transition-colors;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700 transition-colors;
+}
+
+.btn-outline {
+  @apply border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors;
+}
+
+/* Input field styles */
+.input-field {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+/* Status badge styles */
+.status-connected {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-disconnected {
+  @apply bg-red-100 text-red-800;
+}
+
+.status-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+/* Chart container */
+.chart-container {
+  @apply w-full h-80;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+  }
+}

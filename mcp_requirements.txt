@@ -1,0 +1,10 @@
+transformers>=4.21.0
+torch>=1.13.0
+huggingface-hub>=0.14.0
+accelerate>=0.13.0
+sentence-transformers>=2.2.0
+bitsandbytes>=0.39.0  # for quantization
+peft>=0.4.0  # for parameter efficient fine-tuning
+datasets>=2.14.0
+tokenizers>=0.13.0
+safetensors>=0.3.0

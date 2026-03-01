@@ -1,0 +1,249 @@
+[
+  {
+    "id": "loc_home_20260301_082100",
+    "text": "home visit at Home on 2026-03-01T08:21:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-03-01T08:21:00Z",
+      "latitude": 37.77507236014452,
+      "longitude": -122.41915418330397,
+      "accuracy": 5
+    }
+  },
+  {
+    "id": "loc_home_evening_20260301_184500",
+    "text": "home visit at Home on 2026-03-01T18:45:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-03-01T18:45:00Z",
+      "latitude": 37.774217925000094,
+      "longitude": -122.4189484385416,
+      "accuracy": 12
+    }
+  },
+  {
+    "id": "loc_home_20260228_082100",
+    "text": "home visit at Home on 2026-02-28T08:21:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-28T08:21:00Z",
+      "latitude": 37.77419102014681,
+      "longitude": -122.41965340963854,
+      "accuracy": 14
+    }
+  },
+  {
+    "id": "loc_home_evening_20260228_184700",
+    "text": "home visit at Home on 2026-02-28T18:47:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-28T18:47:00Z",
+      "latitude": 37.77409264056222,
+      "longitude": -122.4190633288258,
+      "accuracy": 12
+    }
+  },
+  {
+    "id": "loc_home_20260227_082700",
+    "text": "home visit at Home on 2026-02-27T08:27:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-27T08:27:00Z",
+      "latitude": 37.77476089786577,
+      "longitude": -122.41863099616153,
+      "accuracy": 15
+    }
+  },
+  {
+    "id": "loc_office_20260227_090000",
+    "text": "work visit at Office on 2026-02-27T09:00:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Office",
+      "location_type": "work",
+      "timestamp": "2026-02-27T09:00:00Z",
+      "latitude": 37.78156277436749,
+      "longitude": -122.4088911537467,
+      "accuracy": 5
+    }
+  },
+  {
+    "id": "loc_gym_20260227_182100",
+    "text": "exercise visit at Gym on 2026-02-27T18:21:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Gym",
+      "location_type": "exercise",
+      "timestamp": "2026-02-27T18:21:00Z",
+      "latitude": 37.765157642811886,
+      "longitude": -122.4214350186373,
+      "accuracy": 21
+    }
+  },
+  {
+    "id": "loc_home_evening_20260227_183000",
+    "text": "home visit at Home on 2026-02-27T18:30:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-27T18:30:00Z",
+      "latitude": 37.775633738487194,
+      "longitude": -122.41955509275974,
+      "accuracy": 6
+    }
+  },
+  {
+    "id": "loc_home_20260226_082900",
+    "text": "home visit at Home on 2026-02-26T08:29:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-26T08:29:00Z",
+      "latitude": 37.77579355675494,
+      "longitude": -122.42020187165859,
+      "accuracy": 8
+    }
+  },
+  {
+    "id": "loc_office_20260226_090800",
+    "text": "work visit at Office on 2026-02-26T09:08:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Office",
+      "location_type": "work",
+      "timestamp": "2026-02-26T09:08:00Z",
+      "latitude": 37.78213138360536,
+      "longitude": -122.41027120024133,
+      "accuracy": 10
+    }
+  },
+  {
+    "id": "loc_home_evening_20260226_183200",
+    "text": "home visit at Home on 2026-02-26T18:32:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-26T18:32:00Z",
+      "latitude": 37.77417451331283,
+      "longitude": -122.41928935305948,
+      "accuracy": 13
+    }
+  },
+  {
+    "id": "loc_home_20260225_080500",
+    "text": "home visit at Home on 2026-02-25T08:05:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-25T08:05:00Z",
+      "latitude": 37.77550345511275,
+      "longitude": -122.42015050100252,
+      "accuracy": 15
+    }
+  },
+  {
+    "id": "loc_gym_20260225_183200",
+    "text": "exercise visit at Gym on 2026-02-25T18:32:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Gym",
+      "location_type": "exercise",
+      "timestamp": "2026-02-25T18:32:00Z",
+      "latitude": 37.76459533672971,
+      "longitude": -122.42099543148714,
+      "accuracy": 14
+    }
+  },
+  {
+    "id": "loc_home_evening_20260225_185600",
+    "text": "home visit at Home on 2026-02-25T18:56:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-25T18:56:00Z",
+      "latitude": 37.77506458166058,
+      "longitude": -122.41889271918612,
+      "accuracy": 12
+    }
+  },
+  {
+    "id": "loc_home_20260224_082800",
+    "text": "home visit at Home on 2026-02-24T08:28:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-24T08:28:00Z",
+      "latitude": 37.77424609516692,
+      "longitude": -122.4199619159359,
+      "accuracy": 7
+    }
+  },
+  {
+    "id": "loc_home_evening_20260224_182100",
+    "text": "home visit at Home on 2026-02-24T18:21:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-24T18:21:00Z",
+      "latitude": 37.77501308157078,
+      "longitude": -122.4195163335158,
+      "accuracy": 14
+    }
+  },
+  {
+    "id": "loc_home_20260223_081500",
+    "text": "home visit at Home on 2026-02-23T08:15:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-23T08:15:00Z",
+      "latitude": 37.7740065494874,
+      "longitude": -122.41901856287713,
+      "accuracy": 11
+    }
+  },
+  {
+    "id": "loc_office_20260223_093000",
+    "text": "work visit at Office on 2026-02-23T09:30:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Office",
+      "location_type": "work",
+      "timestamp": "2026-02-23T09:30:00Z",
+      "latitude": 37.78181236782638,
+      "longitude": -122.41014315950412,
+      "accuracy": 9
+    }
+  },
+  {
+    "id": "loc_home_evening_20260223_180900",
+    "text": "home visit at Home on 2026-02-23T18:09:00Z",
+    "metadata": {
+      "type": "location",
+      "place_name": "Home",
+      "location_type": "home",
+      "timestamp": "2026-02-23T18:09:00Z",
+      "latitude": 37.77460445834728,
+      "longitude": -122.41865271041064,
+      "accuracy": 6
+    }
+  }
+]

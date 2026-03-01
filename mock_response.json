@@ -1,0 +1,94 @@
+{
+  "result": {
+    "events": [
+      {
+        "summary": "Mistral Worldwide Hackathon - Sydney edition",
+        "start_time": "2026-02-28T09:00:00+11:00",
+        "type": "event",
+        "description": "Major hackathon event",
+        "location": "Michael Crouch Innovation Centre, Sydney",
+        "id": "hackathon-event"
+      },
+      {
+        "summary": "WAKE UP LIST",
+        "start_time": "2026-03-01T09:00:00+11:00",
+        "type": "reminder",
+        "description": "Daily routine",
+        "location": "Home",
+        "id": "wake-up-list"
+      },
+      {
+        "summary": "Meeting with Manoj",
+        "start_time": "2026-03-02T22:00:00+11:00",
+        "type": "meeting",
+        "description": "Project discussion",
+        "location": "Online",
+        "id": "meeting-with-manoj"
+      }
+    ],
+    "documents": [
+      {
+        "title": "Marketing Budget 2024.xlsx",
+        "url": "https://drive.google.com/file/d/...",
+        "modified": "2026-02-27T14:30:00Z",
+        "type": "spreadsheet",
+        "id": "budget-sheet"
+      },
+      {
+        "title": "Project Plan.docx",
+        "url": "https://drive.google.com/file/d/...",
+        "modified": "2026-02-26T10:15:00Z",
+        "type": "document",
+        "id": "project-plan"
+      },
+      {
+        "title": "Meeting Notes.pdf",
+        "url": "https://drive.google.com/file/d/...",
+        "modified": "2026-02-25T16:45:00Z",
+        "type": "pdf",
+        "id": "meeting-notes"
+      }
+    ],
+    "locations": [
+      {
+        "place": "Home",
+        "time": "2026-02-28T08:00:00+11:00",
+        "duration": "16h",
+        "type": "home",
+        "coordinates": {
+          "lat": -33.8688,
+          "lng": 151.2093
+        },
+        "id": "home-location"
+      },
+      {
+        "place": "Office",
+        "time": "2026-02-28T09:00:00+11:00",
+        "duration": "9h",
+        "type": "work",
+        "coordinates": {
+          "lat": -33.8651,
+          "lng": 151.2099
+        },
+        "id": "office-location"
+      },
+      {
+        "place": "Gym",
+        "time": "2026-02-28T18:30:00+11:00",
+        "duration": "1h",
+        "type": "exercise",
+        "coordinates": {
+          "lat": -33.8702,
+          "lng": 151.2089
+        },
+        "id": "gym-location"
+      }
+    ],
+    "health": {
+      "steps_today": 8547,
+      "calories_burned": 2100,
+      "active_minutes": 65,
+      "heart_rate_avg": 72
+    }
+  }
+}

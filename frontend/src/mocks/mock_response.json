@@ -1,0 +1,284 @@
+{
+  "calendarResponse": {
+    "result": {
+      "events": [
+        {
+          "id": "_clr78b9l91o6qkiaf5kjcd3df9hncga0clr6arjkecn6ot9edlgg",
+          "summary": "Mistral Worldwide Hackathon - Sydney edition",
+          "start_time": "2026-02-28T09:00:00+11:00",
+          "type": "default",
+          "description": "Get up-to-date information at: https://luma.com/event/evt-5HpmRJyi64mzcvA?pk=g-H2hK7KXBsq5jyDx\n\nAddress:\nMichael Crouch Innovation Centre\nKensington, New South Wales\nAustralia\n\nMistral Worldwide Hackathon - Sydney Edition\nMistral AI is launching its largest hackathon.\nEver.\nThe Mistral Worldwide hackathon is taking place simultaneously in 7 cities:\nParis / London / NYC / SF / Tokyo / Singapore / Sydney + online.\nWe're bringing together 1000+ of the best AI engineers for a 2-day overnight hackathon around the world. This hackathon is organized in partnership with Weights & Biases, NVIDIA, AWS and operated by the Iterate team. The other special awards sponsors include ElevenLabs, Hugging Face, Jump Trading, WhiteCircle, UNSW Founders, Arrayah, Supercell and more to…\n\nHosted by Mistral AI & 3 others",
+          "location": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd, UNSW Sydney, Kensington NSW 2033, Australia"
+        },
+        {
+          "id": "4tlkj87gi88m0nvv2lv74mirj7_20260228T220000Z",
+          "summary": "WAKE UP LIST",
+          "start_time": "2026-03-01T09:00:00+11:00",
+          "type": "default",
+          "description": "1. Shower\n2. Brush\n3. Morning Smoothie",
+          "location": ""
+        },
+        {
+          "id": "m5iev9tbtut5sjmf66n7o0kt70",
+          "summary": "Research about Next by 360",
+          "start_time": "2026-03-01T18:00:00+11:00",
+          "type": "default",
+          "description": "",
+          "location": ""
+        },
+        {
+          "id": "4tlkj87gi88m0nvv2lv74mirj7_20260301T220000Z",
+          "summary": "WAKE UP LIST",
+          "start_time": "2026-03-02T09:00:00+11:00",
+          "type": "default",
+          "description": "1. Shower\n2. Brush\n3. Morning Smoothie",
+          "location": ""
+        },
+        {
+          "id": "8gp04okhku5n4am256loauv2s8",
+          "summary": "Room inspection with Bish",
+          "start_time": "2026-03-02T20:00:00+11:00",
+          "type": "default",
+          "description": "",
+          "location": "Liverpool"
+        },
+        {
+          "id": "hrha9heism057l47go60o75ick",
+          "summary": "Meeting with Manoj",
+          "start_time": "2026-03-02T22:00:00+11:00",
+          "type": "default",
+          "description": "",
+          "location": ""
+        },
+        {
+          "id": "4tlkj87gi88m0nvv2lv74mirj7_20260302T220000Z",
+          "summary": "WAKE UP LIST",
+          "start_time": "2026-03-03T09:00:00+11:00",
+          "type": "default",
+          "description": "1. Shower\n2. Brush\n3. Morning Smoothie",
+          "location": ""
+        },
+        {
+          "id": "cgqm8c35ccpjgb9ic5j3ab9k64o62b9o74s6abb564s3goho64ojcphk6c",
+          "summary": "Atlassian Takeover 2026",
+          "start_time": "2026-03-03T18:00:00+11:00",
+          "type": "default",
+          "description": "Atlassian are continuing their association with SydJS for another superb year, and you get the rewards.\n\nEach month Atlassian provides the venue, drinks, and pizza we enjoy at our meetings.\n\nAnd one month a year they go above and beyond and also provide us with an insight to the teams, the code, and the company.\n\nTo keep the tradition going we're clearing the runway and making room in March to hear from their team. And their team will be fresh from Atlassian's own EngFest, their twice yearly local, internal conference.\n\nWe've got our sights on an international speaker and they'll be backed up by two of Sydney's own:\n\nShrey Somaiya will show us how static analysis can reduce your workload from weeks to seconds.\n\nCoby Plain will reveal \"Good Developer Habits\" that are bad at Atlassian scale.\n\nAnd stay tuned for news on our guest speaker\n\nIt's set to be a GREAT night!",
+          "location": "Level 6, 341 George St, Sydney, au"
+        },
+        {
+          "id": "4tlkj87gi88m0nvv2lv74mirj7_20260303T220000Z",
+          "summary": "WAKE UP LIST",
+          "start_time": "2026-03-04T09:00:00+11:00",
+          "type": "default",
+          "description": "1. Shower\n2. Brush\n3. Morning Smoothie",
+          "location": ""
+        },
+        {
+          "id": "4tlkj87gi88m0nvv2lv74mirj7_20260304T220000Z",
+          "summary": "WAKE UP LIST",
+          "start_time": "2026-03-05T09:00:00+11:00",
+          "type": "default",
+          "description": "1. Shower\n2. Brush\n3. Morning Smoothie",
+          "location": ""
+        }
+      ],
+      "insights": "Based on the calendar events, you have a busy week ahead with several important meetings and events. The Mistral Worldwide Hackathon on Feb 28th is a major event that you should prepare for. You also have regular morning routines (WAKE UP LIST) scheduled daily, which shows good consistency in your routine. Consider blocking out preparation time before the hackathon and the Atlassian Takeover event.",
+      "summary": "Found 10 events between 2026-02-28 and 2026-03-05"
+    }
+  },
+  "documentResponse": {
+    "result": {
+      "documents": [
+        {
+          "id": "budget-sheet",
+          "title": "Marketing Budget 2024.xlsx",
+          "url": "https://drive.google.com/file/d/...",
+          "modified": "2026-02-27T14:30:00Z",
+          "type": "spreadsheet"
+        },
+        {
+          "id": "project-plan",
+          "title": "Project Plan.docx",
+          "url": "https://drive.google.com/file/d/...",
+          "modified": "2026-02-26T10:15:00Z",
+          "type": "document"
+        },
+        {
+          "id": "meeting-notes",
+          "title": "Meeting Notes.pdf",
+          "url": "https://drive.google.com/file/d/...",
+          "modified": "2026-02-25T16:45:00Z",
+          "type": "pdf"
+        }
+      ],
+      "summary": "Found 3 documents matching your query. The documents include a marketing budget spreadsheet, project plan document, and meeting notes PDF. These appear to be recent work-related documents that could be relevant for your current projects.",
+      "count": 3
+    }
+  },
+  "locationResponse": {
+    "result": {
+      "locations": [
+        {
+          "id": "loc_home_20260228_081000",
+          "place": "Home",
+          "time": "2026-02-28T08:10:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.77509134426536,
+            "lng": -122.41953527168072
+          }
+        },
+        {
+          "id": "loc_home_evening_20260228_182000",
+          "place": "Home",
+          "time": "2026-02-28T18:20:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.77484442101167,
+            "lng": -122.42011270175634
+          }
+        },
+        {
+          "id": "loc_home_20260227_080500",
+          "place": "Home",
+          "time": "2026-02-27T08:05:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.775033945830664,
+            "lng": -122.42008975332762
+          }
+        },
+        {
+          "id": "loc_office_20260227_090800",
+          "place": "Office",
+          "time": "2026-02-27T09:08:00Z",
+          "duration": "Unknown",
+          "type": "work",
+          "coordinates": {
+            "lat": 37.780724249852305,
+            "lng": -122.40908156053794
+          }
+        },
+        {
+          "id": "loc_gym_20260227_182000",
+          "place": "Gym",
+          "time": "2026-02-27T18:20:00Z",
+          "duration": "Unknown",
+          "type": "exercise",
+          "coordinates": {
+            "lat": 37.765067769245995,
+            "lng": -122.4217961895602
+          }
+        },
+        {
+          "id": "loc_home_evening_20260227_182300",
+          "place": "Home",
+          "time": "2026-02-27T18:23:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.77430745397527,
+            "lng": -122.42010537656552
+          }
+        },
+        {
+          "id": "loc_home_20260226_082900",
+          "place": "Home",
+          "time": "2026-02-26T08:29:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.775006958260505,
+            "lng": -122.41975639626027
+          }
+        },
+        {
+          "id": "loc_office_20260226_093000",
+          "place": "Office",
+          "time": "2026-02-26T09:30:00Z",
+          "duration": "Unknown",
+          "type": "work",
+          "coordinates": {
+            "lat": 37.781529049869235,
+            "lng": -122.40910847771138
+          }
+        },
+        {
+          "id": "loc_home_evening_20260226_182800",
+          "place": "Home",
+          "time": "2026-02-26T18:28:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.774200106203764,
+            "lng": -122.42005069246206
+          }
+        },
+        {
+          "id": "loc_home_20260225_080300",
+          "place": "Home",
+          "time": "2026-02-25T08:03:00Z",
+          "duration": "Unknown",
+          "type": "home",
+          "coordinates": {
+            "lat": 37.77553538185634,
+            "lng": -122.41931584406468
+          }
+        }
+      ],
+      "insights": "Your location history shows a consistent daily pattern with regular visits to home, office, and not gym. You maintain a good work-life balance with regular exercise and consistent sleep patterns. The data shows you typically work from 9 AM to 6 PM on weekdays, with evening gym sessions a few times per week. Consider optimizing your commute time and maintaining this healthy routine.",
+      "summary": "Found location data for 10 places between 2026-02-26 and 2026-02-28"
+    }
+  },
+  "healthResponse": {
+    "result": {
+      "health": {
+        "steps_today": 850,
+        "calories_burned": 290,
+        "active_minutes": 80,
+        "heart_rate_avg": 90,
+        "recent_activities": [
+          {
+            "type": "running",
+            "duration": 10,
+            "steps": 9117,
+            "calories": 585,
+            "timestamp": "2026-02-28 07:08:00Z"
+          },
+          {
+            "type": "swimming",
+            "duration": 10,
+            "steps": 0,
+            "calories": 346,
+            "timestamp": "2026-02-26T09:00:00Z"
+          },
+          {
+            "type": "walking",
+            "duration": 10,
+            "steps": 4413,
+            "calories": 176,
+            "timestamp": "2026-02-25T 12:40:00Z"
+          },
+          {
+            "type": "running",
+            "duration": 40,
+            "steps": 13057,
+            "calories": 531,
+            "timestamp": "2026-02-25T 06:58:00Z"
+          },
+          {
+            "type": "walking",
+            "duration": 10,
+            "steps": 6625,
+            "calories": 265,
+            "timestamp": "2026-02-24T 12:04:00Z"
+          }
+        ]
+      }
+    }
+  }
+}
