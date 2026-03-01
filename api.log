@@ -1,0 +1,182 @@
+INFO:     Started server process [123331]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:__main__:Semantic search requested for query: 'Atlassian', k=5
+INFO:     127.0.0.1:48532 - "GET /api/mcp/tools/semantic_search?query=Atlassian HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46316 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46326 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46334 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58006 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58014 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58028 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58034 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58050 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58064 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54588 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54600 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41684 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41694 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41700 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41702 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41708 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41720 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41722 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41736 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41740 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41750 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41762 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41774 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:42810 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56948 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56960 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54068 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54072 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:54084 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54086 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:54088 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54102 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54106 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54114 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36170 - "GET /api/mcp/tools/query_calendar?start_date=&end_date=&event_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36172 - "GET /api/mcp/tools/query_calendar?start_date=&end_date=&event_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36176 - "GET /api/mcp/tools/query_location?start_date=&end_date=&location_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36180 - "GET /api/mcp/tools/query_location?start_date=&end_date=&location_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36186 - "GET /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36192 - "GET /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36196 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36208 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36212 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36222 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36236 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36250 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36254 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36268 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36840 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58378 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58392 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58408 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58416 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58422 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58438 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37772 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37778 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37786 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37788 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37798 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37808 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44204 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44206 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44218 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44230 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44240 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44246 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46774 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46790 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46800 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57838 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:38482 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38486 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38494 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:38508 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38518 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38534 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38544 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38552 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42518 - "GET /api/mcp/tools/query_calendar?start_date=&end_date=&event_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42524 - "GET /api/mcp/tools/query_calendar?start_date=&end_date=&event_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42534 - "GET /api/mcp/tools/query_location?start_date=&end_date=&location_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42544 - "GET /api/mcp/tools/query_location?start_date=&end_date=&location_type= HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42556 - "GET /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:42568 - "GET /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:42584 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42588 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38276 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38284 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38288 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38304 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38316 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38322 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38328 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45140 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45154 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45162 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45164 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41158 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:41170 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41186 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:41196 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41212 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41214 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41220 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41236 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41250 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41256 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41266 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41280 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41286 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41292 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53340 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35708 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53396 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58024 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58040 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38780 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38792 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38806 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38820 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38822 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38830 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39324 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:39330 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39344 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39352 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+WARNING:__main__:File drive_documents.json not found
+INFO:     127.0.0.1:39366 - "GET /api/mcp/tools/query_drive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39382 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39392 - "GET /api/mcp/tools/query_fit HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39408 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39422 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39438 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39444 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39448 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39458 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39472 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34392 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34400 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34402 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34404 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34412 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34420 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43146 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43150 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50236 - "GET /api/mcp/tools/query_location HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39912 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39918 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39934 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39940 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39942 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39950 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59578 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59588 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59592 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59608 - "GET /api/calendar HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59610 - "GET /api/location HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59618 - "GET /api/fit HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59632 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41094 - "GET /api/system-logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45408 - "GET /api/system-logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34538 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42274 - "GET /api/mcp/tools/query_calendar HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [123331]

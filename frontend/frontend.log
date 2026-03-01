@@ -1,0 +1,165 @@
+
+> nudgeai-frontend@0.0.0 dev
+> vite
+
+
+  VITE v4.5.14  ready in 817 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
+1:45:19 pm [vite] hmr update /src/pages/DataLogs.jsx, /src/styles/index.css
+1:45:30 pm [vite] hmr update /src/pages/DataLogs.jsx, /src/styles/index.css
+1:57:05 pm [vite] hmr update /src/pages/DataLogs.jsx, /src/styles/index.css
+1:57:19 pm [vite] hmr update /src/pages/DataLogs.jsx, /src/styles/index.css
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:54 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=&end_date=&event_type=:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=&end_date=&event_type=:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/mcp/tools/query_location?start_date=&end_date=&location_type=:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/mcp/tools/query_location?start_date=&end_date=&location_type=:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:57 pm [vite] http proxy error at /api/insights?data_sources%5B%5D=calendar&data_sources%5B%5D=location&focus_areas%5B%5D=productivity&focus_areas%5B%5D=health:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:58 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:40:58 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:00 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:00 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:06 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:06 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:19 pm [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:20 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_calendar?start_date=2026-03-01T00:00:00.000Z&end_date=2026-03-07T00:00:00.000Z:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_drive:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:21 pm [vite] http proxy error at /api/mcp/tools/query_fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/fit:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:30 pm [vite] http proxy error at /api/location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:32 pm [vite] http proxy error at /api/mcp/tools/query_calendar:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:41:36 pm [vite] http proxy error at /api/mcp/tools/query_location:
+Error: connect ECONNREFUSED 127.0.0.1:8001
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2:45:09 pm [vite] vite.config.js changed, restarting server...
+2:45:09 pm [vite] server restarted.

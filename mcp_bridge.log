@@ -1,0 +1,4 @@
+  File "/home/lade/Hackathons/Mistral/Final/nudgeai/mcp_api_bridge.py", line 265
+    @app.get(/api/ask-question)
+             ^
+SyntaxError: invalid syntax

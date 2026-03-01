@@ -1,0 +1,16 @@
+{
+  "total_documents": 27,
+  "sources": [
+    "location",
+    "calendar_event",
+    "fitness",
+    "document"
+  ],
+  "processed_at": "2026-03-01T14:40:41.281447Z",
+  "document_types": {
+    "location": 10,
+    "document": 5,
+    "calendar_event": 5,
+    "fitness": 7
+  }
+}

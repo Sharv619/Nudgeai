@@ -8,6 +8,7 @@ const Sidebar = () => {
     { path: '/', label: 'Dashboard', icon: '🏠' },
     { path: '/tools', label: 'Tools', icon: '🛠️' },
     { path: '/data', label: 'Data', icon: '📊' },
+    { path: '/display', label: 'Calendar View', icon: '📅' },
   ];
 
   return (

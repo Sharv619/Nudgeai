@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NudgeAI - 2-Minute Project Walkthrough</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1f2937;
+            --text-color: #111827;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .video-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+        }
+        
+        .time-display {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .tech-stack {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-item {
+            background: #f8fafc;
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #334155;
+        }
+        
+        .download-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #64748b;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        footer {
+            text-align: center;
+            color: #666;
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .video-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NudgeAI</h1>
+            <p class="subtitle">Proactive Personal Assistant - 2-Minute Project Walkthrough</p>
+        </header>
+        
+        <div class="video-container">
+            <div class="video-wrapper">
+                <!-- Video placeholder - in a real implementation, this would be the actual video -->
+                <video controls poster="video_poster.jpg">
+                    <source src="nudgeai_walkthrough.mp4" type="video/mp4">
+                    <source src="nudgeai_walkthrough.webm" type="video/webm">
+                    <track kind="captions" src="nudgeai_captions.vtt" srclang="en" label="English" default>
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="controls">
+                <div class="time-display">Duration: ~2 minutes | Captions: Available</div>
+                <div class="time-display">Format: 1080p | Quality: High</div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-title">🤖 AI-Powered</div>
+                <div class="feature-desc">
+                    Uses advanced RAG system with semantic search to provide context-aware responses and proactive suggestions.
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-title">🔒 Privacy-First</div>
+                <div class="feature-desc">
+                    All data processing happens locally. No personal data is sent to external servers or cloud services.
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-title">🎯 Proactive Nudging</div>
+                <div class="feature-desc">
+                    Automatically suggests optimal times for activities like gym sessions based on your calendar and habits.
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-title">🛡️ Quality Assurance</div>
+                <div class="feature-desc">
+                    WhiteCircle integration prevents hallucinations and ensures high-quality, factually-grounded responses.
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <h2>Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">React + Vite</div>
+                <div class="tech-item">Python + FastAPI</div>
+                <div class="tech-item">RAG System</div>
+                <div class="tech-item">MCP Server</div>
+                <div class="tech-item">Hugging Face</div>
+                <div class="tech-item">WhiteCircle</div>
+                <div class="tech-item">FAISS/ChromaDB</div>
+                <div class="tech-item">Google APIs</div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2>Download Resources</h2>
+            <p>Get the video files and additional resources for your presentation.</p>
+            <a href="nudgeai_walkthrough.mp4" class="btn" download>Download Video (MP4)</a>
+            <a href="nudgeai_captions.srt" class="btn btn-secondary" download>Download Captions (SRT)</a>
+            <a href="walkthrough_script.md" class="btn btn-secondary" download>Download Script</a>
+        </div>
+        
+        <footer>
+            <p>© 2024 NudgeAI Project | Built with ❤️ for better productivity</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple video player enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('video');
+            const timeDisplay = document.querySelector('.time-display');
+            
+            if (video) {
+                video.addEventListener('timeupdate', function() {
+                    const current = formatTime(video.currentTime);
+                    const duration = formatTime(video.duration);
+                    timeDisplay.textContent = `Now Playing: ${current} / ${duration} | Captions: Available`;
+                });
+            }
+            
+            function formatTime(seconds) {
+                if (!seconds || isNaN(seconds)) return '00:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+        });
+    </script>
+</body>
+</html>

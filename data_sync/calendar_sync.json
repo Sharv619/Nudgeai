@@ -1,134 +1,62 @@
 [
   {
-    "id": "cal__clr78b9l91o6qkiaf5kjcd3df9hncga0clr6arjkecn6ot9edlgg",
-    "text": "Mistral Worldwide Hackathon - Sydney edition at 2026-02-28T09:00:00+11:00",
+    "id": "cal_event_0",
+    "text": "Meeting 1 at 2024-03-01T10:00:00",
     "metadata": {
       "type": "calendar_event",
-      "start_time": "2026-02-28T09:00:00+11:00",
-      "end_time": "2026-03-01T20:00:00+11:00",
-      "attendees": [
-        "hlade03@gmail.com"
-      ],
-      "location": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd, UNSW Sydney, Kensington NSW 2033, Australia",
-      "description": "Get up-to-date information at: https://luma.com/event/evt-5HpmRJyi64mzcvA?pk=g-H2hK7KXBsq5jyDx\n\nAddress:\nMichael Crouch Innovation Centre\nKensington, New South Wales\nAustralia\n\nMistral Worldwide Hackathon - Sydney Edition\nMistral AI is launching its largest hackathon.\nEver.\nThe Mistral Worldwide hackathon is taking place simultaneously in 7 cities:\nParis / London / NYC / SF / Tokyo / Singapore / Sydney + online.\nWe're bringing together 1000+ of the best AI engineers for a 2-day overnight hackathon around the world. This hackathon is organized in partnership with Weights & Biases, NVIDIA, AWS and operated by the Iterate team. The other special awards sponsors include ElevenLabs, Hugging Face, Jump Trading, WhiteCircle, UNSW Founders, Arrayah, Supercell and more to\u2026\n\nHosted by Mistral AI & 3 others",
-      "synced_at": "2026-03-01T06:27:40.140364Z"
+      "start_time": "2024-03-01T10:00:00",
+      "end_time": "2024-03-01T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 1",
+      "synced_at": "2026-03-01T14:39:53.111261Z"
     }
   },
   {
-    "id": "cal_4tlkj87gi88m0nvv2lv74mirj7_20260228T220000Z",
-    "text": "WAKE UP LIST at 2026-03-01T09:00:00+11:00",
+    "id": "cal_event_1",
+    "text": "Meeting 2 at 2024-03-02T10:00:00",
     "metadata": {
       "type": "calendar_event",
-      "start_time": "2026-03-01T09:00:00+11:00",
-      "end_time": "2026-03-01T11:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "1. Shower\u00a0\n2. Brush\u00a0\n3.\u00a0 Morning Smoothie",
-      "synced_at": "2026-03-01T06:27:40.140374Z"
+      "start_time": "2024-03-02T10:00:00",
+      "end_time": "2024-03-02T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 2",
+      "synced_at": "2026-03-01T14:39:53.111285Z"
     }
   },
   {
-    "id": "cal_m5iev9tbtut5sjmf66n7o0kt70",
-    "text": "Research about Next by 360 at 2026-03-01T18:00:00+11:00",
+    "id": "cal_event_2",
+    "text": "Meeting 3 at 2024-03-03T10:00:00",
     "metadata": {
       "type": "calendar_event",
-      "start_time": "2026-03-01T18:00:00+11:00",
-      "end_time": "2026-03-02T00:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "",
-      "synced_at": "2026-03-01T06:27:40.140377Z"
+      "start_time": "2024-03-03T10:00:00",
+      "end_time": "2024-03-03T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 3",
+      "synced_at": "2026-03-01T14:39:53.111289Z"
     }
   },
   {
-    "id": "cal_4tlkj87gi88m0nvv2lv74mirj7_20260301T220000Z",
-    "text": "WAKE UP LIST at 2026-03-02T09:00:00+11:00",
+    "id": "cal_event_3",
+    "text": "Meeting 4 at 2024-03-04T10:00:00",
     "metadata": {
       "type": "calendar_event",
-      "start_time": "2026-03-02T09:00:00+11:00",
-      "end_time": "2026-03-02T11:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "1. Shower\u00a0\n2. Brush\u00a0\n3.\u00a0 Morning Smoothie",
-      "synced_at": "2026-03-01T06:27:40.140379Z"
+      "start_time": "2024-03-04T10:00:00",
+      "end_time": "2024-03-04T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 4",
+      "synced_at": "2026-03-01T14:39:53.111291Z"
     }
   },
   {
-    "id": "cal_8gp04okhku5n4am256loauv2s8",
-    "text": "Room inspection with Bish at 2026-03-02T20:00:00+11:00",
+    "id": "cal_event_4",
+    "text": "Meeting 5 at 2024-03-05T10:00:00",
     "metadata": {
       "type": "calendar_event",
-      "start_time": "2026-03-02T20:00:00+11:00",
-      "end_time": "2026-03-02T21:00:00+11:00",
-      "attendees": [],
-      "location": "Liverpool",
-      "description": "",
-      "synced_at": "2026-03-01T06:27:40.140381Z"
-    }
-  },
-  {
-    "id": "cal_hrha9heism057l47go60o75ick",
-    "text": "Meeting with Manoj at 2026-03-02T22:00:00+11:00",
-    "metadata": {
-      "type": "calendar_event",
-      "start_time": "2026-03-02T22:00:00+11:00",
-      "end_time": "2026-03-02T23:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "",
-      "synced_at": "2026-03-01T06:27:40.140384Z"
-    }
-  },
-  {
-    "id": "cal_4tlkj87gi88m0nvv2lv74mirj7_20260302T220000Z",
-    "text": "WAKE UP LIST at 2026-03-03T09:00:00+11:00",
-    "metadata": {
-      "type": "calendar_event",
-      "start_time": "2026-03-03T09:00:00+11:00",
-      "end_time": "2026-03-03T11:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "1. Shower\u00a0\n2. Brush\u00a0\n3.\u00a0 Morning Smoothie",
-      "synced_at": "2026-03-01T06:27:40.140385Z"
-    }
-  },
-  {
-    "id": "cal_cgqm8c35ccpjgb9ic5j3ab9k64o62b9o74s6abb564s3goho64ojcphk6c",
-    "text": "Atlassian Takeover 2026 at 2026-03-03T18:00:00+11:00",
-    "metadata": {
-      "type": "calendar_event",
-      "start_time": "2026-03-03T18:00:00+11:00",
-      "end_time": "2026-03-03T19:30:00+11:00",
-      "attendees": [],
-      "location": "Level 6, 341 George St, Sydney, au",
-      "description": "Atlassian are continuing their association with SydJS for another superb year, and you get the rewards.\n\nEach month Atlassian provides the venue, drinks, and pizza we enjoy at our meetings.\n\nAnd one month a year they go above and beyond and also provide us with an insight to the teams, the code, and the company.\n\nTo keep the tradition going we\u2019re clearing the runway and making room in March to hear from their team. And their team will be fresh from Atlassian\u2019s own EngFest, their twice yearly local, internal conference.\n\nWe\u2019ve got our sights on an international speaker and they\u2019ll be backed up by two of Sydney\u2019s own:\n\nShrey Somaiya will show us how static analysis can reduce your workload from weeks to seconds.\n\nCoby Plain will reveal \u201cGood Developer Habits\u201d that are bad at Atlassian scale.\n\nAnd stay tuned for news on our guest speaker\n\nIt\u2019s set to be a GREAT night!",
-      "synced_at": "2026-03-01T06:27:40.140387Z"
-    }
-  },
-  {
-    "id": "cal_4tlkj87gi88m0nvv2lv74mirj7_20260303T220000Z",
-    "text": "WAKE UP LIST at 2026-03-04T09:00:00+11:00",
-    "metadata": {
-      "type": "calendar_event",
-      "start_time": "2026-03-04T09:00:00+11:00",
-      "end_time": "2026-03-04T11:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "1. Shower\u00a0\n2. Brush\u00a0\n3.\u00a0 Morning Smoothie",
-      "synced_at": "2026-03-01T06:27:40.140389Z"
-    }
-  },
-  {
-    "id": "cal_4tlkj87gi88m0nvv2lv74mirj7_20260304T220000Z",
-    "text": "WAKE UP LIST at 2026-03-05T09:00:00+11:00",
-    "metadata": {
-      "type": "calendar_event",
-      "start_time": "2026-03-05T09:00:00+11:00",
-      "end_time": "2026-03-05T11:00:00+11:00",
-      "attendees": [],
-      "location": "",
-      "description": "1. Shower\u00a0\n2. Brush\u00a0\n3.\u00a0 Morning Smoothie",
-      "synced_at": "2026-03-01T06:27:40.140392Z"
+      "start_time": "2024-03-05T10:00:00",
+      "end_time": "2024-03-05T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 5",
+      "synced_at": "2026-03-01T14:39:53.111293Z"
     }
   }
 ]

@@ -261,6 +261,27 @@ async def api_semantic_search(
         raise HTTPException(status_code=500, detail=str(e))
 
 
+
+@app.get(/api/ask-question)
+async def api_answer_general_question(
+    question: str,
+):
+    """Answer general questions using semantic search and RAG system"""
+    try:
+        result = await mcp_server.call_tool(
+            "answer_general_question", {"question": question}
+        )
+
+        return {
+            "success": True,
+            "data": result,
+            "timestamp": datetime.now().isoformat(),
+        }
+    except Exception as e:
+        logger.error(f"Error answering question: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/rag-stats")
 async def api_get_rag_stats():
     """Get RAG system statistics"""

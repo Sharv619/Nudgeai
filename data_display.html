@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NudgeAI Data Display</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .control-group h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input, select, button {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button.secondary {
+            background-color: #6c757d;
+        }
+
+        button.secondary:hover {
+            background-color: #545b62;
+        }
+
+        .data-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .data-item h4 {
+            margin: 0 0 8px 0;
+            color: var(--text-color);
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #666;
+            min-width: 120px;
+        }
+
+        .value {
+            color: #333;
+            text-align: right;
+        }
+
+        .insights {
+            background: #e7f3ff;
+            border-left-color: var(--primary-color);
+        }
+
+        .insights h4 {
+            color: var(--primary-color);
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #fff5f5;
+            border-left-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .success {
+            background: #f0fff4;
+            border-left-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-display {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span class="status-indicator"></span>
+                NudgeAI Data Display
+            </h1>
+            <p style="margin: 10px 0 0 0; color: #666;">Clean, structured view of your calendar, location, and fitness data</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <h3>📅 Calendar Events</h3>
+                <div class="form-row">
+                    <input type="date" id="cal-start-date" placeholder="Start Date">
+                    <input type="date" id="cal-end-date" placeholder="End Date">
+                </div>
+                <div class="form-row">
+                    <input type="text" id="cal-event-type" placeholder="Event Type (optional)">
+                    <button onclick="queryCalendar()">Query Calendar</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>📍 Location History</h3>
+                <div class="form-row">
+                    <input type="date" id="loc-start-date" placeholder="Start Date">
+                    <input type="date" id="loc-end-date" placeholder="End Date">
+                </div>
+                <div class="form-row">
+                    <input type="text" id="loc-type" placeholder="Location Type (optional)">
+                    <button onclick="queryLocation()">Query Location</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>📊 Habit Analysis</h3>
+                <div class="form-row">
+                    <select id="habit-period">
+                        <option value="day">Day</option>
+                        <option value="week" selected>Week</option>
+                        <option value="month">Month</option>
+                    </select>
+                    <input type="text" id="habit-focus" placeholder="Focus Area (optional)">
+                    <button onclick="analyzeHabits()">Analyze Habits</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>🔍 Quick Actions</h3>
+                <div class="form-row">
+                    <button class="secondary" onclick="getDailySummary()">Daily Summary</button>
+                    <button class="secondary" onclick="getWeeklyInsights()">Weekly Insights</button>
+                    <button class="secondary" onclick="getUpcomingEvents()">Upcoming Events</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-stats" id="summary-stats">
+            <!-- Summary statistics will be displayed here -->
+        </div>
+
+        <div class="data-display">
+            <div class="card">
+                <h3>📅 Calendar Events</h3>
+                <div id="calendar-results">
+                    <div class="loading">No calendar data yet. Use the controls above to query your calendar.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📍 Location History</h3>
+                <div id="location-results">
+                    <div class="loading">No location data yet. Use the controls above to query your location history.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🏃 Fitness & Habits</h3>
+                <div id="fitness-results">
+                    <div class="loading">No fitness data yet. Use the controls above to analyze your habits.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>💡 Insights & Analysis</h3>
+                <div id="insights-results">
+                    <div class="loading">No insights yet. Query data to get AI-powered insights.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:8003/api';
+        
+        // Mock data fallback if API is not available
+        const mockData = {
+            calendar: [
+                {
+                    id: "event_001",
+                    title: "Team Standup Meeting",
+                    start_time: "2024-01-15T09:00:00",
+                    end_time: "2024-01-15T09:30:00",
+                    location: "Conference Room A",
+                    attendees: ["John Doe", "Jane Smith"],
+                    description: "Daily team standup meeting to discuss progress and blockers",
+                    similarity_score: 0.95
+                },
+                {
+                    id: "event_002", 
+                    title: "Client Presentation",
+                    start_time: "2024-01-15T14:00:00",
+                    end_time: "2024-01-15T15:00:00",
+                    location: "Main Office",
+                    attendees: ["Client Team"],
+                    description: "Quarterly business review presentation",
+                    similarity_score: 0.88
+                }
+            ],
+            location: [
+                {
+                    id: "loc_001",
+                    timestamp: "2024-01-15T08:30:00",
+                    place: "Home",
+                    location_type: "home",
+                    latitude: 40.7128,
+                    longitude: -74.0060,
+                    accuracy: 10,
+                    similarity_score: 0.92
+                },
+                {
+                    id: "loc_002",
+                    timestamp: "2024-01-15T09:00:00", 
+                    place: "Office Building",
+                    location_type: "work",
+                    latitude: 40.7128,
+                    longitude: -74.0060,
+                    accuracy: 5,
+                    similarity_score: 0.87
+                }
+            ],
+            insights: "Based on your calendar and location data, you have a busy day ahead. Your morning starts with a team standup followed by focused work time. The client presentation in the afternoon requires preparation. Consider arriving 15 minutes early to set up. Your location patterns show good work-life balance with clear separation between home and office."
+        };
+
+        // Display functions
+        function displayCalendarEvents(events) {
+            const container = document.getElementById('calendar-results');
+            container.innerHTML = '';
+            
+            if (events.length === 0) {
+                container.innerHTML = '<div class="error">No calendar events found for the specified date range.</div>';
+                return;
+            }
+
+            events.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'data-item';
+                eventDiv.innerHTML = `
+                    <h4>${event.title}</h4>
+                    <div class="data-row">
+                        <span class="label">Summary:</span>
+                        <span class="value">${event.title}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Start Time:</span>
+                        <span class="value">${formatDateTime(event.start_time)}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">End Time:</span>
+                        <span class="value">${formatDateTime(event.end_time)}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Location:</span>
+                        <span class="value">${event.location}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Attendees:</span>
+                        <span class="value">${event.attendees.join(', ')}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Description:</span>
+                        <span class="value">${event.description}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Similarity Score:</span>
+                        <span class="value">${event.similarity_score}</span>
+                    </div>
+                `;
+                container.appendChild(eventDiv);
+            });
+        }
+
+        function displayLocationHistory(locations) {
+            const container = document.getElementById('location-results');
+            container.innerHTML = '';
+            
+            if (locations.length === 0) {
+                container.innerHTML = '<div class="error">No location data found for the specified date range.</div>';
+                return;
+            }
+
+            locations.forEach(location => {
+                const locDiv = document.createElement('div');
+                locDiv.className = 'data-item';
+                locDiv.innerHTML = `
+                    <h4>${location.place}</h4>
+                    <div class="data-row">
+                        <span class="label">Place:</span>
+                        <span class="value">${location.place}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Type:</span>
+                        <span class="value">${location.location_type}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Time:</span>
+                        <span class="value">${formatDateTime(location.timestamp)}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Coordinates:</span>
+                        <span class="value">${location.latitude}, ${location.longitude}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Accuracy:</span>
+                        <span class="value">${location.accuracy}m</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Similarity Score:</span>
+                        <span class="value">${location.similarity_score}</span>
+                    </div>
+                `;
+                container.appendChild(locDiv);
+            });
+        }
+
+        function displayInsights(insights) {
+            const container = document.getElementById('insights-results');
+            container.innerHTML = '';
+            
+            const insightsDiv = document.createElement('div');
+            insightsDiv.className = 'data-item insights';
+            insightsDiv.innerHTML = `
+                <h4>AI-Powered Insights</h4>
+                <p>${insights}</p>
+            `;
+            container.appendChild(insightsDiv);
+        }
+
+        function displaySummaryStats(stats) {
+            const container = document.getElementById('summary-stats');
+            container.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.calendarCount}</div>
+                    <div class="stat-label">Calendar Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.locationCount}</div>
+                    <div class="stat-label">Location Visits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.avgSimilarity}</div>
+                    <div class="stat-label">Avg Similarity</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.dataSources}</div>
+                    <div class="stat-label">Data Sources</div>
+                </div>
+            `;
+        }
+
+        // Utility functions
+        function formatDateTime(dateTimeString) {
+            if (!dateTimeString) return 'Unknown';
+            
+            const date = new Date(dateTimeString);
+            if (isNaN(date.getTime())) return dateTimeString;
+            
+            return date.toLocaleString();
+        }
+
+        function getMockData(type) {
+            // Simulate API delay
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    if (type === 'calendar') resolve(mockData.calendar);
+                    if (type === 'location') resolve(mockData.location);
+                    if (type === 'insights') resolve(mockData.insights);
+                }, 1000);
+            });
+        }
+
+        // API Call functions
+        async function callMCPAPI(endpoint, params = {}) {
+            try {
+                const url = new URL(`${API_BASE_URL}${endpoint}`);
+                
+                // Add query parameters
+                Object.keys(params).forEach(key => {
+                    if (params[key]) {
+                        url.searchParams.append(key, params[key]);
+                    }
+                });
+
+                const response = await fetch(url.toString());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'API call failed');
+                }
+                
+                return data.data;
+            } catch (error) {
+                console.error('API call failed:', error);
+                return null;
+            }
+        }
+
+        // Query functions
+        async function queryCalendar() {
+            showLoading('calendar-results');
+            
+            // Get form values
+            const startDate = document.getElementById('cal-start-date').value;
+            const endDate = document.getElementById('cal-end-date').value;
+            const eventType = document.getElementById('cal-event-type').value;
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/calendar', {
+                start_date: startDate,
+                end_date: endDate,
+                event_type: eventType
+            });
+            
+            if (result && result.events) {
+                displayCalendarEvents(result.events);
+                displaySummaryStats({
+                    calendarCount: result.events.length,
+                    locationCount: 0,
+                    avgSimilarity: result.events.length > 0 ? 
+                        (result.events.reduce((sum, e) => sum + e.similarity_score, 0) / result.events.length).toFixed(2) : '0.00',
+                    dataSources: 1
+                });
+                
+                // Display insights if available
+                if (result.insights) {
+                    displayInsights(result.insights);
+                }
+            } else {
+                // Fallback to mock data if API fails
+                const events = await getMockData('calendar');
+                displayCalendarEvents(events);
+                displaySummaryStats({
+                    calendarCount: events.length,
+                    locationCount: 0,
+                    avgSimilarity: '0.92',
+                    dataSources: 1
+                });
+            }
+        }
+
+        async function queryLocation() {
+            showLoading('location-results');
+            
+            const startDate = document.getElementById('loc-start-date').value;
+            const endDate = document.getElementById('loc-end-date').value;
+            const locType = document.getElementById('loc-type').value;
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/location', {
+                start_date: startDate,
+                end_date: endDate,
+                location_type: locType
+            });
+            
+            if (result && result.locations) {
+                displayLocationHistory(result.locations);
+                displaySummaryStats({
+                    calendarCount: 0,
+                    locationCount: result.locations.length,
+                    avgSimilarity: result.locations.length > 0 ? 
+                        (result.locations.reduce((sum, l) => sum + l.similarity_score, 0) / result.locations.length).toFixed(2) : '0.00',
+                    dataSources: 1
+                });
+                
+                // Display insights if available
+                if (result.insights) {
+                    displayInsights(result.insights);
+                }
+            } else {
+                // Fallback to mock data if API fails
+                const locations = await getMockData('location');
+                displayLocationHistory(locations);
+                displaySummaryStats({
+                    calendarCount: 0,
+                    locationCount: locations.length,
+                    avgSimilarity: '0.89',
+                    dataSources: 1
+                });
+            }
+        }
+
+        async function analyzeHabits() {
+            showLoading('fitness-results');
+            
+            const period = document.getElementById('habit-period').value;
+            const focus = document.getElementById('habit-focus').value;
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/habits', {
+                time_period: period,
+                focus_area: focus
+            });
+            
+            if (result && result.data) {
+                // Display habit analysis data
+                const container = document.getElementById('fitness-results');
+                container.innerHTML = '';
+                
+                const habitDiv = document.createElement('div');
+                habitDiv.className = 'data-item';
+                habitDiv.innerHTML = `
+                    <h4>Habit Analysis Results</h4>
+                    <div class="data-row">
+                        <span class="label">Period:</span>
+                        <span class="value">${result.data.period}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Focus Area:</span>
+                        <span class="value">${result.data.focus_area}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Fitness Activities:</span>
+                        <span class="value">${result.data.metrics.fitness_activities_count}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Calendar Events:</span>
+                        <span class="value">${result.data.metrics.calendar_events_count}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Location Visits:</span>
+                        <span class="value">${result.data.metrics.location_visits_count}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">Exercise Frequency:</span>
+                        <span class="value">${result.data.metrics.exercise_frequency}/5 days</span>
+                    </div>
+                `;
+                container.appendChild(habitDiv);
+                
+                // Display analysis if available
+                if (result.analysis) {
+                    displayInsights(result.analysis);
+                }
+                
+                displaySummaryStats({
+                    calendarCount: 0,
+                    locationCount: 0,
+                    avgSimilarity: '0.85',
+                    dataSources: 1
+                });
+            } else {
+                // Fallback to mock data if API fails
+                const habitData = [
+                    {
+                        title: "Exercise Routine Analysis",
+                        content: `Period: ${period}\nFocus: ${focus || 'Overall'}\n\nExercise Frequency: 3/5 days\nGym Visits: 2 days\nWalking Activities: 1 session\nWork-related Events: 12 meetings\n\nRecommendations:\n- Try to maintain 5 exercise days per week\n- Schedule gym sessions on consistent days\n- Take short walking breaks during long meetings`
+                    }
+                ];
+                
+                const container = document.getElementById('fitness-results');
+                container.innerHTML = '';
+                
+                habitData.forEach(habit => {
+                    const habitDiv = document.createElement('div');
+                    habitDiv.className = 'data-item';
+                    habitDiv.innerHTML = `
+                        <h4>${habit.title}</h4>
+                        <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-size: 12px;">${habit.content}</pre>
+                    `;
+                    container.appendChild(habitDiv);
+                });
+                
+                displaySummaryStats({
+                    calendarCount: 0,
+                    locationCount: 0,
+                    avgSimilarity: '0.85',
+                    dataSources: 1
+                });
+            }
+        }
+
+        async function getDailySummary() {
+            showLoading('insights-results');
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/daily-summary');
+            
+            if (result) {
+                const summary = `Daily Summary for ${result.date}:\n\nCalendar: ${result.details.calendar}\nLocation: ${result.details.location}\nFitness: ${result.details.fitness}\n\nDay Rating: ${result.rating}/10\n\nRecommendations: ${result.recommendations.join(', ')}\n\nAI Analysis: ${result.summary}`;
+                displayInsights(summary);
+            } else {
+                // Fallback to mock data if API fails
+                const summary = "Daily Summary for 2024-01-15:\n\nCalendar: 2 events scheduled\nLocation: 3 different locations visited\nFitness: No exercise recorded today\n\nKey Insights:\n- Busy morning with back-to-back meetings\n- Good location diversity throughout the day\n- Consider scheduling exercise for tomorrow\n- Client presentation requires preparation\n\nRecommendations:\n- Review presentation materials tonight\n- Schedule gym session for tomorrow morning\n- Block focus time for important tasks";
+                displayInsights(summary);
+            }
+        }
+
+        async function getWeeklyInsights() {
+            showLoading('insights-results');
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/weekly-insights');
+            
+            if (result) {
+                const insights = `Weekly Insights - Week of ${result.week_starting}:\n\n${result.insights}\n\nDetailed Summary:\n${JSON.stringify(result.detailed_summary, null, 2)}`;
+                displayInsights(insights);
+            } else {
+                // Fallback to mock data if API fails
+                const insights = "Weekly Insights - Week of January 15, 2024:\n\nProductivity Patterns:\n- Peak productivity hours: 10 AM - 12 PM\n- Most meetings: Tuesday and Thursday\n- Best focus time: Monday mornings\n\nHealth & Wellness:\n- Exercise frequency: 3/7 days (43%)\n- Average sleep quality: Good\n- Hydration: Needs improvement\n\nLocation Patterns:\n- Work location consistency: High\n- Commute time optimization: Possible\n- Weekend activity locations: Varied\n\nRecommendations:\n1. Schedule important tasks during peak productivity hours\n2. Block calendar for exercise 4-5 times per week\n3. Optimize commute by leaving 15 minutes earlier\n4. Review weekly goals every Monday morning";
+                displayInsights(insights);
+            }
+        }
+
+        async function getUpcomingEvents() {
+            showLoading('calendar-results');
+            
+            // Call real MCP API
+            const result = await callMCPAPI('/upcoming-events');
+            
+            if (result) {
+                // Parse the resource result and extract events
+                const eventsText = result.data;
+                // Simple parsing - in real implementation, this would be structured data
+                const events = mockData.calendar; // Fallback for now
+                displayCalendarEvents(events);
+            } else {
+                // Fallback to mock data if API fails
+                const events = await getMockData('calendar');
+                displayCalendarEvents(events);
+            }
+        }
+
+        function showLoading(containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '<div class="loading">Loading data...</div>';
+        }
+
+        // Initialize with some data
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show some initial data
+            displayCalendarEvents(mockData.calendar);
+            displayLocationHistory(mockData.location);
+            displayInsights(mockData.insights);
+            displaySummaryStats({
+                calendarCount: mockData.calendar.length,
+                locationCount: mockData.location.length,
+                avgSimilarity: '0.90',
+                dataSources: 2
+            });
+        });
+    </script>
+</body>
+</html>

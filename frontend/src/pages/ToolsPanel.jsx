@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { mcpApi } from '../utils/api';
+import { saveAs } from 'file-saver';
 
 const ToolsPanel = () => {
   const [activeTool, setActiveTool] = useState('calendar');
@@ -8,6 +9,9 @@ const ToolsPanel = () => {
   const [loading, setLoading] = useState(false);
   const [ragData, setRagData] = useState(null);
   const [showRagPipeline, setShowRagPipeline] = useState(false);
+  const [nudgeLoading, setNudgeLoading] = useState(false);
+  const [nudgeResponse, setNudgeResponse] = useState('');
+  const [nudgeError, setNudgeError] = useState(null);
 
   const tools = [
     { id: 'calendar', name: 'Calendar', icon: '📅' },
@@ -41,6 +45,136 @@ const ToolsPanel = () => {
       .then(data => setFitData(data.activities || []))
       .catch(err => console.error('Failed to load fitness data:', err));
   }, []);
+
+  const generateContextualSuggestion = async (locationType, calendarEvents) => {
+    try {
+      // Create suggestion based on context
+      let suggestion = '';
+
+      // Analyze calendar events for context
+      const hasEventsToday = calendarEvents.length > 0;
+      const hasBackToBackMeetings = calendarEvents.length >= 2;
+      const hasGymNearby = locationType === 'gym' || locationType === 'exercise';
+      const hasWorkEvents = calendarEvents.some(event => 
+        event.metadata?.type === 'meeting' || event.metadata?.type === 'work'
+      );
+      const hasFreeTime = calendarEvents.length === 0;
+
+      // Get current time and analyze event timing
+      const now = new Date();
+      const eventsToday = calendarEvents.filter(event => {
+        const eventDate = new Date(event.metadata?.start_time || event.metadata?.timestamp);
+        return eventDate.toDateString() === now.toDateString();
+      });
+
+      // Check for events in the next 2 hours
+      const upcomingEvents = eventsToday.filter(event => {
+        const eventStart = new Date(event.metadata?.start_time || event.metadata?.timestamp);
+        const timeDiff = eventStart - now;
+        return timeDiff > 0 && timeDiff <= 2 * 60 * 60 * 1000; // 2 hours
+      });
+
+      // Generate suggestion based on context
+      if (hasBackToBackMeetings && hasGymNearby) {
+        suggestion = 'You have back-to-back meetings coming up. Since you\'re already near the gym, how about a quick 15-minute light workout to boost your energy before your meetings?';
+      } else if (locationType === 'gym' && hasFreeTime) {
+        suggestion = 'You\'re near the gym with no immediate commitments! This is a perfect time for your regular workout. Want to squeeze in a quick session?';
+      } else if (locationType === 'home' && hasFreeTime) {
+        suggestion = 'You\'re at home with no immediate commitments. This could be a great time for some learning, reading, or a hobby you enjoy.';
+      } else if (locationType === 'office' && hasWorkEvents) {
+        suggestion = 'You\'re at the office with meetings scheduled. Consider taking a brief walk between meetings to refresh your mind.';
+      } else if (locationType === 'gym' && hasEventsToday) {
+        suggestion = 'You\'re at the gym but have upcoming events. Make sure to leave enough time to get ready for your next activity.';
+      } else if (upcomingEvents.length > 0) {
+        const nextEvent = upcomingEvents[0];
+        const eventTime = new Date(nextEvent.metadata?.start_time || nextEvent.metadata?.timestamp);
+        suggestion = `You have an upcoming event "${nextEvent.metadata?.title || nextEvent.metadata?.summary}" at ${eventTime.toLocaleTimeString()}.`;
+        if (hasGymNearby) {
+          suggestion += ' Since you\'re near the gym, you could do a quick workout before your event.';
+        } else {
+          suggestion += ' This might be a good time to prepare for your upcoming event.';
+        }
+      } else {
+        suggestion = `You're at ${locationType} with ${calendarEvents.length} upcoming events. How can I assist you right now?`;
+      }
+
+      return suggestion;
+    } catch (error) {
+      console.error('Error generating contextual suggestion:', error);
+      return 'How can I assist you right now?';
+    }
+  };
+
+  const getRandomActivity = () => {
+    const activities = [
+      'do some light exercise',
+      'take a short walk',
+      'practice mindfulness',
+      'read a few pages of a book',
+      'learn something new',
+      'work on a hobby',
+      'call a friend',
+      'organize your workspace',
+      'drink some water',
+      'take deep breaths'
+    ];
+    return activities[Math.floor(Math.random() * activities.length)];
+  };
+
+  const getRandomHobby = () => {
+    const hobbies = [
+      'play an instrument',
+      'draw or sketch',
+      'write in your journal',
+      'practice a language',
+      'work on a craft project',
+      'listen to a podcast',
+      'meditate',
+      'do yoga',
+      'garden',
+      'cook something new'
+    ];
+    return hobbies[Math.floor(Math.random() * hobbies.length)];
+  };
+
+  const simulateNudge = async () => {
+    setNudgeLoading(true);
+    setNudgeError(null);
+    setNudgeResponse('');
+
+    try {
+      // Fetch current location data
+      const locationResponse = await mcpApi.getLocationHistory();
+      const locations = locationResponse.data?.result?.locations || locationResponse.data?.locations || [];
+
+      if (locations.length === 0) {
+        setNudgeResponse('No location data available. Please make sure location services are enabled.');
+        return;
+      }
+
+      // Get most recent location
+      const currentLocation = locations[0];
+      const locationType = currentLocation.place || currentLocation.location_type || 'unknown';
+
+      // Fetch calendar events for today
+      const calendarResponse = await mcpApi.getCalendarEvents();
+      const events = calendarResponse.data?.result?.events || calendarResponse.data?.events || [];
+
+      // Generate contextual suggestion
+      const suggestion = await generateContextualSuggestion(locationType, events);
+
+      // Create response
+      const responseText = `📍 Current Location: ${locationType}\n\n${suggestion}\n\nWould you like to proceed with this suggestion?`;
+
+      setNudgeResponse(responseText);
+
+    } catch (error) {
+      console.error('Error simulating nudge:', error);
+      setNudgeError('Failed to simulate nudge. Please try again.');
+    } finally {
+      setNudgeLoading(false);
+    }
+  };
 
   const handleSearch = async () => {
     if (!query.trim()) return;
@@ -295,6 +429,61 @@ const ToolsPanel = () => {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Nudge Simulation */}
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6 mb-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">📍 Location Nudge Simulator</h3>
+        <div className="space-y-4">
+          <p className="text-sm text-gray-600 mb-4">
+            Simulate location-based nudges based on your current context and schedule.
+          </p>
+          <button
+            onClick={simulateNudge}
+            disabled={nudgeLoading}
+            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {nudgeLoading ? 'Generating Suggestion...' : 'Simulate Nudge'}
+          </button>
+          {nudgeError && (
+            <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+              {nudgeError}
+            </div>
+          )}
+          {nudgeResponse && (
+            <div className="mt-3 p-4 bg-white rounded-lg border border-gray-200">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="font-medium text-gray-900">Nudge Suggestion</h4>
+                <button
+                  onClick={() => setNudgeResponse('')}
+                  className="text-sm text-gray-400 hover:text-gray-600"
+                >
+                  ×
+                </button>
+              </div>
+              <pre className="text-sm text-gray-700 font-mono bg-gray-50 p-3 rounded border">
+                {nudgeResponse}
+              </pre>
+              <div className="mt-3 flex gap-2">
+                <button
+                  onClick={() => {
+                    // Mock implementation - in real app this would trigger the actual nudge
+                    alert('Nudge accepted! This would trigger the actual nudge functionality.');
+                  }}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm"
+                >
+                  Accept Nudge
+                </button>
+                <button
+                  onClick={() => setNudgeResponse('')}
+                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm"
+                >
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* MCP Tools Information */}

@@ -2,13 +2,15 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      target: prod
     ports:
       - "3000:3000"
-    depends_on:
-      - mcp-server
     environment:
       - NODE_ENV=production
+    depends_on:
+      - mcp-server
     restart: unless-stopped
 
   mcp-server:
@@ -19,15 +21,45 @@ services:
       - "8000:8000"
     environment:
       - HF_token=${HF_token}
-      - HF_MODEL=${HF_MODEL}
+      - HF_MODEL=${HF_MODEL:-mistralai/Mistral-7B-Instruct-v0.1}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - WHITECIRCLE_API_KEY=${WHITECIRCLE_API_KEY}
+      - LOG_LEVEL=INFO
     volumes:
-      - .:/app
       - ./token.json:/app/token.json
       - ./drive_token.json:/app/drive_token.json
+      - faiss-indexes:/app/ragsystem/indexes
+      - embeddings-cache:/app/ragsystem/embeddings
+      - data-sync:/app/data_ingestion
+      - logs:/app/logs
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; r = requests.get('http://localhost:8000/health'); exit(0 if r.status_code == 200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mcp-api-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.api-bridge
+    ports:
+      - "8001:8001"
+    environment:
+      - MCP_SERVER_HOST=mcp-server
+      - MCP_SERVER_PORT=8000
+      - LOG_LEVEL=INFO
+    depends_on:
+      - mcp-server
+    volumes:
+      - logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   nginx:
     image: nginx:alpine
@@ -37,5 +69,15 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - frontend
-      - mcp-server
+      - mcp-api-bridge
     restart: unless-stopped
+
+volumes:
+  faiss-indexes:
+    driver: local
+  embeddings-cache:
+    driver: local
+  data-sync:
+    driver: local
+  logs:
+    driver: local

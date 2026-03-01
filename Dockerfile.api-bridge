@@ -1,0 +1,29 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt mcp_requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install additional API bridge dependencies
+RUN pip install --no-cache-dir fastapi uvicorn requests
+
+# Copy application code
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p /app/logs
+
+# Expose API bridge port
+EXPOSE 8001
+
+# Start the API bridge
+CMD ["uvicorn", "mcp_api_bridge:app", "--host", "0.0.0.0", "--port", "8001"]

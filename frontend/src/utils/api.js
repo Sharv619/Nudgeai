@@ -52,7 +52,16 @@ export const mcpApi = {
   // Calendar operations - fetch real data from backend API
   getCalendarEvents: async (params = {}) => {
     try {
-      const response = await api.get('/mcp/tools/query_calendar', { params });
+      // Format date parameters if provided
+      const formattedParams = { ...params };
+      if (params.start_date) {
+        formattedParams.start_date = new Date(params.start_date).toISOString();
+      }
+      if (params.end_date) {
+        formattedParams.end_date = new Date(params.end_date).toISOString();
+      }
+      
+      const response = await api.get('/mcp/tools/query_calendar', { params: formattedParams });
       return response;
     } catch (error) {
       console.error('Error fetching calendar events:', error);
@@ -195,6 +204,19 @@ export const mcpApi = {
             params.time_period || 'week',
             params.focus_area || null
           );
+        case 'semantic_search':
+          // Handle semantic search
+          const queryParams = {
+            query: params.query || '',
+            k: params.k || 5
+          };
+          return await api.get('/mcp/tools/semantic_search', { params: queryParams });
+        case 'ask_question':
+          // Handle general questions using semantic search
+          const questionParams = {
+            question: params.question || ''
+          };
+          return await api.get('/api/ask-question', { params: questionParams });
         case 'proactive-nudge':
           return await mcpApi.ragSearch(params.context || '');
         case 'get_insights':

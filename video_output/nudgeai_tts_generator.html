@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NudgeAI TTS Audio Generator</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1f2937;
+            --text-color: #111827;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-secondary {
+            background-color: #64748b;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+        
+        .btn-danger {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        .status {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            min-height: 1.5rem;
+        }
+        
+        .settings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .setting-group label {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .setting-group input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .script-preview {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .instructions {
+            background: #e0f2fe;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .instructions h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+        }
+        
+        .instructions ol {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ NudgeAI TTS Audio Generator</h1>
+        <p class="subtitle">Generate audio narration using your browser's built-in speech synthesis</p>
+        
+        <div class="instructions">
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Adjust the voice settings below (optional)</li>
+                <li>Click "Start Narration" to begin</li>
+                <li>Use your computer's screen recording software to record the audio</li>
+                <li>Record for the full 2 minutes while the narration plays</li>
+                <li>Save the recording as MP3 and place it in the video_output folder</li>
+            </ol>
+        </div>
+        
+        <div class="settings">
+            <div class="setting-group">
+                <label for="rate">Speech Rate</label>
+                <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+                <span id="rate-value">1.0</span>
+            </div>
+            <div class="setting-group">
+                <label for="pitch">Pitch</label>
+                <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+                <span id="pitch-value">1.0</span>
+            </div>
+            <div class="setting-group">
+                <label for="volume">Volume</label>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+                <span id="volume-value">1.0</span>
+            </div>
+        </div>
+        
+        <div class="script-preview">
+            <strong>Script Text:</strong><br><br>
+            "Today, I'll walk you through NudgeAI, a cutting-edge proactive personal assistant that unifies your calendar, location, and Drive data to help you achieve your goals." "NudgeAI features a sophisticated multi-layered architecture. The frontend is built with React and Vite, providing a modern dashboard interface. The backend uses Python with FastAPI, while the RAG system handles semantic search and AI processing. The MCP server enables integration with Hugging Face models." "The frontend dashboard provides real-time insights into your calendar events, recent documents, location history, and health statistics. It connects to the backend API to fetch and display your personal data in an organized, actionable format." "The MCP server exposes powerful tools for querying your data. You can search calendar events, location history, and Drive documents. It also provides habit analysis and personal insights by combining multiple data sources with AI processing." "The RAG system enables semantic search across all your data. It uses vector embeddings to find relevant information and provides context-aware responses. This allows for natural language queries like 'When can I meet John this week?' or 'How often do I miss the gym?'" "A key innovation is the WhiteCircle integration, which provides quality gates to prevent hallucinations. Before showing any response to you, the system checks for factual accuracy and automatically retries if issues are detected." "NudgeAI proactively suggests actions based on your context. It can recommend optimal gym times, remind you of missed habits, and provide personalized insights to help you achieve your goals." "NudgeAI represents the future of personal assistants - privacy-first, self-healing, and truly context-aware. It's designed to help you make better decisions and achieve your goals without compromising your data privacy."
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="startNarration()">▶️ Start Narration</button>
+            <button class="btn btn-secondary" onclick="pauseNarration()">⏸️ Pause</button>
+            <button class="btn btn-danger" onclick="stopNarration()">⏹️ Stop</button>
+        </div>
+        
+        <div class="status" id="status">Ready to start narration</div>
+        
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Recording Tips:</h3>
+            <ul>
+                <li><strong>Use screen recording software</strong> like OBS Studio, Camtasia, or QuickTime</li>
+                <li><strong>Record system audio</strong> to capture the browser's speech synthesis</li>
+                <li><strong>Test the volume</strong> first to ensure good audio quality</li>
+                <li><strong>Minimize background noise</strong> during recording</li>
+                <li><strong>Save as MP3</strong> and name it: nudgeai_narration.mp3</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let utterance = null;
+        let voices = [];
+        let isSpeaking = false;
+        let startTime = 0;
+        let totalDuration = 0;
+        
+        const scriptText = `"Today, I'll walk you through NudgeAI, a cutting-edge proactive personal assistant that unifies your calendar, location, and Drive data to help you achieve your goals." "NudgeAI features a sophisticated multi-layered architecture. The frontend is built with React and Vite, providing a modern dashboard interface. The backend uses Python with FastAPI, while the RAG system handles semantic search and AI processing. The MCP server enables integration with Hugging Face models." "The frontend dashboard provides real-time insights into your calendar events, recent documents, location history, and health statistics. It connects to the backend API to fetch and display your personal data in an organized, actionable format." "The MCP server exposes powerful tools for querying your data. You can search calendar events, location history, and Drive documents. It also provides habit analysis and personal insights by combining multiple data sources with AI processing." "The RAG system enables semantic search across all your data. It uses vector embeddings to find relevant information and provides context-aware responses. This allows for natural language queries like 'When can I meet John this week?' or 'How often do I miss the gym?'" "A key innovation is the WhiteCircle integration, which provides quality gates to prevent hallucinations. Before showing any response to you, the system checks for factual accuracy and automatically retries if issues are detected." "NudgeAI proactively suggests actions based on your context. It can recommend optimal gym times, remind you of missed habits, and provide personalized insights to help you achieve your goals." "NudgeAI represents the future of personal assistants - privacy-first, self-healing, and truly context-aware. It's designed to help you make better decisions and achieve your goals without compromising your data privacy."`;
+        
+        // Initialize
+        window.onload = function() {
+            speechSynthesis.onvoiceschanged = function() {
+                voices = speechSynthesis.getVoices();
+                updateStatus("Voice loaded. Ready to start.");
+            };
+            
+            // Update status elements
+            document.getElementById('rate').addEventListener('input', function() {
+                document.getElementById('rate-value').textContent = this.value;
+            });
+            
+            document.getElementById('pitch').addEventListener('input', function() {
+                document.getElementById('pitch-value').textContent = this.value;
+            });
+            
+            document.getElementById('volume').addEventListener('input', function() {
+                document.getElementById('volume-value').textContent = this.value;
+            });
+        };
+        
+        function startNarration() {
+            if (isSpeaking) {
+                stopNarration();
+            }
+            
+            utterance = new SpeechSynthesisUtterance(scriptText);
+            
+            // Get voice settings
+            const rate = parseFloat(document.getElementById('rate').value);
+            const pitch = parseFloat(document.getElementById('pitch').value);
+            const volume = parseFloat(document.getElementById('volume').value);
+            
+            // Set voice properties
+            utterance.rate = rate;
+            utterance.pitch = pitch;
+            utterance.volume = volume;
+            
+            // Try to select a good voice
+            if (voices.length > 0) {
+                // Prefer English voices
+                const englishVoices = voices.filter(v => v.lang.includes('en'));
+                if (englishVoices.length > 0) {
+                    utterance.voice = englishVoices[0];
+                } else {
+                    utterance.voice = voices[0];
+                }
+            }
+            
+            // Event handlers
+            utterance.onstart = function() {
+                isSpeaking = true;
+                startTime = Date.now();
+                totalDuration = estimateDuration(scriptText, rate);
+                updateStatus("Narration started...");
+                updateProgress();
+            };
+            
+            utterance.onend = function() {
+                isSpeaking = false;
+                updateStatus("Narration completed!");
+                document.getElementById('progress-bar').style.width = '100%';
+            };
+            
+            utterance.onerror = function(event) {
+                updateStatus("Error: " + event.error);
+                isSpeaking = false;
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        function pauseNarration() {
+            if (isSpeaking) {
+                speechSynthesis.pause();
+                updateStatus("Narration paused");
+            }
+        }
+        
+        function stopNarration() {
+            speechSynthesis.cancel();
+            isSpeaking = false;
+            updateStatus("Narration stopped");
+            document.getElementById('progress-bar').style.width = '0%';
+        }
+        
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
+        
+        function updateProgress() {
+            if (!isSpeaking) return;
+            
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min((elapsed / totalDuration) * 100, 100);
+            document.getElementById('progress-bar').style.width = progress + '%';
+            
+            if (progress < 100) {
+                requestAnimationFrame(updateProgress);
+            }
+        }
+        
+        function estimateDuration(text, rate) {
+            // Rough estimation: ~150 words per minute
+            const words = text.split(' ').length;
+            const baseDuration = (words / 150) * 60 * 1000; // in milliseconds
+            return baseDuration / rate;
+        }
+    </script>
+</body>
+</html>

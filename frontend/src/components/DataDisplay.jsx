@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { mcpApi } from '../utils/api';
+import CalendarView from './CalendarView';
 import './DataDisplay.css';
 
 const DataDisplay = () => {
@@ -79,230 +80,262 @@ const DataDisplay = () => {
     return `${hours}h ${mins}m`;
   };
 
+  const [activeTab, setActiveTab] = useState('grid'); // Added state for tabs
+
   return (
     <div className="data-display">
-      {/* Filters Section */}
-      <div className="filters-section">
-        <h2>Data Filters</h2>
-        <div className="filter-grid">
-          <div className="filter-group">
-            <label>Start Date</label>
-            <input
-              type="date"
-              value={filters.startDate}
-              onChange={(e) => setFilters({...filters, startDate: e.target.value})}
-            />
-          </div>
-          <div className="filter-group">
-            <label>End Date</label>
-            <input
-              type="date"
-              value={filters.endDate}
-              onChange={(e) => setFilters({...filters, endDate: e.target.value})}
-            />
-          </div>
-          <div className="filter-group">
-            <label>Event Type</label>
-            <input
-              type="text"
-              placeholder="e.g., meeting, call"
-              value={filters.eventType}
-              onChange={(e) => setFilters({...filters, eventType: e.target.value})}
-            />
-          </div>
-          <div className="filter-group">
-            <label>Location Type</label>
-            <input
-              type="text"
-              placeholder="e.g., home, work, gym"
-              value={filters.locationType}
-              onChange={(e) => setFilters({...filters, locationType: e.target.value})}
-            />
-          </div>
-          <div className="filter-group">
-            <label>Time Period</label>
-            <select
-              value={filters.timePeriod}
-              onChange={(e) => setFilters({...filters, timePeriod: e.target.value})}
-            >
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Status Indicator */}
-      <div className="status-section">
-        <div className={`status-indicator ${loading ? 'loading' : 'ready'}`}>
-          {loading ? 'Loading...' : 'Ready'}
-        </div>
-        {error && <div className="error-message">Error: {error}</div>}
-      </div>
-
-      {/* Data Grid */}
-      <div className="data-grid">
-        {/* Calendar Events */}
-        <div className="data-card">
-          <h3>📅 Calendar Events</h3>
-          <div className="data-content">
-            {loading ? (
-              <div className="loading">Loading calendar data...</div>
-            ) : data.calendar.length > 0 ? (
-              data.calendar.map((event, index) => (
-                <div key={index} className="data-item">
-                  <div className="item-header">
-                    <h4>{event.title}</h4>
-                    <span className="similarity-score">Similarity: {event.similarity_score}</span>
-                  </div>
-                  <div className="item-details">
-                    <div className="detail-row">
-                      <span className="label">Time:</span>
-                      <span className="value">{formatDate(event.start_time)} - {formatDate(event.end_time)}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Location:</span>
-                      <span className="value">{event.location}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Attendees:</span>
-                      <span className="value">{event.attendees?.join(', ') || 'N/A'}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Description:</span>
-                      <span className="value">{event.description}</span>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="no-data">No calendar events found for the selected period.</div>
-            )}
-          </div>
-        </div>
-
-        {/* Location History */}
-        <div className="data-card">
-          <h3>📍 Location History</h3>
-          <div className="data-content">
-            {loading ? (
-              <div className="loading">Loading location data...</div>
-            ) : data.location.length > 0 ? (
-              data.location.map((location, index) => (
-                <div key={index} className="data-item">
-                  <div className="item-header">
-                    <h4>{location.place}</h4>
-                    <span className="similarity-score">Similarity: {location.similarity_score}</span>
-                  </div>
-                  <div className="item-details">
-                    <div className="detail-row">
-                      <span className="label">Type:</span>
-                      <span className="value">{location.location_type}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Time:</span>
-                      <span className="value">{formatDate(location.timestamp)}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Coordinates:</span>
-                      <span className="value">{location.latitude}, {location.longitude}</span>
-                    </div>
-                    <div className="detail-row">
-                      <span className="label">Accuracy:</span>
-                      <span className="value">{location.accuracy}m</span>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="no-data">No location data found for the selected period.</div>
-            )}
-          </div>
-        </div>
-
-        {/* Insights */}
-        <div className="data-card insights-card">
-          <h3>💡 AI Insights</h3>
-          <div className="data-content">
-            {loading ? (
-              <div className="loading">Generating insights...</div>
-            ) : data.insights ? (
-              <div className="insights-content">
-                <div className="insight-item">
-                  <h4>Pattern Analysis</h4>
-                  <p>{data.insights.patterns || 'Analyzing your data patterns...'}</p>
-                </div>
-                <div className="insight-item">
-                  <h4>Recommendations</h4>
-                  <p>{data.insights.recommendations || 'Generating personalized recommendations...'}</p>
-                </div>
-                <div className="insight-item">
-                  <h4>Summary</h4>
-                  <p>{data.insights.summary || 'Creating data summary...'}</p>
-                </div>
-              </div>
-            ) : (
-              <div className="no-data">No insights available yet. Try adjusting your filters.</div>
-            )}
-          </div>
-        </div>
-
-        {/* Daily Summary */}
-        <div className="data-card summary-card">
-          <h3>📊 Daily Summary</h3>
-          <div className="data-content">
-            {loading ? (
-              <div className="loading">Generating summary...</div>
-            ) : data.summary ? (
-              <div className="summary-content">
-                <div className="summary-item">
-                  <h4>📅 Calendar</h4>
-                  <p>{data.summary.details?.calendar || 'No calendar data'}</p>
-                </div>
-                <div className="summary-item">
-                  <h4>📍 Location</h4>
-                  <p>{data.summary.details?.location || 'No location data'}</p>
-                </div>
-                <div className="summary-item">
-                  <h4>🏃 Fitness</h4>
-                  <p>{data.summary.details?.fitness || 'No fitness data'}</p>
-                </div>
-                <div className="summary-item">
-                  <h4>⭐ Rating</h4>
-                  <p>{data.summary.rating || 'N/A'}/10</p>
-                </div>
-                <div className="summary-item">
-                  <h4>🎯 Recommendations</h4>
-                  <ul>
-                    {data.summary.recommendations?.map((rec, index) => (
-                      <li key={index}>{rec}</li>
-                    )) || <li>No recommendations available</li>}
-                  </ul>
-                </div>
-              </div>
-            ) : (
-              <div className="no-data">No summary available yet.</div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="actions-section">
-        <button onClick={loadData} disabled={loading} className="refresh-btn">
-          {loading ? 'Refreshing...' : 'Refresh Data'}
+      {/* Tab Navigation */}
+      <div className="tab-navigation">
+        <button 
+          className={`tab-button ${activeTab === 'grid' ? 'active' : ''}`}
+          onClick={() => setActiveTab('grid')}
+        >
+          Data Grid
         </button>
-        <button onClick={() => setFilters({
-          startDate: '',
-          endDate: '',
-          eventType: '',
-          locationType: '',
-          timePeriod: 'week'
-        })} className="clear-btn">
-          Clear Filters
+        <button 
+          className={`tab-button ${activeTab === 'calendar' ? 'active' : ''}`}
+          onClick={() => setActiveTab('calendar')}
+        >
+          Calendar View
         </button>
       </div>
+
+      {/* Filters Section - Only show when on grid view */}
+      {activeTab === 'grid' && (
+        <div className="filters-section">
+          <h2>Data Filters</h2>
+          <div className="filter-grid">
+            <div className="filter-group">
+              <label>Start Date</label>
+              <input
+                type="date"
+                value={filters.startDate}
+                onChange={(e) => setFilters({...filters, startDate: e.target.value})}
+              />
+            </div>
+            <div className="filter-group">
+              <label>End Date</label>
+              <input
+                type="date"
+                value={filters.endDate}
+                onChange={(e) => setFilters({...filters, endDate: e.target.value})}
+              />
+            </div>
+            <div className="filter-group">
+              <label>Event Type</label>
+              <input
+                type="text"
+                placeholder="e.g., meeting, call"
+                value={filters.eventType}
+                onChange={(e) => setFilters({...filters, eventType: e.target.value})}
+              />
+            </div>
+            <div className="filter-group">
+              <label>Location Type</label>
+              <input
+                type="text"
+                placeholder="e.g., home, work, gym"
+                value={filters.locationType}
+                onChange={(e) => setFilters({...filters, locationType: e.target.value})}
+              />
+            </div>
+            <div className="filter-group">
+              <label>Time Period</label>
+              <select
+                value={filters.timePeriod}
+                onChange={(e) => setFilters({...filters, timePeriod: e.target.value})}
+              >
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Status Indicator - Only show when on grid view */}
+      {activeTab === 'grid' && (
+        <div className="status-section">
+          <div className={`status-indicator ${loading ? 'loading' : 'ready'}`}>
+            {loading ? 'Loading...' : 'Ready'}
+          </div>
+          {error && <div className="error-message">Error: {error}</div>}
+        </div>
+      )}
+
+      {/* Tab Content */}
+      {activeTab === 'grid' ? (
+        /* Data Grid */
+        <div className="data-grid">
+          {/* Calendar Events */}
+          <div className="data-card">
+            <h3>📅 Calendar Events</h3>
+            <div className="data-content">
+              {loading ? (
+                <div className="loading">Loading calendar data...</div>
+              ) : data.calendar.length > 0 ? (
+                data.calendar.map((event, index) => (
+                  <div key={index} className="data-item">
+                    <div className="item-header">
+                      <h4>{event.title}</h4>
+                      <span className="similarity-score">Similarity: {event.similarity_score}</span>
+                    </div>
+                    <div className="item-details">
+                      <div className="detail-row">
+                        <span className="label">Time:</span>
+                        <span className="value">{formatDate(event.start_time)} - {formatDate(event.end_time)}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Location:</span>
+                        <span className="value">{event.location}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Attendees:</span>
+                        <span className="value">{event.attendees?.join(', ') || 'N/A'}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Description:</span>
+                        <span className="value">{event.description}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="no-data">No calendar events found for the selected period.</div>
+              )}
+            </div>
+          </div>
+
+          {/* Location History */}
+          <div className="data-card">
+            <h3>📍 Location History</h3>
+            <div className="data-content">
+              {loading ? (
+                <div className="loading">Loading location data...</div>
+              ) : data.location.length > 0 ? (
+                data.location.map((location, index) => (
+                  <div key={index} className="data-item">
+                    <div className="item-header">
+                      <h4>{location.place}</h4>
+                      <span className="similarity-score">Similarity: {location.similarity_score}</span>
+                    </div>
+                    <div className="item-details">
+                      <div className="detail-row">
+                        <span className="label">Type:</span>
+                        <span className="value">{location.location_type}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Time:</span>
+                        <span className="value">{formatDate(location.timestamp)}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Coordinates:</span>
+                        <span className="value">{location.latitude}, {location.longitude}</span>
+                      </div>
+                      <div className="detail-row">
+                        <span className="label">Accuracy:</span>
+                        <span className="value">{location.accuracy}m</span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="no-data">No location data found for the selected period.</div>
+              )}
+            </div>
+          </div>
+
+          {/* Insights */}
+          <div className="data-card insights-card">
+            <h3>💡 AI Insights</h3>
+            <div className="data-content">
+              {loading ? (
+                <div className="loading">Generating insights...</div>
+              ) : data.insights ? (
+                <div className="insights-content">
+                  <div className="insight-item">
+                    <h4>Pattern Analysis</h4>
+                    <p>{data.insights.patterns || 'Analyzing your data patterns...'}</p>
+                  </div>
+                  <div className="insight-item">
+                    <h4>Recommendations</h4>
+                    <p>{data.insights.recommendations || 'Generating personalized recommendations...'}</p>
+                  </div>
+                  <div className="insight-item">
+                    <h4>Summary</h4>
+                    <p>{data.insights.summary || 'Creating data summary...'}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="no-data">No insights available yet. Try adjusting your filters.</div>
+              )}
+            </div>
+          </div>
+
+          {/* Daily Summary */}
+          <div className="data-card summary-card">
+            <h3>📊 Daily Summary</h3>
+            <div className="data-content">
+              {loading ? (
+                <div className="loading">Generating summary...</div>
+              ) : data.summary ? (
+                <div className="summary-content">
+                  <div className="summary-item">
+                    <h4>📅 Calendar</h4>
+                    <p>{data.summary.details?.calendar || 'No calendar data'}</p>
+                  </div>
+                  <div className="summary-item">
+                    <h4>📍 Location</h4>
+                    <p>{data.summary.details?.location || 'No location data'}</p>
+                  </div>
+                  <div className="summary-item">
+                    <h4>🏃 Fitness</h4>
+                    <p>{data.summary.details?.fitness || 'No fitness data'}</p>
+                  </div>
+                  <div className="summary-item">
+                    <h4>⭐ Rating</h4>
+                    <p>{data.summary.rating || 'N/A'}/10</p>
+                  </div>
+                  <div className="summary-item">
+                    <h4>🎯 Recommendations</h4>
+                    <ul>
+                      {data.summary.recommendations?.map((rec, index) => (
+                        <li key={index}>{rec}</li>
+                      )) || <li>No recommendations available</li>}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <div className="no-data">No summary available yet.</div>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Calendar View */
+        <div className="calendar-view-container">
+          <CalendarView />
+        </div>
+      )}
+
+      {/* Quick Actions - Only show when on grid view */}
+      {activeTab === 'grid' && (
+        <div className="actions-section">
+          <button onClick={loadData} disabled={loading} className="refresh-btn">
+            {loading ? 'Refreshing...' : 'Refresh Data'}
+          </button>
+          <button onClick={() => setFilters({
+            startDate: '',
+            endDate: '',
+            eventType: '',
+            locationType: '',
+            timePeriod: 'week'
+          })} className="clear-btn">
+            Clear Filters
+          </button>
+        </div>
+      )}
     </div>
   );
 };

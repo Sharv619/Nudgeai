@@ -13,27 +13,33 @@
     "timestamp": "2026-03-01T18:38:00Z",
     "latitude": 37.77561786503828,
     "longitude": -122.41991857410972,
-    "location_type": "home",
+    "location_type": "work",
     "place_name": "Home",
-    "accuracy": 15
+    "accuracy": 15,
+    "place": "Michael Crouch Innovation Centre, UNSW",
+    "address": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd, UNSW Sydney, Kensington NSW 2033, Australia"
   },
   {
     "id": "loc_home_20260228_080200",
     "timestamp": "2026-02-28T08:02:00Z",
     "latitude": 37.774938148303896,
     "longitude": -122.41989196843019,
-    "location_type": "home",
+    "location_type": "work",
     "place_name": "Home",
-    "accuracy": 8
+    "accuracy": 8,
+    "place": "Michael Crouch Innovation Centre, UNSW",
+    "address": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd, UNSW Sydney, Kensington NSW 2033, Australia"
   },
   {
     "id": "loc_home_evening_20260228_180200",
     "timestamp": "2026-02-28T18:02:00Z",
     "latitude": 37.77517431619043,
     "longitude": -122.41866213398285,
-    "location_type": "home",
+    "location_type": "work",
     "place_name": "Home",
-    "accuracy": 8
+    "accuracy": 8,
+    "place": "Michael Crouch Innovation Centre, UNSW",
+    "address": "Michael Crouch Innovation Centre, Level G, Hilmer Building (E10), Union Rd, UNSW Sydney, Kensington NSW 2033, Australia"
   },
   {
     "id": "loc_home_20260227_082600",

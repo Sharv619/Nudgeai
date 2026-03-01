@@ -10,14 +10,14 @@ services:
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/package*.json:/app/package*.json
-    depends_on:
-      - mcp-server
     environment:
       - NODE_ENV=development
+    depends_on:
+      - mcp-server
     stdin_open: true
     tty: true
 
-  mcp-server:
+  mcp-server-dev:
     build:
       context: .
       dockerfile: Dockerfile.mcp
@@ -25,12 +25,42 @@ services:
       - "8000:8000"
     environment:
       - HF_token=${HF_token}
-      - HF_MODEL=${HF_MODEL}
+      - HF_MODEL=${HF_MODEL:-mistralai/Mistral-7B-Instruct-v0.1}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - WHITECIRCLE_API_KEY=${WHITECIRCLE_API_KEY}
+      - LOG_LEVEL=DEBUG
+      - DEBUG=true
     volumes:
       - .:/app
       - ./token.json:/app/token.json
       - ./drive_token.json:/app/drive_token.json
-    restart: unless-stopped
+      - faiss-indexes-dev:/app/ragsystem/indexes
+      - embeddings-cache-dev:/app/ragsystem/embeddings
+      - data-sync-dev:/app/data_ingestion
+      - logs-dev:/app/logs
+    command: ["python", "mcp_server.py"]
+
+  mcp-api-bridge-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.api-bridge
+    ports:
+      - "8001:8001"
+    environment:
+      - MCP_SERVER_HOST=mcp-server-dev
+      - MCP_SERVER_PORT=8000
+      - LOG_LEVEL=DEBUG
+      - DEBUG=true
+    depends_on:
+      - mcp-server-dev
+    volumes:
+      - .:/app
+      - logs-dev:/app/logs
+    command: ["uvicorn", "mcp_api_bridge:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
+
+volumes:
+  faiss-indexes-dev:
+  embeddings-cache-dev:
+  data-sync-dev:
+  logs-dev:

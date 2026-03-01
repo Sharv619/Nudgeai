@@ -5,6 +5,7 @@ Simple API Server that serves real data from NudgeAI system
 
 import json
 import logging
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -46,66 +47,99 @@ def safe_load_json_file(filename):
 
 
 @app.get("/api/mcp/tools/query_calendar")
-async def get_calendar_events():
-    """Get calendar events from the system"""
+async def get_calendar_events(start_date: str = None, end_date: str = None):
+    """Get calendar events from the system with optional date filtering"""
     try:
         # Load calendar events from the generated file
         calendar_data = safe_load_json_file("calendar_events.json")
 
         if isinstance(calendar_data, list) and len(calendar_data) > 0:
             formatted_events = []
-            for event in calendar_data[:10]:  # Take first 10 events
+            for event in calendar_data:  # Get all events, not just first 10
                 if isinstance(event, dict):
                     # Extract relevant fields from Google Calendar API format
                     start_info = event.get("start", {})
                     start_time = start_info.get(
                         "dateTime", start_info.get("date", "N/A")
                     )
+                    
+                    # Also extract end time if available
+                    end_info = event.get("end", {})
+                    end_time = end_info.get(
+                        "dateTime", end_info.get("date", "")
+                    )
 
                     formatted_event = {
+                        "id": event.get("id", ""),
                         "summary": event.get("summary", "Event"),
+                        "title": event.get("summary", "Event"),  # For compatibility with frontend
                         "start_time": start_time,
+                        "end_time": end_time,
                         "type": event.get("eventType", "event"),
                         "description": event.get("description", ""),
                         "location": event.get("location", ""),
-                        "id": event.get("id", ""),
+                        "attendees": [attendee.get("email", "") for attendee in event.get("attendees", [])],
                     }
 
-                    # Only add if it has a meaningful summary
-                    if formatted_event["summary"] != "Event" or start_time != "N/A":
+                    # Apply date filtering if dates are provided
+                    if start_date and end_date:
+                        # Check if event is within the date range
+                        if start_time != "N/A" and start_time >= start_date and start_time <= end_date:
+                            formatted_events.append(formatted_event)
+                    else:
+                        # If no date filters, include all events
                         formatted_events.append(formatted_event)
 
-            if formatted_events:
-                return {"result": {"events": formatted_events}}
+            return {"result": {"events": formatted_events}}
 
         # Fallback to known events
         return {
             "result": {
                 "events": [
                     {
+                        "id": "hackathon-event",
+                        "title": "Mistral Worldwide Hackathon - Sydney edition",
                         "summary": "Mistral Worldwide Hackathon - Sydney edition",
                         "start_time": "2026-02-28T09:00:00+11:00",
+                        "end_time": "2026-02-28T17:00:00+11:00",
                         "type": "event",
-                        "description": "Major hackathon event",
+                        "description": "Major hackathon event at Michael Crouch Innovation Centre, Sydney",
                         "location": "Michael Crouch Innovation Centre, Sydney",
-                        "id": "hackathon-event",
+                        "attendees": ["organizers@mistral.com", "participants@sydney.edu.au"]
                     },
                     {
+                        "id": "wake-up-list",
+                        "title": "WAKE UP LIST",
                         "summary": "WAKE UP LIST",
                         "start_time": "2026-03-01T09:00:00+11:00",
+                        "end_time": "2026-03-01T09:30:00+11:00",
                         "type": "reminder",
-                        "description": "Daily routine",
+                        "description": "Daily routine tasks to start the day",
                         "location": "Home",
-                        "id": "wake-up-list",
+                        "attendees": []
                     },
                     {
+                        "id": "meeting-with-manoj",
+                        "title": "Meeting with Manoj",
                         "summary": "Meeting with Manoj",
                         "start_time": "2026-03-02T22:00:00+11:00",
+                        "end_time": "2026-03-02T23:00:00+11:00",
                         "type": "meeting",
-                        "description": "Project discussion",
+                        "description": "Project discussion and planning",
                         "location": "Online",
-                        "id": "meeting-with-manoj",
+                        "attendees": ["manoj@example.com", "me@example.com"]
                     },
+                    {
+                        "id": "atlassian-takeover",
+                        "title": "Atlassian Takeover 2026",
+                        "summary": "Atlassian Takeover 2026",
+                        "start_time": "2026-03-03T18:00:00+11:00",
+                        "end_time": "2026-03-03T20:00:00+11:00",
+                        "type": "event",
+                        "description": "Special event for Atlassian community",
+                        "location": "Sydney CBD",
+                        "attendees": ["community@atlassian.com", "attendees@event.com"]
+                    }
                 ]
             }
         }
@@ -115,34 +149,52 @@ async def get_calendar_events():
             "result": {
                 "events": [
                     {
+                        "id": "hackathon-event",
+                        "title": "Mistral Worldwide Hackathon - Sydney edition",
                         "summary": "Mistral Worldwide Hackathon - Sydney edition",
                         "start_time": "2026-02-28T09:00:00+11:00",
+                        "end_time": "2026-02-28T17:00:00+11:00",
                         "type": "event",
-                        "description": "Major hackathon event",
+                        "description": "Major hackathon event at Michael Crouch Innovation Centre, Sydney",
                         "location": "Michael Crouch Innovation Centre, Sydney",
-                        "id": "hackathon-event",
+                        "attendees": ["organizers@mistral.com", "participants@sydney.edu.au"]
                     },
                     {
+                        "id": "wake-up-list",
+                        "title": "WAKE UP LIST",
                         "summary": "WAKE UP LIST",
                         "start_time": "2026-03-01T09:00:00+11:00",
+                        "end_time": "2026-03-01T09:30:00+11:00",
                         "type": "reminder",
-                        "description": "Daily routine",
+                        "description": "Daily routine tasks to start the day",
                         "location": "Home",
-                        "id": "wake-up-list",
+                        "attendees": []
                     },
                     {
+                        "id": "meeting-with-manoj",
+                        "title": "Meeting with Manoj",
                         "summary": "Meeting with Manoj",
                         "start_time": "2026-03-02T22:00:00+11:00",
+                        "end_time": "2026-03-02T23:00:00+11:00",
                         "type": "meeting",
-                        "description": "Project discussion",
+                        "description": "Project discussion and planning",
                         "location": "Online",
-                        "id": "meeting-with-manoj",
+                        "attendees": ["manoj@example.com", "me@example.com"]
                     },
+                    {
+                        "id": "atlassian-takeover",
+                        "title": "Atlassian Takeover 2026",
+                        "summary": "Atlassian Takeover 2026",
+                        "start_time": "2026-03-03T18:00:00+11:00",
+                        "end_time": "2026-03-03T20:00:00+11:00",
+                        "type": "event",
+                        "description": "Special event for Atlassian community",
+                        "location": "Sydney CBD",
+                        "attendees": ["community@atlassian.com", "attendees@event.com"]
+                    }
                 ]
             }
         }
-
-
 @app.get("/api/mcp/tools/query_drive")
 async def search_documents():
     """Get documents from the system"""
@@ -390,6 +442,73 @@ async def get_health_data():
             }
         }
 
+
+
+@app.get("/api/mcp/tools/semantic_search")
+async def semantic_search(query: str, k: int = 5):
+    """Perform semantic search across all indexed data"""
+    try:
+        # For now, return a mock response - in a real implementation, this would connect to the RAG system
+        logger.info(f"Semantic search requested for query: '{query}', k={k}")
+        
+        # Mock response showing what the semantic search would return
+        mock_results = [
+            {
+                "document_id": "event_1",
+                "metadata": {
+                    "title": "Atlassian Takeover 2026",
+                    "type": "calendar_event",
+                    "summary": "Atlassian community event",
+                    "start_time": "2026-03-03T18:00:00+11:00",
+                    "location": "Level 6, 341 George St, Sydney, au",
+                    "description": "Atlassian are continuing their association with SydJS for another superb year..."
+                },
+                "similarity_score": 0.92,
+                "relevance_explanation": "This event matches your query about Atlassian events"
+            },
+            {
+                "document_id": "event_2", 
+                "metadata": {
+                    "title": "Meeting with Manoj",
+                    "type": "calendar_event",
+                    "summary": "Project discussion",
+                    "start_time": "2026-03-02T22:00:00+11:00",
+                    "location": "Online",
+                    "description": "Project discussion and planning"
+                },
+                "similarity_score": 0.85,
+                "relevance_explanation": "This meeting involves project discussions relevant to your query"
+            },
+            {
+                "document_id": "event_3",
+                "metadata": {
+                    "title": "Mistral Worldwide Hackathon - Sydney edition", 
+                    "type": "calendar_event",
+                    "summary": "Major hackathon event",
+                    "start_time": "2026-02-28T09:00:00+11:00",
+                    "location": "Michael Crouch Innovation Centre, Level G...",
+                    "description": "Get up-to-date information at: https://luma.com/event/evt-5HpmRJyi64mzcvA?pk=g-H2hK7KXBsq5jyDx"
+                },
+                "similarity_score": 0.78,
+                "relevance_explanation": "This major event might be relevant to your interests"
+            }
+        ]
+        
+        return {
+            "query": query,
+            "results": mock_results[:k],  # Limit to k results
+            "total_found": len(mock_results),
+            "search_performed_at": datetime.now().isoformat()
+        }
+    except Exception as e:
+        logger.error(f"Error in semantic_search: {e}")
+        return {
+            "query": query,
+            "results": [],
+            "total_found": 0,
+            "search_performed_at": datetime.now().isoformat(),
+            "error": str(e)
+        }
 
 if __name__ == "__main__":
     import uvicorn

@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import ToolsPanel from './pages/ToolsPanel';
 import DataLogs from './pages/DataLogs';
 import DataDisplay from './components/DataDisplay';
+import CalendarView from './components/CalendarView';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/tools" element={<ToolsPanel />} />
             <Route path="/data" element={<DataLogs />} />
             <Route path="/display" element={<DataDisplay />} />
+            <Route path="/calendar" element={<CalendarView />} />
           </Routes>
         </main>
       </div>

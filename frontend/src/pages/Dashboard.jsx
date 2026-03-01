@@ -23,9 +23,18 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
+      // Calculate start and end dates for the current week
+      const today = new Date();
+      const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Sunday
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6); // Saturday
+      
+      const startDateStr = startOfWeek.toISOString().split('T')[0];
+      const endDateStr = endOfWeek.toISOString().split('T')[0];
+      
       // Fetch real data from the NudgeAI backend API
       const [calendarResponse, documentsResponse, locationResponse, healthResponse] = await Promise.allSettled([
-        mcpApi.getCalendarEvents(),
+        mcpApi.getCalendarEvents({ start_date: startDateStr, end_date: endDateStr }),
         mcpApi.searchDocuments(),
         mcpApi.getLocationHistory(),
         mcpApi.getHealthData()

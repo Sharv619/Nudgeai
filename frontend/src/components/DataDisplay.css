@@ -354,3 +354,144 @@
 .data-content::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Tab Navigation */
+.tab-navigation {
+  display: flex;
+  gap: 2px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button.active {
+  background: white;
+  color: #3b82f6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button:hover:not(.active) {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Calendar View Specific Styles */
+.calendar-view-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.fc { /* FullCalendar root class */
+  max-width: 100%;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.fc .fc-button {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  color: white !important;
+  padding: 6px 12px !important;
+  font-size: 0.875rem !important;
+}
+
+.fc .fc-button:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.fc .fc-daygrid-day-number,
+.fc .fc-timegrid-slot-label-cushion,
+.fc .fc-timegrid-event {
+  font-size: 0.875rem !important;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.modal-close-button:hover {
+  background-color: #f3f4f6;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,8 @@
+.env
+venv
+README.md
+.env.local
+/venv
+node_modules
+nudgeai_env 
+drive_token.json

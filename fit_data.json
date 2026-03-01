@@ -1,0 +1,92 @@
+[
+  {
+    "id": "fit_walk_20260301_120200",
+    "timestamp": "2026-03-01T12:02:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 29,
+    "steps": 4548,
+    "calories": 181,
+    "distance_meters": 3638
+  },
+  {
+    "id": "fit_walk_20260228_121200",
+    "timestamp": "2026-02-28T12:12:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 23,
+    "steps": 4485,
+    "calories": 179,
+    "distance_meters": 3588
+  },
+  {
+    "id": "fit_walk_20260227_120000",
+    "timestamp": "2026-02-27T12:00:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 26,
+    "steps": 3521,
+    "calories": 140,
+    "distance_meters": 2816
+  },
+  {
+    "id": "fit_walk_20260226_121900",
+    "timestamp": "2026-02-26T12:19:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 16,
+    "steps": 7883,
+    "calories": 315,
+    "distance_meters": 6306
+  },
+  {
+    "id": "fit_walk_20260225_125400",
+    "timestamp": "2026-02-25T12:54:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 35,
+    "steps": 5590,
+    "calories": 223,
+    "distance_meters": 4472
+  },
+  {
+    "id": "fit_ex_running_20260225_075700",
+    "timestamp": "2026-02-25T07:57:00Z",
+    "activity_type": "running",
+    "duration_minutes": 89,
+    "steps": 10338,
+    "calories": 538,
+    "distance_meters": 4705
+  },
+  {
+    "id": "fit_walk_20260224_124000",
+    "timestamp": "2026-02-24T12:40:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 18,
+    "steps": 3202,
+    "calories": 128,
+    "distance_meters": 2561
+  },
+  {
+    "id": "fit_ex_strength_training_20260224_061500",
+    "timestamp": "2026-02-24T06:15:00Z",
+    "activity_type": "strength_training",
+    "duration_minutes": 101,
+    "steps": 0,
+    "calories": 396,
+    "distance_meters": 0
+  },
+  {
+    "id": "fit_walk_20260223_123700",
+    "timestamp": "2026-02-23T12:37:00Z",
+    "activity_type": "walking",
+    "duration_minutes": 35,
+    "steps": 2490,
+    "calories": 99,
+    "distance_meters": 1992
+  },
+  {
+    "id": "fit_ex_cycling_20260223_090000",
+    "timestamp": "2026-02-23T09:00:00Z",
+    "activity_type": "cycling",
+    "duration_minutes": 75,
+    "steps": 0,
+    "calories": 453,
+    "distance_meters": 5158
+  }
+]

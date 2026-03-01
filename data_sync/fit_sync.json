@@ -1,132 +1,86 @@
 [
   {
-    "id": "fit_ex_strength_training_20260301_080500",
-    "text": "strength_training for 93 minutes burning 339 calories on 2026-03-01T08:05:00Z",
+    "id": "fit_2024-03-01",
+    "text": "Fitness on 2024-03-01: 8000 steps, 2000 calories, 30 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "strength_training",
-      "timestamp": "2026-03-01T08:05:00Z",
-      "duration_minutes": 93,
-      "steps": 0,
-      "calories": 339,
-      "distance_meters": 0
+      "type": "fitness",
+      "date": "2024-03-01",
+      "steps": 8000,
+      "calories": 2000,
+      "active_minutes": 30,
+      "synced_at": "2026-03-01T14:39:53.111347Z"
     }
   },
   {
-    "id": "fit_walk_20260227_123900",
-    "text": "walking for 33 minutes burning 294 calories on 2026-02-27T12:39:00Z",
+    "id": "fit_2024-03-02",
+    "text": "Fitness on 2024-03-02: 8500 steps, 2100 calories, 35 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "walking",
-      "timestamp": "2026-02-27T12:39:00Z",
-      "duration_minutes": 33,
-      "steps": 7374,
-      "calories": 294,
-      "distance_meters": 5899
+      "type": "fitness",
+      "date": "2024-03-02",
+      "steps": 8500,
+      "calories": 2100,
+      "active_minutes": 35,
+      "synced_at": "2026-03-01T14:39:53.111350Z"
     }
   },
   {
-    "id": "fit_ex_swimming_20260227_074600",
-    "text": "swimming for 80 minutes burning 432 calories on 2026-02-27T07:46:00Z",
+    "id": "fit_2024-03-03",
+    "text": "Fitness on 2024-03-03: 9000 steps, 2200 calories, 40 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "swimming",
-      "timestamp": "2026-02-27T07:46:00Z",
-      "duration_minutes": 80,
-      "steps": 0,
-      "calories": 432,
-      "distance_meters": 0
+      "type": "fitness",
+      "date": "2024-03-03",
+      "steps": 9000,
+      "calories": 2200,
+      "active_minutes": 40,
+      "synced_at": "2026-03-01T14:39:53.111353Z"
     }
   },
   {
-    "id": "fit_walk_20260226_120500",
-    "text": "walking for 21 minutes burning 297 calories on 2026-02-26T12:05:00Z",
+    "id": "fit_2024-03-04",
+    "text": "Fitness on 2024-03-04: 9500 steps, 2300 calories, 45 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "walking",
-      "timestamp": "2026-02-26T12:05:00Z",
-      "duration_minutes": 21,
-      "steps": 7442,
-      "calories": 297,
-      "distance_meters": 5953
+      "type": "fitness",
+      "date": "2024-03-04",
+      "steps": 9500,
+      "calories": 2300,
+      "active_minutes": 45,
+      "synced_at": "2026-03-01T14:39:53.111358Z"
     }
   },
   {
-    "id": "fit_walk_20260225_121800",
-    "text": "walking for 43 minutes burning 112 calories on 2026-02-25T12:18:00Z",
+    "id": "fit_2024-03-05",
+    "text": "Fitness on 2024-03-05: 10000 steps, 2400 calories, 50 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "walking",
-      "timestamp": "2026-02-25T12:18:00Z",
-      "duration_minutes": 43,
-      "steps": 2823,
-      "calories": 112,
-      "distance_meters": 2258
+      "type": "fitness",
+      "date": "2024-03-05",
+      "steps": 10000,
+      "calories": 2400,
+      "active_minutes": 50,
+      "synced_at": "2026-03-01T14:39:53.111361Z"
     }
   },
   {
-    "id": "fit_ex_running_20260225_060200",
-    "text": "running for 68 minutes burning 384 calories on 2026-02-25T06:02:00Z",
+    "id": "fit_2024-03-06",
+    "text": "Fitness on 2024-03-06: 10500 steps, 2500 calories, 55 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "running",
-      "timestamp": "2026-02-25T06:02:00Z",
-      "duration_minutes": 68,
-      "steps": 11436,
-      "calories": 384,
-      "distance_meters": 3463
+      "type": "fitness",
+      "date": "2024-03-06",
+      "steps": 10500,
+      "calories": 2500,
+      "active_minutes": 55,
+      "synced_at": "2026-03-01T14:39:53.111363Z"
     }
   },
   {
-    "id": "fit_walk_20260224_125200",
-    "text": "walking for 33 minutes burning 209 calories on 2026-02-24T12:52:00Z",
+    "id": "fit_2024-03-07",
+    "text": "Fitness on 2024-03-07: 11000 steps, 2600 calories, 60 active minutes",
     "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "walking",
-      "timestamp": "2026-02-24T12:52:00Z",
-      "duration_minutes": 33,
-      "steps": 5235,
-      "calories": 209,
-      "distance_meters": 4188
-    }
-  },
-  {
-    "id": "fit_ex_cycling_20260224_082600",
-    "text": "cycling for 48 minutes burning 430 calories on 2026-02-24T08:26:00Z",
-    "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "cycling",
-      "timestamp": "2026-02-24T08:26:00Z",
-      "duration_minutes": 48,
-      "steps": 0,
-      "calories": 430,
-      "distance_meters": 5203
-    }
-  },
-  {
-    "id": "fit_walk_20260223_121900",
-    "text": "walking for 31 minutes burning 245 calories on 2026-02-23T12:19:00Z",
-    "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "walking",
-      "timestamp": "2026-02-23T12:19:00Z",
-      "duration_minutes": 31,
-      "steps": 6125,
-      "calories": 245,
-      "distance_meters": 4900
-    }
-  },
-  {
-    "id": "fit_ex_gym_20260223_091000",
-    "text": "gym for 77 minutes burning 362 calories on 2026-02-23T09:10:00Z",
-    "metadata": {
-      "type": "fitness_activity",
-      "activity_type": "gym",
-      "timestamp": "2026-02-23T09:10:00Z",
-      "duration_minutes": 77,
-      "steps": 0,
-      "calories": 362,
-      "distance_meters": 0
+      "type": "fitness",
+      "date": "2024-03-07",
+      "steps": 11000,
+      "calories": 2600,
+      "active_minutes": 60,
+      "synced_at": "2026-03-01T14:39:53.111365Z"
     }
   }
 ]

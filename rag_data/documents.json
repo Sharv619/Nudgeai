@@ -1,0 +1,331 @@
+[
+  {
+    "id": "loc_2024-03-01T12:00:00Z",
+    "text": "Location at 2024-03-01T12:00:00Z: lat=-33.8688, lon=151.2093, activity=walking",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "activity": "walking",
+      "timestamp": "2024-03-01T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111314Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-02T12:00:00Z",
+    "text": "Location at 2024-03-02T12:00:00Z: lat=-33.8678, lon=151.21030000000002, activity=driving",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8678,
+      "longitude": 151.21030000000002,
+      "activity": "driving",
+      "timestamp": "2024-03-02T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111319Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-03T12:00:00Z",
+    "text": "Location at 2024-03-03T12:00:00Z: lat=-33.8668, lon=151.21130000000002, activity=walking",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8668,
+      "longitude": 151.21130000000002,
+      "activity": "walking",
+      "timestamp": "2024-03-03T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111322Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-04T12:00:00Z",
+    "text": "Location at 2024-03-04T12:00:00Z: lat=-33.8658, lon=151.2123, activity=driving",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8658,
+      "longitude": 151.2123,
+      "activity": "driving",
+      "timestamp": "2024-03-04T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111325Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-05T12:00:00Z",
+    "text": "Location at 2024-03-05T12:00:00Z: lat=-33.8648, lon=151.2133, activity=walking",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8648,
+      "longitude": 151.2133,
+      "activity": "walking",
+      "timestamp": "2024-03-05T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111328Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-06T12:00:00Z",
+    "text": "Location at 2024-03-06T12:00:00Z: lat=-33.8638, lon=151.2143, activity=driving",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8638,
+      "longitude": 151.2143,
+      "activity": "driving",
+      "timestamp": "2024-03-06T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111332Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-07T12:00:00Z",
+    "text": "Location at 2024-03-07T12:00:00Z: lat=-33.8628, lon=151.2153, activity=walking",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8628,
+      "longitude": 151.2153,
+      "activity": "walking",
+      "timestamp": "2024-03-07T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111335Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-08T12:00:00Z",
+    "text": "Location at 2024-03-08T12:00:00Z: lat=-33.8618, lon=151.21630000000002, activity=driving",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8618,
+      "longitude": 151.21630000000002,
+      "activity": "driving",
+      "timestamp": "2024-03-08T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111338Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-09T12:00:00Z",
+    "text": "Location at 2024-03-09T12:00:00Z: lat=-33.8608, lon=151.21730000000002, activity=walking",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8608,
+      "longitude": 151.21730000000002,
+      "activity": "walking",
+      "timestamp": "2024-03-09T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111341Z"
+    }
+  },
+  {
+    "id": "loc_2024-03-010T12:00:00Z",
+    "text": "Location at 2024-03-010T12:00:00Z: lat=-33.8598, lon=151.2183, activity=driving",
+    "metadata": {
+      "type": "location",
+      "latitude": -33.8598,
+      "longitude": 151.2183,
+      "activity": "driving",
+      "timestamp": "2024-03-010T12:00:00Z",
+      "synced_at": "2026-03-01T14:39:53.111344Z"
+    }
+  },
+  {
+    "id": "doc_doc_0",
+    "text": "Document: Document 1.pdf (last modified: 2024-03-01T14:00:00)",
+    "metadata": {
+      "type": "document",
+      "name": "Document 1.pdf",
+      "id": "doc_0",
+      "modifiedTime": "2024-03-01T14:00:00",
+      "createdTime": "2024-03-01T13:00:00",
+      "mimeType": "application/pdf",
+      "synced_at": "2026-03-01T14:39:53.111296Z"
+    }
+  },
+  {
+    "id": "doc_doc_1",
+    "text": "Document: Document 2.pdf (last modified: 2024-03-02T14:00:00)",
+    "metadata": {
+      "type": "document",
+      "name": "Document 2.pdf",
+      "id": "doc_1",
+      "modifiedTime": "2024-03-02T14:00:00",
+      "createdTime": "2024-03-02T13:00:00",
+      "mimeType": "application/pdf",
+      "synced_at": "2026-03-01T14:39:53.111299Z"
+    }
+  },
+  {
+    "id": "doc_doc_2",
+    "text": "Document: Document 3.pdf (last modified: 2024-03-03T14:00:00)",
+    "metadata": {
+      "type": "document",
+      "name": "Document 3.pdf",
+      "id": "doc_2",
+      "modifiedTime": "2024-03-03T14:00:00",
+      "createdTime": "2024-03-03T13:00:00",
+      "mimeType": "application/pdf",
+      "synced_at": "2026-03-01T14:39:53.111302Z"
+    }
+  },
+  {
+    "id": "doc_doc_3",
+    "text": "Document: Document 4.pdf (last modified: 2024-03-04T14:00:00)",
+    "metadata": {
+      "type": "document",
+      "name": "Document 4.pdf",
+      "id": "doc_3",
+      "modifiedTime": "2024-03-04T14:00:00",
+      "createdTime": "2024-03-04T13:00:00",
+      "mimeType": "application/pdf",
+      "synced_at": "2026-03-01T14:39:53.111304Z"
+    }
+  },
+  {
+    "id": "doc_doc_4",
+    "text": "Document: Document 5.pdf (last modified: 2024-03-05T14:00:00)",
+    "metadata": {
+      "type": "document",
+      "name": "Document 5.pdf",
+      "id": "doc_4",
+      "modifiedTime": "2024-03-05T14:00:00",
+      "createdTime": "2024-03-05T13:00:00",
+      "mimeType": "application/pdf",
+      "synced_at": "2026-03-01T14:39:53.111305Z"
+    }
+  },
+  {
+    "id": "cal_event_0",
+    "text": "Meeting 1 at 2024-03-01T10:00:00",
+    "metadata": {
+      "type": "calendar_event",
+      "start_time": "2024-03-01T10:00:00",
+      "end_time": "2024-03-01T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 1",
+      "synced_at": "2026-03-01T14:39:53.111261Z"
+    }
+  },
+  {
+    "id": "cal_event_1",
+    "text": "Meeting 2 at 2024-03-02T10:00:00",
+    "metadata": {
+      "type": "calendar_event",
+      "start_time": "2024-03-02T10:00:00",
+      "end_time": "2024-03-02T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 2",
+      "synced_at": "2026-03-01T14:39:53.111285Z"
+    }
+  },
+  {
+    "id": "cal_event_2",
+    "text": "Meeting 3 at 2024-03-03T10:00:00",
+    "metadata": {
+      "type": "calendar_event",
+      "start_time": "2024-03-03T10:00:00",
+      "end_time": "2024-03-03T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 3",
+      "synced_at": "2026-03-01T14:39:53.111289Z"
+    }
+  },
+  {
+    "id": "cal_event_3",
+    "text": "Meeting 4 at 2024-03-04T10:00:00",
+    "metadata": {
+      "type": "calendar_event",
+      "start_time": "2024-03-04T10:00:00",
+      "end_time": "2024-03-04T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 4",
+      "synced_at": "2026-03-01T14:39:53.111291Z"
+    }
+  },
+  {
+    "id": "cal_event_4",
+    "text": "Meeting 5 at 2024-03-05T10:00:00",
+    "metadata": {
+      "type": "calendar_event",
+      "start_time": "2024-03-05T10:00:00",
+      "end_time": "2024-03-05T11:00:00",
+      "location": "Conference Room",
+      "description": "Demo meeting 5",
+      "synced_at": "2026-03-01T14:39:53.111293Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-01",
+    "text": "Fitness on 2024-03-01: 8000 steps, 2000 calories, 30 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-01",
+      "steps": 8000,
+      "calories": 2000,
+      "active_minutes": 30,
+      "synced_at": "2026-03-01T14:39:53.111347Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-02",
+    "text": "Fitness on 2024-03-02: 8500 steps, 2100 calories, 35 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-02",
+      "steps": 8500,
+      "calories": 2100,
+      "active_minutes": 35,
+      "synced_at": "2026-03-01T14:39:53.111350Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-03",
+    "text": "Fitness on 2024-03-03: 9000 steps, 2200 calories, 40 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-03",
+      "steps": 9000,
+      "calories": 2200,
+      "active_minutes": 40,
+      "synced_at": "2026-03-01T14:39:53.111353Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-04",
+    "text": "Fitness on 2024-03-04: 9500 steps, 2300 calories, 45 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-04",
+      "steps": 9500,
+      "calories": 2300,
+      "active_minutes": 45,
+      "synced_at": "2026-03-01T14:39:53.111358Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-05",
+    "text": "Fitness on 2024-03-05: 10000 steps, 2400 calories, 50 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-05",
+      "steps": 10000,
+      "calories": 2400,
+      "active_minutes": 50,
+      "synced_at": "2026-03-01T14:39:53.111361Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-06",
+    "text": "Fitness on 2024-03-06: 10500 steps, 2500 calories, 55 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-06",
+      "steps": 10500,
+      "calories": 2500,
+      "active_minutes": 55,
+      "synced_at": "2026-03-01T14:39:53.111363Z"
+    }
+  },
+  {
+    "id": "fit_2024-03-07",
+    "text": "Fitness on 2024-03-07: 11000 steps, 2600 calories, 60 active minutes",
+    "metadata": {
+      "type": "fitness",
+      "date": "2024-03-07",
+      "steps": 11000,
+      "calories": 2600,
+      "active_minutes": 60,
+      "synced_at": "2026-03-01T14:39:53.111365Z"
+    }
+  }
+]

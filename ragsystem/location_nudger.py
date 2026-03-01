@@ -40,6 +40,15 @@ class LocationNudger:
                 "nudge_message": "Welcome home! How was your day?",
                 "conflict_keywords": ["out-of-town", "travel"],
             },
+            "michael_crouch_centre": {
+                "coordinates": (
+                    -33.917076,
+                    151.232590,
+                ),  # Michael Crouch Innovation Centre, UNSW, Kensington
+                "radius": 150,  # 150 meters radius (larger for building campus)
+                "nudge_message": "You're at Michael Crouch Innovation Centre, UNSW! How can I assist you with your studies or projects?",
+                "conflict_keywords": ["break", "free time"],
+            },
         }
 
     def update_location_coordinates(self, location_type: str, lat: float, lng: float):
@@ -173,8 +182,8 @@ class LocationNudger:
 
         # Return the most relevant nudge (closest location with highest priority)
         if nudges:
-            # Prioritize gym nudges if there are no conflicts, otherwise return first nudge
-            priority_order = ["gym", "office", "home"]
+            # Prioritize Michael Crouch Innovation Centre, then gym, then office, then home
+            priority_order = ["michael_crouch_centre", "gym", "office", "home"]
             nudges.sort(
                 key=lambda x: (
                     priority_order.index(x["location_type"])
@@ -207,6 +216,36 @@ class LocationNudger:
                     if lat and lng:
                         self.update_location_coordinates("home", float(lat), float(lng))
                         break
+
+        # Also search for other locations like work, university, etc.
+        other_results = self.rag_integrator.location_pattern_search(
+            "work", {"start": "2024-01-01T00:00:00", "end": datetime.now().isoformat()}
+        )
+
+        # Check for Michael Crouch Innovation Centre or other university locations
+        for result in other_results:
+            metadata = result["document"]["metadata"]
+            place_name = metadata.get("place", "").lower()
+            location_type = metadata.get("location_type", "")
+
+            # Check if this location is related to UNSW or Michael Crouch Innovation Centre
+            if (
+                "michael crouch" in place_name
+                or "innovation centre" in place_name
+                or "unsw" in place_name
+                or "kensington" in place_name
+            ):
+                lat = metadata.get("latitude")
+                lng = metadata.get("longitude")
+                if lat and lng:
+                    self.update_location_coordinates(
+                        "michael_crouch_centre", float(lat), float(lng)
+                    )
+                    # Update the nudge message to reflect the actual location
+                    self.important_locations["michael_crouch_centre"][
+                        "nudge_message"
+                    ] = f"You're at {metadata.get('place', 'Michael Crouch Innovation Centre, UNSW')}! How can I assist you with your studies or projects?"
+                    break
 
 
 # Global instance for use in the system

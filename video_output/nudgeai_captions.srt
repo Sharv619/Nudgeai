@@ -1,0 +1,67 @@
+1
+00:00:00,000 --> 00:00:15,000
+Welcome to NudgeAI - A Proactive Personal Assistant
+
+2
+00:00:15,000 --> 00:00:35,000
+Today, I'll walk you through NudgeAI, a cutting-edge proactive personal assistant that unifies your calendar, location, and Drive data to help you achieve your goals.
+
+3
+00:00:35,000 --> 00:00:55,000
+NudgeAI features a sophisticated multi-layered architecture. The frontend is built with React and Vite, providing a modern dashboard interface.
+
+4
+00:00:55,000 --> 00:01:15,000
+The backend uses Python with FastAPI, while the RAG system handles semantic search and AI processing. The MCP server enables integration with Hugging Face models.
+
+5
+00:01:15,000 --> 00:01:35,000
+The frontend dashboard provides real-time insights into your calendar events, recent documents, location history, and health statistics.
+
+6
+00:01:35,000 --> 00:01:55,000
+It connects to the backend API to fetch and display your personal data in an organized, actionable format.
+
+7
+00:01:55,000 --> 00:02:15,000
+The MCP server exposes powerful tools for querying your data. You can search calendar events, location history, and Drive documents.
+
+8
+00:02:15,000 --> 00:02:35,000
+It also provides habit analysis and personal insights by combining multiple data sources with AI processing.
+
+9
+00:02:35,000 --> 00:02:55,000
+The RAG system enables semantic search across all your data. It uses vector embeddings to find relevant information and provides context-aware responses.
+
+10
+00:02:55,000 --> 00:03:15,000
+This allows for natural language queries like 'When can I meet John this week?' or 'How often do I miss the gym?'
+
+11
+00:03:15,000 --> 00:03:35,000
+A key innovation is the WhiteCircle integration, which provides quality gates to prevent hallucinations.
+
+12
+00:03:35,000 --> 00:03:55,000
+Before showing any response to you, the system checks for factual accuracy and automatically retries if issues are detected.
+
+13
+00:03:55,000 --> 00:04:15,000
+NudgeAI proactively suggests actions based on your context. It can recommend optimal gym times, remind you of missed habits.
+
+14
+00:04:15,000 --> 00:04:35,000
+And provide personalized insights to help you achieve your goals.
+
+15
+00:04:35,000 --> 00:04:55,000
+NudgeAI represents the future of personal assistants - privacy-first, self-healing, and truly context-aware.
+
+16
+00:04:55,000 --> 00:05:10,000
+It's designed to help you make better decisions and achieve your goals without compromising your data privacy.
+
+17
+00:05:10,000 --> 00:05:20,000
+NudgeAI: Your Proactive Partner for Better Decisions

@@ -24570,3 +24570,63 @@ Bad request:
 2026-03-01 10:54:15,629 - ERROR - Text generation also failed: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: 'mistral=7b-instruct-v0.1.Q4_0.gguf'.
 2026-03-01 10:54:15,630 - WARNING - Chat completion failed: Cannot select auto-router when using non-Hugging Face API key., falling back to text generation
 2026-03-01 10:54:15,630 - ERROR - Text generation also failed: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: 'mistral=7b-instruct-v0.1.Q4_0.gguf'.
+2026-03-01 12:59:08,134 - INFO - Starting calendar sync...
+2026-03-01 12:59:08,717 - INFO - Please visit this URL to authorize this application: https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=218845327615-0r32jtsdctpapmispmklra3ko7684v0l.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&state=gLJUrS8P4Zefxq7q7kS1nVSujozugL&code_challenge=dMJqVNtgelfUpua2LNffhBO0BzyH-mvjpnLTBLM4l-w&code_challenge_method=S256&access_type=offline
+2026-03-01 12:59:14,720 - INFO - "GET /?state=gLJUrS8P4Zefxq7q7kS1nVSujozugL&iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepDunVwKvz_voJokCxatV5jJd-FOa-I3WpnRUr9jbCvWwT8NRax8bKUt-mLoVTSSjw&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly HTTP/1.1" 200 65
+2026-03-01 12:59:15,476 - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-03-01 12:59:16,149 - INFO - Calendar sync completed: 15 events
+2026-03-01 12:59:16,149 - INFO - Starting drive sync...
+2026-03-01 12:59:16,150 - ERROR - Drive authentication failed: Authorized user info was not in the expected format, missing fields refresh_token.
+2026-03-01 12:59:16,150 - INFO - Starting location sync...
+2026-03-01 12:59:16,150 - WARNING - No Google Takeout data found, generating mock data for demo
+2026-03-01 12:59:16,151 - INFO - Location sync completed: 36 locations
+2026-03-01 12:59:16,151 - INFO - Starting fit sync...
+2026-03-01 12:59:16,151 - INFO - Fit sync completed: 18 activities
+2026-03-01 12:59:16,151 - INFO - All syncs completed: 69 total items from 4 sources
+2026-03-01 12:59:17,620 - INFO - Added 15 calendar documents to RAG
+2026-03-01 12:59:18,076 - INFO - Added 36 location documents to RAG
+2026-03-01 12:59:18,576 - INFO - Added 18 fit documents to RAG
+2026-03-01 12:59:18,576 - INFO - Total: 69 documents added to RAG system
+2026-03-01 13:38:33,258 - INFO - Starting calendar sync...
+2026-03-01 13:38:33,259 - ERROR - Calendar authentication failed: Authorized user info was not in the expected format, missing fields refresh_token.
+2026-03-01 13:38:33,259 - INFO - Starting drive sync...
+2026-03-01 13:38:33,260 - ERROR - Drive authentication failed: Authorized user info was not in the expected format, missing fields refresh_token.
+2026-03-01 13:38:33,260 - INFO - Starting location sync...
+2026-03-01 13:38:33,260 - WARNING - No Google Takeout data found, generating mock data for demo
+2026-03-01 13:38:33,261 - INFO - Location sync completed: 38 locations
+2026-03-01 13:38:33,261 - INFO - Starting fit sync...
+2026-03-01 13:38:33,262 - INFO - Fit sync completed: 23 activities
+2026-03-01 13:38:33,262 - INFO - All syncs completed: 61 total items from 4 sources
+2026-03-01 13:38:33,262 - INFO - Added 0 calendar documents to RAG
+2026-03-01 13:38:34,475 - INFO - Added 38 location documents to RAG
+2026-03-01 13:38:35,573 - INFO - Added 23 fit documents to RAG
+2026-03-01 13:38:35,573 - INFO - Total: 61 documents added to RAG system
+2026-03-01 14:44:03,224 - INFO - Use pytorch device_name: cpu
+2026-03-01 14:44:03,225 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-01 14:44:03,517 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:03,523 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:03,860 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:03,871 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:04,166 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:04,177 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:04,474 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:04,475 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-01 14:44:04,489 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 14:44:04,710 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:04,720 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:04,986 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:04,995 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:05,293 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 14:44:05,600 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:05,606 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:06,318 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:06,330 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:06,626 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:06,634 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:06,932 - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 14:44:07,322 - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 14:44:07,853 - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 14:44:07,861 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 14:44:08,264 - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 14:44:08,284 - INFO - Loading faiss with AVX2 support.
+2026-03-01 14:44:08,905 - INFO - Successfully loaded faiss with AVX2 support.

@@ -5,6 +5,9 @@ import pickle
 import os
 from pathlib import Path
 
+# Type aliases for better readability
+FaissIndex = Any  # FAISS index type (using Any since FAISS types can vary)
+
 
 class VectorDB:
     """
@@ -25,7 +28,7 @@ class VectorDB:
 
     def add_document(
         self, doc_id: str, embedding: np.ndarray, metadata: Dict[str, Any]
-    ):
+    ) -> None:
         """
         Add a document to the vector database.
 
@@ -44,7 +47,9 @@ class VectorDB:
         normalized_embedding = embedding / np.linalg.norm(embedding)
 
         # Add to FAISS index
-        self.index.add(normalized_embedding.reshape(1, -1).astype("float32"))
+        embedding_array = normalized_embedding.reshape(1, -1).astype(np.float32)
+        # FAISS expects a 2D array with shape (n, d) where n is number of vectors and d is dimensions
+        self.index.add(embedding_array)  # type: ignore[union-attr]
 
         # Store metadata
         self.documents.append({"id": doc_id, "metadata": metadata})
@@ -79,7 +84,7 @@ class VectorDB:
         normalized_embeddings = embeddings / norms
 
         # Add to FAISS index
-        self.index.add(normalized_embeddings.astype("float32"))
+        self.index.add(normalized_embeddings.astype(np.float32))  # type: ignore[union-attr]
 
         # Store metadata
         for doc_id, metadata in zip(doc_ids, metadatas):
@@ -108,8 +113,8 @@ class VectorDB:
 
         try:
             # Perform similarity search
-            distances, indices = self.index.search(
-                query_embedding.reshape(1, -1).astype("float32"), k
+            distances, indices = self.index.search(  # type: ignore[union-attr, arg-type]
+                query_embedding.reshape(1, -1).astype(np.float32), k
             )
 
             # Format results
