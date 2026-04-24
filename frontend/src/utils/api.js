@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: '/api', // Will be proxied to MCP API bridge via Vite
-  timeout: 30000, // 30 second timeout,
+  baseURL: '',
+  timeout: 30000,
 });
 
 // Request interceptor
@@ -47,12 +47,12 @@ api.interceptors.response.use(
 // NudgeAI Backend API methods - connect to the backend data API server
 export const mcpApi = {
   // Health check
-  healthCheck: () => api.get('/health'),
+  healthCheck: () => api.get('/api/health'),
   
-  // Calendar operations - fetch real data from backend API
+  // Calendar operations - fetch real data from MCP API bridge
   getCalendarEvents: async (params = {}) => {
     try {
-      const response = await api.get('/mcp/tools/query_calendar', { params });
+      const response = await api.get('/api/mcp/tools/query_calendar', { params });
       return response;
     } catch (error) {
       console.error('Error fetching calendar events:', error);
@@ -61,10 +61,10 @@ export const mcpApi = {
     }
   },
   
-  // Document operations - fetch real data from backend API
+  // Document operations - fetch real data from MCP API bridge
   searchDocuments: async (params = {}) => {
     try {
-      const response = await api.get('/mcp/tools/query_drive', { params });
+      const response = await api.get('/api/mcp/tools/query_drive', { params });
       return response;
     } catch (error) {
       console.error('Error searching documents:', error);
@@ -72,10 +72,10 @@ export const mcpApi = {
     }
   },
   
-  // Location operations - fetch real data from backend API
+  // Location operations - fetch real data from MCP API bridge
   getLocationHistory: async (params = {}) => {
     try {
-      const response = await api.get('/mcp/tools/query_location', { params });
+      const response = await api.get('/api/mcp/tools/query_location', { params });
       return response;
     } catch (error) {
       console.error('Error fetching location history:', error);
@@ -83,10 +83,10 @@ export const mcpApi = {
     }
   },
   
-  // Health/Fitness operations - fetch real data from backend API
+  // Health/Fitness operations - fetch real data from MCP API bridge
   getHealthData: async (params = {}) => {
     try {
-      const response = await api.get('/mcp/tools/query_fit', { params });
+      const response = await api.get('/api/mcp/tools/query_fit', { params });
       return response;
     } catch (error) {
       console.error('Error fetching health data:', error);
@@ -97,18 +97,18 @@ export const mcpApi = {
   // RAG search - using real RAG system
   ragSearch: async (context) => {
     try {
-      const response = await api.get('/mcp/tools/query_calendar', { params: { context } });
+      const response = await api.get('/api/semantic-search', { params: { query: context } });
       return response;
     } catch (error) {
       console.error('Error in RAG search:', error);
-      return { data: { context, results: [] } };
+      return { data: { query: context, results: [] } };
     }
   },
   
-  // New: Direct JSON data fetching for calendar events (using correct endpoint)
+  // New: Direct JSON data fetching for calendar events (using correct MCP API bridge endpoint)
   fetchCalendarEvents: async (startDate, endDate, eventType = null) => {
     try {
-      const response = await api.get('/mcp/tools/query_calendar', {
+      const response = await api.get('/api/calendar', {
         params: {
           start_date: startDate,
           end_date: endDate,
@@ -122,10 +122,10 @@ export const mcpApi = {
     }
   },
   
-  // New: Direct JSON data fetching for location history (using correct endpoint)
+  // New: Direct JSON data fetching for location history (using correct MCP API bridge endpoint)
   fetchLocationHistory: async (startDate, endDate, locationType = null) => {
     try {
-      const response = await api.get('/mcp/tools/query_location', {
+      const response = await api.get('/api/location', {
         params: {
           start_date: startDate,
           end_date: endDate,
@@ -139,10 +139,10 @@ export const mcpApi = {
     }
   },
   
-  // New: Direct JSON data fetching for fitness data (using correct endpoint)
+  // New: Direct JSON data fetching for fitness data (using correct MCP API bridge endpoint)
   fetchFitnessData: async (timePeriod = 'week', focusArea = null) => {
     try {
-      const response = await api.get('/mcp/tools/query_fit', {
+      const response = await api.get('/api/habits', {
         params: {
           time_period: timePeriod,
           focus_area: focusArea
@@ -155,10 +155,10 @@ export const mcpApi = {
     }
   },
   
-  // New: Semantic search across all data (using correct endpoint)
+  // New: Semantic search across all data (using correct MCP API bridge endpoint)
   semanticSearch: async (query, dataFilters = null, maxResults = 5) => {
     try {
-      const response = await api.get('/mcp/tools/query_calendar', {
+      const response = await api.get('/api/semantic-search', {
         params: {
           query: query,
           data_filters: dataFilters ? dataFilters.join(',') : null,
@@ -198,37 +198,37 @@ export const mcpApi = {
         case 'proactive-nudge':
           return await mcpApi.ragSearch(params.context || '');
         case 'get_insights':
-          return await api.get('/insights', { 
-            params: { 
+          return await api.get('/api/insights', {
+            params: {
               data_sources: params.data_sources || 'calendar,location',
               focus_areas: params.focus_areas || 'productivity,health'
-            } 
+            }
           });
         case 'generate_daily_summary':
-          return await api.get('/daily-summary', { 
-            params: { 
+          return await api.get('/api/daily-summary', {
+            params: {
               date: params.date || new Date().toISOString().split('T')[0]
-            } 
+            }
           });
         case 'query_daily_summary':
-          return await api.get('/daily-summary', { 
-            params: { 
+          return await api.get('/api/daily-summary', {
+            params: {
               date: params.date || new Date().toISOString().split('T')[0]
-            } 
+            }
           });
         case 'query_insights':
-          return await api.get('/insights', { 
-            params: { 
+          return await api.get('/api/insights', {
+            params: {
               data_sources: Array.isArray(params.data_sources) ? params.data_sources.join(',') : params.data_sources || 'calendar,location',
               focus_areas: Array.isArray(params.focus_areas) ? params.focus_areas.join(',') : params.focus_areas || 'productivity,health'
-            } 
+            }
           });
         case 'query_habits':
-          return await api.get('/habits', { 
-            params: { 
+          return await api.get('/api/habits', {
+            params: {
               time_period: params.time_period || 'week',
               focus_area: params.focus_area || ''
-            } 
+            }
           });
         default:
           throw new Error(`Unknown tool: ${toolName}`);
