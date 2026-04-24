@@ -1,7 +1,0 @@
-
-  VITE v4.5.14  ready in 411 ms
-
-  ➜  Local:   http://localhost:3000/
-  ➜  Network: http://10.3.14.205:3000/
-2:50:38 am [vite] hmr update /src/pages/Dashboard.jsx, /src/styles/index.css
-2:50:47 am [vite] page reload dist/index.html

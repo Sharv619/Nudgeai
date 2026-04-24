@@ -1,0 +1,40 @@
+# Secrets / credentials
+.env
+.env.*
+!.env.example
+api/env.local
+*token.json
+*credentials.json
+config/google_credentials*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+nudgeai_env/
+.nudgeai_env/
+
+# Node / frontend build
+node_modules/
+frontend/dist/
+frontend/server.log
+frontend/vite_output.log
+
+# Logs
+*.log
+logs/
+
+# Local data refresh (regenerated on sync)
+data_sync/*.json
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Misc
+*.sqlite3
+*.db
+*.bak
