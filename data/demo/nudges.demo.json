@@ -1,0 +1,58 @@
+[
+  {
+    "id": "demo-nudge-001",
+    "title": "Send portfolio to demo contact",
+    "context": "Share the public case study link and ask for feedback.",
+    "dueAt": "2026-06-18T17:00:00+10:00",
+    "priority": "high",
+    "status": "pending",
+    "source": "demo",
+    "createdAt": "2026-06-17T09:00:00+10:00",
+    "updatedAt": "2026-06-17T09:00:00+10:00"
+  },
+  {
+    "id": "demo-nudge-002",
+    "title": "Prepare NudgeAI demo script",
+    "context": "Keep the walkthrough focused on manual nudge creation and review.",
+    "dueAt": "2026-06-19T09:00:00+10:00",
+    "priority": "high",
+    "status": "pending",
+    "source": "demo",
+    "createdAt": "2026-06-17T09:05:00+10:00",
+    "updatedAt": "2026-06-17T09:05:00+10:00"
+  },
+  {
+    "id": "demo-nudge-003",
+    "title": "Follow up after networking event",
+    "context": "Send a concise thank-you message and include one specific next step.",
+    "dueAt": "2026-06-20T12:00:00+10:00",
+    "priority": "medium",
+    "status": "pending",
+    "source": "demo",
+    "createdAt": "2026-06-17T09:10:00+10:00",
+    "updatedAt": "2026-06-17T09:10:00+10:00"
+  },
+  {
+    "id": "demo-nudge-004",
+    "title": "Review open P0 issues",
+    "context": "Check privacy, build, and core nudge lifecycle blockers before adding new scope.",
+    "dueAt": "2026-06-21T11:00:00+10:00",
+    "priority": "medium",
+    "status": "snoozed",
+    "source": "demo",
+    "snoozedUntil": "2026-06-21T09:00:00+10:00",
+    "createdAt": "2026-06-17T09:15:00+10:00",
+    "updatedAt": "2026-06-17T09:15:00+10:00"
+  },
+  {
+    "id": "demo-nudge-005",
+    "title": "Clean up local secret files",
+    "context": "Verify env and token files are ignored or removed from the git index.",
+    "dueAt": "2026-06-17T18:00:00+10:00",
+    "priority": "high",
+    "status": "pending",
+    "source": "demo",
+    "createdAt": "2026-06-17T09:20:00+10:00",
+    "updatedAt": "2026-06-17T09:20:00+10:00"
+  }
+]

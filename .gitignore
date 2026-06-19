@@ -1,11 +1,38 @@
+# Secrets and local env files
 .env
+.env.*
+*.env.local
+api/env.local
+token.json
+drive_token.json
+credentials.json
+client_secret*.json
+
 venv
-README.md
 .env.local
 /venv
 node_modules
 nudgeai_env 
-drive_token.json
+
+# Local MVP data
+data/nudges.json
+data/places.json
+data/context_rules.json
+data/rule_state.json
+data/current_location.json
+data/calendar_availability.json
+
+# Frontend build output
+frontend/dist/
+dist/
+
+# Real Google sync outputs - private local artifacts
+calendar_events.json
+drive_documents.json
+drive_documents_rag.json
+data_sync/calendar_sync.json
+data_sync/drive_sync.json
+data_sync/sync_summary.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -157,3 +184,4 @@ cython_debug/
 
 # PyCharm
 .idea/
+.data_sync/

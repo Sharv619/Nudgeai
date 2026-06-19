@@ -291,7 +291,10 @@ const ToolsPanel = () => {
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">MCP Tools Panel</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Experimental Tools Panel</h2>
+        <p className="text-sm text-gray-600 mb-6">
+          Local prototype data and MCP/RAG experiments. The canonical MVP path is the Nudges dashboard.
+        </p>
         
         {/* Tool Selection */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
@@ -336,7 +339,7 @@ const ToolsPanel = () => {
         <div className="mb-6 p-4 bg-gray-50 rounded-lg">
           <div className="flex items-center">
             <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-            <span className="text-sm text-gray-600">Connected to MCP Server</span>
+            <span className="text-sm text-gray-600">Experimental backend path</span>
             <span className="ml-auto text-xs text-gray-500">Tool: {activeTool}</span>
           </div>
         </div>
@@ -414,7 +417,7 @@ const ToolsPanel = () => {
         {/* RAG Pipeline Display */}
         {showRagPipeline && ragData && (
           <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-3">🤖 RAG Pipeline Results</h4>
+            <h4 className="font-medium text-gray-900 mb-3">Experimental RAG Pipeline Results</h4>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
               <div className="bg-white p-3 rounded border">
                 <div className="font-medium text-blue-900 mb-2">Query Processing</div>
@@ -433,10 +436,10 @@ const ToolsPanel = () => {
 
       {/* Nudge Simulation */}
       <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">📍 Location Nudge Simulator</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Location Nudge Simulator</h3>
         <div className="space-y-4">
           <p className="text-sm text-gray-600 mb-4">
-            Simulate location-based nudges based on your current context and schedule.
+            Simulate location-based nudges from local prototype data. This is not the persisted MVP nudge lifecycle.
           </p>
           <button
             onClick={simulateNudge}
@@ -489,7 +492,7 @@ const ToolsPanel = () => {
       {/* MCP Tools Information */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Available MCP Tools</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Available Experimental Tools</h3>
           <ul className="space-y-2 text-sm text-gray-600">
             <li>• Calendar Events: Query upcoming events and schedule</li>
             <li>• Document Search: Find relevant documents</li>
@@ -500,7 +503,7 @@ const ToolsPanel = () => {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">MCP Server Status</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Experimental Server Status</h3>
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Connection:</span>

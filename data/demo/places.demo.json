@@ -1,0 +1,11 @@
+[
+  {
+    "id": "gym-demo",
+    "name": "Gym",
+    "latitude": -33.8688,
+    "longitude": 151.2093,
+    "radiusMeters": 300,
+    "tags": ["fitness", "personal"],
+    "enabled": true
+  }
+]

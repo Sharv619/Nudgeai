@@ -1,0 +1,52 @@
+[
+  {
+    "id": "demo-calendar-001",
+    "title": "Sydney AI Builders Meetup",
+    "start": "2026-06-18T18:00:00+10:00",
+    "end": "2026-06-18T19:30:00+10:00",
+    "timezone": "Australia/Sydney",
+    "location": "Demo Community Space",
+    "source": "demo",
+    "description": "Meet builders and collect follow-up ideas for the NudgeAI demo."
+  },
+  {
+    "id": "demo-calendar-002",
+    "title": "Portfolio Review Block",
+    "start": "2026-06-19T10:00:00+10:00",
+    "end": "2026-06-19T11:00:00+10:00",
+    "timezone": "Australia/Sydney",
+    "location": "Local workspace",
+    "source": "demo",
+    "description": "Review portfolio case study notes and tighten the demo script."
+  },
+  {
+    "id": "demo-calendar-003",
+    "title": "Follow-up with Demo Contact",
+    "start": "2026-06-20T14:00:00+10:00",
+    "end": "2026-06-20T14:30:00+10:00",
+    "timezone": "Australia/Sydney",
+    "location": "Video call",
+    "source": "demo",
+    "description": "Send a short update and ask for feedback on the prototype walkthrough."
+  },
+  {
+    "id": "demo-calendar-004",
+    "title": "NudgeAI Sprint Planning",
+    "start": "2026-06-21T09:30:00+10:00",
+    "end": "2026-06-21T10:15:00+10:00",
+    "timezone": "Australia/Sydney",
+    "location": "Local workspace",
+    "source": "demo",
+    "description": "Prioritize manual nudge lifecycle fixes and demo-safe fixture work."
+  },
+  {
+    "id": "demo-calendar-005",
+    "title": "Gym Session",
+    "start": "2026-06-22T07:00:00+10:00",
+    "end": "2026-06-22T08:00:00+10:00",
+    "timezone": "Australia/Sydney",
+    "location": "Demo Fitness Studio",
+    "source": "demo",
+    "description": "Personal routine placeholder for safe local demo context."
+  }
+]

@@ -262,7 +262,7 @@ async def api_semantic_search(
 
 
 
-@app.get(/api/ask-question)
+@app.get("/api/ask-question")
 async def api_answer_general_question(
     question: str,
 ):

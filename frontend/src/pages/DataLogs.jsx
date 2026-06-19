@@ -29,7 +29,7 @@ const DataLogs = () => {
               timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
               source: 'MCP Server',
               level: 'INFO',
-              message: 'System operational - last data refresh successful',
+            message: 'Local prototype check completed',
               details: `Calendar events loaded: ${response.data?.result?.events?.length || 'N/A'}`
             },
             {
@@ -67,9 +67,9 @@ const DataLogs = () => {
           ];
         }
       } catch (apiError) {
-        console.warn('Could not fetch live system data, generating mock logs:', apiError);
+        console.warn('Could not fetch live system data, showing labelled sample logs:', apiError);
         
-        // Fallback to mock data representing actual system logs
+        // Labelled sample data for the local prototype. These are not live production logs.
         fetchedLogs = [
           {
             id: 1,
@@ -261,13 +261,13 @@ const DataLogs = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">System Data Logs</h2>
-            <p className="text-sm text-gray-600 mt-1">Real-time logs from all data ingestion and processing systems</p>
+            <h2 className="text-xl font-semibold text-gray-900">Prototype Logs</h2>
+            <p className="text-sm text-gray-600 mt-1">Local prototype/sample log view. This is not live production telemetry.</p>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center text-sm text-gray-600">
               <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-              Live Updates
+              Local sample view
             </div>
             <button 
               onClick={loadLogs}

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "gym-opportunity",
+    "name": "Gym Opportunity",
+    "enabled": true,
+    "placeId": "gym-demo",
+    "requiredFreeMinutes": 45,
+    "timeWindow": {
+      "start": "06:00",
+      "end": "22:00"
+    },
+    "cooldownMinutes": 360,
+    "nudgeTemplate": {
+      "title": "Gym opportunity",
+      "context": "You're near the gym and free for a bit. Go train?",
+      "priority": "medium"
+    }
+  }
+]

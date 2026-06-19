@@ -1,0 +1,42 @@
+[
+  {
+    "id": "demo-drive-001",
+    "name": "NudgeAI PRD Draft",
+    "mimeType": "application/vnd.google-apps.document",
+    "modifiedTime": "2026-06-15T09:20:00Z",
+    "source": "demo",
+    "summary": "Product requirements draft for the manual nudge MVP."
+  },
+  {
+    "id": "demo-drive-002",
+    "name": "Portfolio Case Study Notes",
+    "mimeType": "application/vnd.google-apps.document",
+    "modifiedTime": "2026-06-15T13:45:00Z",
+    "source": "demo",
+    "summary": "Safe notes for presenting the prototype as a portfolio project."
+  },
+  {
+    "id": "demo-drive-003",
+    "name": "Demo Architecture Diagram",
+    "mimeType": "application/vnd.google-apps.presentation",
+    "modifiedTime": "2026-06-16T08:10:00Z",
+    "source": "demo",
+    "summary": "Diagram showing the manual MVP path and experimental context path."
+  },
+  {
+    "id": "demo-drive-004",
+    "name": "Job Application Tracker",
+    "mimeType": "application/vnd.google-apps.spreadsheet",
+    "modifiedTime": "2026-06-16T16:30:00Z",
+    "source": "demo",
+    "summary": "Example spreadsheet for tracking demo follow-ups."
+  },
+  {
+    "id": "demo-drive-005",
+    "name": "Weekly Planning Template",
+    "mimeType": "application/vnd.google-apps.document",
+    "modifiedTime": "2026-06-17T07:50:00Z",
+    "source": "demo",
+    "summary": "Template with fake weekly planning tasks for public demos."
+  }
+]

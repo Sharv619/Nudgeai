@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install fastapi httpx "pydantic>=2" uvicorn
+
+      - name: Check Python syntax
+        run: python -m py_compile simple_api_server.py mcp_api_bridge.py
+
+      - name: Run backend tests
+        run: python -m unittest tests.test_nudge_store tests.test_nudge_api tests.test_context_rules
+
+      - name: Run privacy guard
+        run: python scripts/privacy_check.py
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build

@@ -44,7 +44,26 @@ api.interceptors.response.use(
   }
 );
 
-// NudgeAI Backend API methods - connect to the backend data API server
+export const nudgeApi = {
+  list: (params = {}) => api.get('/nudges', { params }),
+  create: (payload) => api.post('/nudges', payload),
+  update: (id, payload) => api.patch(`/nudges/${id}`, payload),
+  remove: (id) => api.delete(`/nudges/${id}`),
+};
+
+export const contextApi = {
+  get: () => api.get('/context'),
+  sourceStatus: () => api.get('/source-status'),
+  extractNudges: (textContent) => api.post('/extract', { text_content: textContent }),
+  updatePlace: (id, payload) => api.patch(`/places/${id}`, payload),
+  updateRule: (id, payload) => api.patch(`/context-rules/${id}`, payload),
+  updateLocation: (payload) => api.post('/current-location', payload),
+  updateCalendar: (payload) => api.patch('/context/calendar', payload),
+  evaluate: () => api.post('/context-rules/evaluate'),
+  pollNotifications: () => api.get('/notifications/poll'),
+};
+
+// Experimental data API methods - these are not the canonical MVP nudge path.
 export const mcpApi = {
   // Health check
   healthCheck: () => api.get('/health'),
@@ -314,7 +333,9 @@ export const mockData = {
 
 // Utility function - now always tries real API by default
 export const useMockData = () => {
-  return process.env.REACT_APP_USE_MOCK_DATA === 'true';
+  const viteValue = import.meta.env?.VITE_USE_MOCK_DATA;
+  const reactValue = typeof process !== 'undefined' ? process.env?.REACT_APP_USE_MOCK_DATA : undefined;
+  return viteValue === 'true' || reactValue === 'true';
 };
 
 export default api;
