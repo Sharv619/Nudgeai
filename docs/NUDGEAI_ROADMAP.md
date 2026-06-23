@@ -28,19 +28,16 @@ Deliverables:
 - CI gate
 - demo fixtures kept safe
 
-## V1.5: Personal Context Rules
+## V1.5: Booking And Context Planning
 
 Goal:
-Add local-first context rules without moving production integrations ahead of core reliability.
+Plan the next phase without moving integrations ahead of core reliability.
 
 Deliverables:
-- places config
-- context rules config
-- manual/demo current location
-- calendar free/busy abstraction
-- Gym Opportunity rule
-- source status cards
-- privacy rules for coordinates and local context state
+- booking/availability planning
+- source status UX plan
+- data source limitations docs
+- privacy rules for availability, health, and location
 
 ## V2: AI-Assisted Nudge Creation
 
@@ -102,13 +99,32 @@ Deliverables:
 - user preference learning
 - explainable priority scoring
 
+## Hermes Integration Track
+
+Goal:
+Use Hermes as an optional local operations and automation companion without making it required for the NudgeAI runtime.
+
+Deliverables:
+- H0 documentation-only integration and repo guardrails
+- H1 local operations health checks
+- H2 read-only nudge summary endpoint for safe daily reviews
+- H3 reviewed nudge create/edit/delete actions through FastAPI only
+- H4 optional MCP wrapper after API/privacy boundaries stabilize
+- H5 optional gateway delivery after auth, audit, consent, and retention rules exist
+
+Success Criteria:
+- NudgeAI still runs without Hermes.
+- Hermes never mutates `data/*.json` directly by default.
+- Read-only summaries avoid raw Calendar, Drive, health, and location dumps.
+- Any write action requires explicit user approval and auditability.
+
 ## Roadmap Table
 
 | Version | Theme | Key Features | Success Criteria |
 |---|---|---|---|
 | V0 | Stabilise | Build, syntax, canonical API, docs, env vars | New developer can run app locally from README. |
 | V1 | Manual stability | Edit, filters, due behavior, CI, demo fixtures | User can manage nudges reliably without AI. |
-| V1.5 | Personal context rules | Places, local rules, manual location, calendar free minutes, Gym Opportunity | Context rule can create a normal nudge and avoid duplicates during cooldown. |
+| V1.5 | Next-phase planning | Booking plan, source status UX, limitations docs | Future work is scoped before implementation. |
 | V2 | AI assist | Messy note extraction, review, validated JSON | User saves useful suggestions after review. |
 | V3 | Reminders | Scheduler, overdue, digest, notification | Nudges resurface without manually checking dashboard. |
 | V4 | Calendar booking | Free/busy, approval, event creation | Booking is consent-based and does not leak private calendar details. |

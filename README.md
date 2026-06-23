@@ -29,6 +29,22 @@ The canonical MVP backend is `simple_api_server.py` on port `8001`. Existing MCP
 - Persistence: local JSON file at `data/nudges.json`
 - Experimental/future: MCP, RAG, Hugging Face, Google APIs, WhiteCircle
 
+## Start Here / Local Integration
+
+For the step-by-step local setup, run commands, API integration surface, and Hermes/MCP guidance, use:
+
+```txt
+docs/LOCAL_INTEGRATION_RUNBOOK.md
+```
+
+Recommended path:
+
+1. Run the canonical backend: `python simple_api_server.py`.
+2. Run the frontend from `frontend/`: `npm run dev`.
+3. Open `http://localhost:3000`.
+4. Integrate other local tools through the FastAPI endpoints, not by directly editing `data/*.json`.
+5. Treat MCP, RAG, Google sync, and bridge files as experimental until the manual nudge loop is verified.
+
 ## Local Setup
 
 Install Python dependencies:
@@ -108,6 +124,7 @@ Run the local privacy guard before committing:
 
 ```bash
 python scripts/privacy_check.py
+python scripts/nudgeai_health_check.py
 ```
 
 The script fails if private Google sync outputs, OAuth tokens, or local env files are tracked by git. It warns, but does not fail, when those files merely exist locally and are ignored.
@@ -140,7 +157,7 @@ python -m py_compile simple_api_server.py mcp_api_bridge.py
 Backend store tests:
 
 ```bash
-python -m unittest tests.test_nudge_store tests.test_nudge_api
+python -m unittest discover -s tests -p "test_nudge*.py"
 ```
 
 Frontend build:
@@ -154,6 +171,7 @@ npm run build
 ## Nudge API
 
 - `GET /api/nudges`
+- `GET /api/nudges/summary`
 - `POST /api/nudges`
 - `PATCH /api/nudges/{id}`
 - `DELETE /api/nudges/{id}`

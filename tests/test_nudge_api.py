@@ -1,6 +1,6 @@
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -224,6 +224,41 @@ class NudgeApiTests(unittest.TestCase):
         self.assertEqual(cooled_down.status_code, 200)
         self.assertFalse(cooled_down.json()["created"])
         self.assertIn("cooldown", cooled_down.json()["evaluations"][0]["reasons"][0])
+
+    def test_nudge_summary_returns_counts_minimal_items_and_source_status(self):
+        due_at = simple_api_server.to_iso_z(datetime.now(timezone.utc) + timedelta(hours=1))
+        overdue_at = simple_api_server.to_iso_z(datetime(2020, 1, 1, tzinfo=timezone.utc))
+        self.client.post(
+            "/api/nudges",
+            json={"title": "High priority today", "priority": "high", "dueAt": due_at},
+        )
+        self.client.post(
+            "/api/nudges",
+            json={"title": "Old overdue item", "priority": "medium", "dueAt": overdue_at},
+        )
+        self.client.post(
+            "/api/nudges",
+            json={"title": "Low backlog", "priority": "low"},
+        )
+
+        response = self.client.get("/api/nudges/summary")
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["counts"]["total"], 3)
+        self.assertEqual(payload["counts"]["pending"], 3)
+        self.assertEqual(payload["counts"]["due_today"], 1)
+        self.assertEqual(payload["counts"]["overdue"], 1)
+        self.assertIn("generatedAt", payload)
+        self.assertEqual(payload["sourceStatus"]["location"]["status"], "demo")
+        self.assertEqual(payload["sourceStatus"]["calendar"]["status"], "demo")
+        self.assertGreaterEqual(len(payload["topItems"]), 1)
+        first_item = payload["topItems"][0]
+        self.assertEqual(first_item["title"], "High priority today")
+        self.assertEqual(first_item["priority"], "high")
+        self.assertIn("id", first_item)
+        self.assertNotIn("context", first_item)
+        self.assertNotIn("last_notified_at", first_item)
 
 
 if __name__ == "__main__":

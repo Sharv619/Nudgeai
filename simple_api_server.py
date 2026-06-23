@@ -960,6 +960,68 @@ def is_notification_active(nudge: Dict[str, Any], now: datetime) -> bool:
     return status == "pending"
 
 
+def nudge_summary(now: Optional[datetime] = None) -> Dict[str, Any]:
+    now = now or datetime.now(timezone.utc)
+    nudges = load_nudges()
+    counts = {
+        "total": len(nudges),
+        "pending": 0,
+        "snoozed": 0,
+        "completed": 0,
+        "dismissed": 0,
+        "due_today": 0,
+        "overdue": 0,
+    }
+
+    for nudge in nudges:
+        status = nudge.get("status", "pending")
+        if status in counts:
+            counts[status] += 1
+        if matches_due_today(nudge, now):
+            counts["due_today"] += 1
+        if matches_overdue(nudge, now):
+            counts["overdue"] += 1
+
+    priority_rank = {"high": 0, "medium": 1, "low": 2}
+
+    def due_sort_value(nudge: Dict[str, Any]) -> str:
+        return nudge.get("dueAt") or "9999-12-31T23:59:59Z"
+
+    active_nudges = [
+        nudge
+        for nudge in nudges
+        if nudge.get("status", "pending") in {"pending", "snoozed"}
+    ]
+    top_items = sorted(
+        active_nudges,
+        key=lambda nudge: (
+            priority_rank.get(nudge.get("priority", "medium"), 1),
+            due_sort_value(nudge),
+            nudge.get("createdAt") or "",
+        ),
+    )[:5]
+
+    minimal_items = [
+        {
+            "id": item.get("id"),
+            "title": item.get("title"),
+            "status": item.get("status", "pending"),
+            "priority": item.get("priority", "medium"),
+            "dueAt": item.get("dueAt"),
+            "snoozedUntil": item.get("snoozedUntil"),
+            "source": item.get("source", "manual"),
+        }
+        for item in top_items
+    ]
+
+    return {
+        "generatedAt": to_iso_z(now),
+        "counts": counts,
+        "topItems": minimal_items,
+        "sourceStatus": context_source_status(load_context_state()),
+    }
+
+
 def already_notified(nudge: Dict[str, Any]) -> bool:
     ensure_notification_state(nudge)
     return bool(nudge.get("last_notified_at") or nudge.get("notification_count", 0) > 0)
@@ -1039,6 +1101,11 @@ async def list_nudges(
 
     nudges.sort(key=lambda item: (item.get("dueAt") or "9999", item.get("createdAt") or ""))
     return {"nudges": nudges, "count": len(nudges)}
+
+
+@app.get("/api/nudges/summary")
+async def get_nudge_summary():
+    return nudge_summary()
 
 
 @app.post("/api/nudges", status_code=201)
