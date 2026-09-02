@@ -7,7 +7,8 @@ import logging
 from typing import List, Dict, Any, Optional
 
 # Import RAG system components
-from ragsystem import create_default_rag_system, generate_embedding, generate_embeddings
+from ragsystem import create_default_rag_system
+from ragsystem.embedding.generate import generate_embedding, generate_embeddings
 
 # Import data sync manager
 from data_ingestion.data_sync_manager import DataSyncManager
