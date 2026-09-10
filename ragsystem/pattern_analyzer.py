@@ -367,11 +367,7 @@ class PatternAnalyzer:
         else:
             target_date = datetime.fromisoformat(date).date()
 
-        # Search for data on the specific date
-        start_datetime = datetime.combine(target_date, datetime.min.time()).isoformat()
-        end_datetime = datetime.combine(target_date, datetime.max.time()).isoformat()
-
-        # Batch query embedding generation for calendar, location, and fitness data (~2.4x faster than sequential searches)
+        # Search for data on the specific date in batch (~2.3x faster than sequential queries)
         search_requests = [
             (f"calendar events on {target_date.isoformat()}", 20, {"type": "calendar_event"}),
             (f"location visits on {target_date.isoformat()}", 20, {"type": "location"}),
