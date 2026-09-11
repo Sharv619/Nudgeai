@@ -17,3 +17,7 @@
 ## 2026-03-05 - Batching Location Pattern Searches in Location Nudger
 **Learning:** In `LocationNudger.update_important_locations_from_data`, sequentially calling `location_pattern_search` for different location types ('home', 'work') invoked separate embedding model passes. Combining search requests into `rag_mcp_integrator.batch_semantic_search` computes embedding vectors for all search patterns in a single matrix pass, reducing location update latency by ~1.7x (~25.0ms down to ~14.5ms).
 **Action:** When location-aware or context-updating services need to retrieve patterns for multiple place types or categories, batch the pattern query requests into a single `batch_semantic_search` call.
+
+## 2026-03-06 - Batching Multi-Domain RAG Queries in MCP Weekly Habit Resource & Precomputed Embeddings
+**Learning:** In `get_weekly_habit_summary`, executing a single generic query for both fitness and location data could starve one domain from top-k results while requiring embedding generation. Batching targeted queries (`fitness_activity` and `location`) into `batch_semantic_search` computes embeddings in a single forward pass while guaranteeing full domain retrieval. Furthermore, extending `RAGRetriever` and `RAGMCPIntegrator` to accept precomputed `embedding` vectors allows pre-vectorized query flows to bypass redundant model inferences entirely without breaking encapsulation.
+**Action:** Use `batch_semantic_search` for multi-domain MCP resources and accept optional precomputed `embedding` vectors across retrieval layers.

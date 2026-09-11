@@ -1675,21 +1675,14 @@ def _register_resources(server: FastMCP):
         """
         logger.info("Getting weekly habit summary")
 
-        # Use semantic search to get recent fitness and location data for weekly summary
-        query = "fitness activities and location visits from the last 7 days"
-        results = rag_mcp_integrator.semantic_search(
-            query, k=20, filters={"type": ["fitness_activity", "location"]}
-        )
-
-        # Categorize the results
-        fitness_activities = [
-            r
-            for r in results
-            if r["document"]["metadata"]["type"] == "fitness_activity"
+        # Batch semantic search for fitness activities and location visits in a single forward pass
+        search_requests = [
+            ("fitness activities from the last 7 days", 10, {"type": "fitness_activity"}),
+            ("location visits from the last 7 days", 10, {"type": "location"}),
         ]
-        location_visits = [
-            r for r in results if r["document"]["metadata"]["type"] == "location"
-        ]
+        batch_results = rag_mcp_integrator.batch_semantic_search(search_requests)
+        fitness_activities, location_visits = batch_results[0], batch_results[1]
+        results = fitness_activities + location_visits
 
         if results:
             # Analyze the data to generate insights
