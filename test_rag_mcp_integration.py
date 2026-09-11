@@ -75,6 +75,13 @@ def test_rag_mcp_integration():
     habit_search = rag_mcp_integrator.habit_similarity_search("working out", k=2)
     print(f"   🎯 Habit-related items found: {len(habit_search)}")
 
+    # Test 7: Precomputed embedding search
+    print("\n⚡ Test 7: Testing precomputed embedding semantic search")
+    from ragsystem.embedding.generate import generate_embedding
+    emb = generate_embedding("gym session")
+    emb_search = rag_mcp_integrator.semantic_search("gym session", k=2, embedding=emb)
+    print(f"   ⚡ Precomputed embedding search returned {len(emb_search)} results")
+
     print(f"\n🏆 All RAG-MCP integration tests completed successfully!")
     print(
         f"   The system is ready to enhance MCP tools with semantic search capabilities."

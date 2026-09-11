@@ -20,23 +20,24 @@ class RAGRetriever:
         self.vector_db = vector_db
 
     def retrieve_relevant_documents(
-        self, query: str, k: int = 5
+        self, query: str, k: int = 5, embedding: Optional[np.ndarray] = None
     ) -> List[Dict[str, Any]]:
         """
-        Retrieve relevant documents for a given query.
+        Retrieve relevant documents for a given query or precomputed embedding.
 
         Args:
             query: User query string
             k: Number of documents to retrieve
+            embedding: Optional precomputed query vector embedding
 
         Returns:
             List of relevant documents with metadata and similarity scores
         """
-        # Generate embedding for the query
-        query_embedding = generate_embedding(query)
+        if embedding is None:
+            embedding = generate_embedding(query)
 
         # Search for similar documents in the vector database
-        results = self.vector_db.search(query_embedding, k=k)
+        results = self.vector_db.search(embedding, k=k)
 
         return results
 

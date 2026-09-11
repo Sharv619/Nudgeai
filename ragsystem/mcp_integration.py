@@ -5,6 +5,7 @@ Module to integrate RAG system with MCP tools for enhanced semantic search capab
 import logging
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
+import numpy as np
 from ragsystem.indexing.vector_db import VectorDB
 from ragsystem.embedding.generate import generate_embedding, generate_embeddings
 from ragsystem.retrieval.search import RAGRetriever
@@ -76,14 +77,21 @@ class RAGMCPIntegrator:
             return added_count
 
     def semantic_search(
-        self, query: str, k: int = 5, filters: Optional[Dict] = None
+        self,
+        query: str,
+        k: int = 5,
+        filters: Optional[Dict] = None,
+        embedding: Optional[np.ndarray] = None,
     ) -> List[Dict[str, Any]]:
         """
         Perform semantic search across all indexed data with optional filtering.
+        Accepts an optional precomputed `embedding` vector to bypass model inference overhead when batch processing.
         """
         try:
-            # Generate embedding for the query
-            results = self.retriever.retrieve_relevant_documents(query, k=k)
+            # Retrieve relevant documents through retriever using query or precomputed embedding
+            results = self.retriever.retrieve_relevant_documents(
+                query, k=k, embedding=embedding
+            )
 
             # Apply filters if provided
             if filters:
@@ -139,8 +147,10 @@ class RAGMCPIntegrator:
 
             all_results = []
             for (query, k, filters), embedding in zip(search_requests, embeddings):
-                # Search vector database using precomputed embedding
-                results = self.vector_db.search(embedding, k=k)
+                # Retrieve relevant documents through retriever using precomputed embedding
+                results = self.retriever.retrieve_relevant_documents(
+                    query, k=k, embedding=embedding
+                )
 
                 # Apply metadata filters if provided
                 if filters:
@@ -179,24 +189,36 @@ class RAGMCPIntegrator:
             ]
 
     def find_similar_events(
-        self, event_description: str, k: int = 3
+        self,
+        event_description: str,
+        k: int = 3,
+        embedding: Optional[np.ndarray] = None,
     ) -> List[Dict[str, Any]]:
         """
         Find events similar to the given description.
+        Accepts optional precomputed embedding to bypass model inference.
         """
         filters = {"type": "calendar_event"}
-        return self.semantic_search(event_description, k=k, filters=filters)
+        return self.semantic_search(
+            event_description, k=k, filters=filters, embedding=embedding
+        )
 
     def location_pattern_search(
-        self, location_type: str, time_range: Dict[str, str]
+        self,
+        location_type: str,
+        time_range: Dict[str, str],
+        embedding: Optional[np.ndarray] = None,
     ) -> List[Dict[str, Any]]:
         """
         Search for location patterns within a specific time range.
+        Accepts optional precomputed embedding to bypass model inference.
         """
         # This would be a more sophisticated search in production
         query = f"location visits of type {location_type} in recent days"
         filters = {"location_type": location_type}
-        results = self.semantic_search(query, k=10, filters=filters)
+        results = self.semantic_search(
+            query, k=10, filters=filters, embedding=embedding
+        )
 
         # Filter by time range if needed
         if time_range:
@@ -210,13 +232,19 @@ class RAGMCPIntegrator:
         return results
 
     def habit_similarity_search(
-        self, habit_description: str, k: int = 3
+        self,
+        habit_description: str,
+        k: int = 3,
+        embedding: Optional[np.ndarray] = None,
     ) -> List[Dict[str, Any]]:
         """
         Find habits or activities similar to the given description.
+        Accepts optional precomputed embedding to bypass model inference.
         """
         filters = {"type": ["fitness_activity", "location", "calendar_event"]}
-        return self.semantic_search(habit_description, k=k, filters=filters)
+        return self.semantic_search(
+            habit_description, k=k, filters=filters, embedding=embedding
+        )
 
     def _is_in_time_range(self, timestamp: str, time_range: Dict[str, str]) -> bool:
         """
