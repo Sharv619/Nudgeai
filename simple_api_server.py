@@ -899,6 +899,11 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
     created_nudges = []
     rule_state = state["ruleState"]
 
+    # Batch nudge store disk I/O operations: load existing nudges once before the rule loop
+    # instead of reading and writing disk JSON files inside every iteration for matching rules.
+    nudges = load_nudges() if create_nudges else []
+    nudges_modified = False
+
     for rule in state["rules"]:
         result = evaluate_context_rule(
             rule,
@@ -917,13 +922,16 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
                 priority=template.get("priority", "medium"),
                 source="context_rule",
             )
-            nudges = load_nudges()
             nudges.append(nudge)
-            save_nudges(nudges)
+            nudges_modified = True
             rule_state = set_rule_last_fired(rule_state, rule["id"], utc_now())
             result["createdNudgeId"] = nudge["id"]
             created_nudges.append(nudge)
         evaluations.append(result)
+
+    # Persist updated nudges to disk in a single write operation if new nudges were created
+    if nudges_modified:
+        save_nudges(nudges)
 
     state["ruleState"] = rule_state
     save_rule_state(rule_state)
