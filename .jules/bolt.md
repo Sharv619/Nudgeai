@@ -17,3 +17,7 @@
 ## 2026-03-05 - Batching Location Pattern Searches in Location Nudger
 **Learning:** In `LocationNudger.update_important_locations_from_data`, sequentially calling `location_pattern_search` for different location types ('home', 'work') invoked separate embedding model passes. Combining search requests into `rag_mcp_integrator.batch_semantic_search` computes embedding vectors for all search patterns in a single matrix pass, reducing location update latency by ~1.7x (~25.0ms down to ~14.5ms).
 **Action:** When location-aware or context-updating services need to retrieve patterns for multiple place types or categories, batch the pattern query requests into a single `batch_semantic_search` call.
+
+## 2026-03-06 - Batch Nudge Store Disk I/O in Context Rules Evaluation
+**Learning:** In API handlers that iterate over lists of evaluation rules (e.g. `evaluate_all_context_rules` in `simple_api_server.py`), executing `load_nudges()` and `save_nudges()` inside the loop for every matching rule causes $O(N)$ sequential file reads, JSON parsings, and disk writes. Loading the store once prior to rule evaluation, accumulating new items in memory, and writing back to disk in a single batch pass reduces file I/O operations from $O(N)$ to $O(1)$, significantly reducing latency during rule evaluation.
+**Action:** When evaluating batch context or rule engines that create persistent records, load target stores once before evaluation loops and commit accumulated updates in a single batch write after loop completion.
