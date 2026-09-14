@@ -17,3 +17,7 @@
 ## 2026-03-05 - Batching Location Pattern Searches in Location Nudger
 **Learning:** In `LocationNudger.update_important_locations_from_data`, sequentially calling `location_pattern_search` for different location types ('home', 'work') invoked separate embedding model passes. Combining search requests into `rag_mcp_integrator.batch_semantic_search` computes embedding vectors for all search patterns in a single matrix pass, reducing location update latency by ~1.7x (~25.0ms down to ~14.5ms).
 **Action:** When location-aware or context-updating services need to retrieve patterns for multiple place types or categories, batch the pattern query requests into a single `batch_semantic_search` call.
+
+## 2026-03-06 - Pre-compiled Single-Pass Regex Matching for Rule-Based Action Text Extraction
+**Learning:** In string extraction utilities like `clean_action_title`, looping over a collection of target terms (e.g. 20 action verbs) and executing individual `re.search` calls with dynamically generated regex strings repeatedly parses and evaluates regexes across candidate strings. Combining target terms into a single pre-compiled regex pattern (`re.compile(r"\b(?:" + "|".join(...) + r")\b")`) allows the C-level regex engine to scan text in a single pass, yielding an ~18.0x speedup (~20,064ms down to ~1,110ms per 50k candidate iterations).
+**Action:** When searching text for any match among a static set of keywords or verbs, construct a single pre-compiled OR pattern (`(?|...)` or `(?:...)`) rather than running `re.search` in a python loop.
