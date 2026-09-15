@@ -150,8 +150,12 @@ class LocationNudger:
         if not nearby_locations:
             return None
 
-        # Get any conflicts that might affect the nudge
-        conflicts = self.get_current_conflicts()
+        # Optimization: Only perform semantic conflict search if any nearby location has conflict keywords to check against
+        has_conflict_keywords = any(
+            bool(loc_info.get("conflict_keywords"))
+            for _, loc_info in nearby_locations
+        )
+        conflicts = self.get_current_conflicts() if has_conflict_keywords else []
 
         nudges = []
         for location_type, location_info in nearby_locations:

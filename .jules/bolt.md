@@ -17,3 +17,7 @@
 ## 2026-03-05 - Batching Location Pattern Searches in Location Nudger
 **Learning:** In `LocationNudger.update_important_locations_from_data`, sequentially calling `location_pattern_search` for different location types ('home', 'work') invoked separate embedding model passes. Combining search requests into `rag_mcp_integrator.batch_semantic_search` computes embedding vectors for all search patterns in a single matrix pass, reducing location update latency by ~1.7x (~25.0ms down to ~14.5ms).
 **Action:** When location-aware or context-updating services need to retrieve patterns for multiple place types or categories, batch the pattern query requests into a single `batch_semantic_search` call.
+
+## 2026-03-06 - Short-Circuiting Semantic Conflict Queries in Location Nudging
+**Learning:** In `LocationNudger.generate_location_nudge`, invoking `get_current_conflicts()` before validating whether nearby locations contain non-empty `conflict_keywords` forced unnecessary RAG semantic searches on calendar events (~14.7ms per evaluation). Checking if any matched nearby location actually specifies conflict keywords before invoking `get_current_conflicts()` eliminates expensive embedding passes when no conflict filtering criteria exist, reducing evaluation time from ~14.7ms to ~0.015ms.
+**Action:** Always check if filtering/conflict criteria are defined before triggering costly vector retrieval or semantic search routines.
