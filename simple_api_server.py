@@ -834,12 +834,24 @@ def is_calendar_free(required_free_minutes: int, calendar: Dict[str, Any], now: 
     return int(calendar.get("freeForMinutes", 0)) >= required_free_minutes
 
 
-def find_rule_state(rule_state: List[Dict[str, Any]], rule_id: str) -> Optional[Dict[str, Any]]:
+# Fast O(1) dictionary-based lookup for rule state to avoid O(N) sequential list scanning in rule evaluation loops
+def find_rule_state(
+    rule_state: List[Dict[str, Any]],
+    rule_id: str,
+    rule_state_map: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> Optional[Dict[str, Any]]:
+    if rule_state_map is not None:
+        return rule_state_map.get(rule_id)
     return next((item for item in rule_state if item.get("ruleId") == rule_id), None)
 
 
-def is_cooldown_clear(rule: Dict[str, Any], rule_state: List[Dict[str, Any]], now: datetime) -> bool:
-    state = find_rule_state(rule_state, rule["id"])
+def is_cooldown_clear(
+    rule: Dict[str, Any],
+    rule_state: List[Dict[str, Any]],
+    now: datetime,
+    rule_state_map: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> bool:
+    state = find_rule_state(rule_state, rule["id"], rule_state_map=rule_state_map)
     last_fired = parse_datetime((state or {}).get("lastFiredAt"))
     if not last_fired:
         return True
@@ -847,12 +859,20 @@ def is_cooldown_clear(rule: Dict[str, Any], rule_state: List[Dict[str, Any]], no
     return elapsed_minutes >= int(rule.get("cooldownMinutes", 0))
 
 
-def set_rule_last_fired(rule_state: List[Dict[str, Any]], rule_id: str, fired_at: str) -> List[Dict[str, Any]]:
-    state = find_rule_state(rule_state, rule_id)
+def set_rule_last_fired(
+    rule_state: List[Dict[str, Any]],
+    rule_id: str,
+    fired_at: str,
+    rule_state_map: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> List[Dict[str, Any]]:
+    state = find_rule_state(rule_state, rule_id, rule_state_map=rule_state_map)
     if state:
         state["lastFiredAt"] = fired_at
         return rule_state
-    return [*rule_state, {"ruleId": rule_id, "lastFiredAt": fired_at}]
+    new_state = {"ruleId": rule_id, "lastFiredAt": fired_at}
+    if rule_state_map is not None:
+        rule_state_map[rule_id] = new_state
+    return [*rule_state, new_state]
 
 
 def evaluate_context_rule(
@@ -862,6 +882,7 @@ def evaluate_context_rule(
     calendar: Dict[str, Any],
     rule_state: List[Dict[str, Any]],
     now: Optional[datetime] = None,
+    rule_state_map: Optional[Dict[str, Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     now = now or datetime.now().astimezone()
     place = next((item for item in places if item.get("id") == rule.get("placeId")), None)
@@ -888,7 +909,7 @@ def evaluate_context_rule(
         window = rule.get("timeWindow", {})
         reasons.append(f"Current local time is outside {window.get('start', '06:00')}-{window.get('end', '22:00')}.")
 
-    if not is_cooldown_clear(rule, rule_state, now):
+    if not is_cooldown_clear(rule, rule_state, now, rule_state_map=rule_state_map):
         reasons.append("Rule cooldown is still active.")
 
     matched = len(reasons) == 0
@@ -908,6 +929,8 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
     evaluations = []
     created_nudges = []
     rule_state = state["ruleState"]
+    # Pre-index rule_state by ruleId into a dict for O(1) lookups during evaluation loop
+    rule_state_map = {item["ruleId"]: item for item in rule_state if isinstance(item, dict) and "ruleId" in item}
     # Load nudges once prior to evaluating rules to eliminate redundant disk I/O reads/writes in loop
     nudges = load_nudges() if create_nudges else []
 
@@ -919,6 +942,7 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
             state["calendar"],
             rule_state,
             now,
+            rule_state_map=rule_state_map,
         )
         if result["matched"] and create_nudges:
             template = rule.get("nudgeTemplate", {})
@@ -930,7 +954,7 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
                 source="context_rule",
             )
             nudges.append(nudge)
-            rule_state = set_rule_last_fired(rule_state, rule["id"], utc_now())
+            rule_state = set_rule_last_fired(rule_state, rule["id"], utc_now(), rule_state_map=rule_state_map)
             result["createdNudgeId"] = nudge["id"]
             created_nudges.append(nudge)
         evaluations.append(result)
@@ -949,13 +973,16 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
     }
 
 
-def matches_due_today(nudge: Dict[str, Any], now: datetime) -> bool:
-    due_at = parse_datetime(nudge.get("dueAt"))
+# Accept pre-parsed due_at datetime to avoid redundant ISO timestamp parsing in loops
+def matches_due_today(nudge: Dict[str, Any], now: datetime, due_at: Optional[datetime] = None) -> bool:
+    if due_at is None and nudge.get("dueAt"):
+        due_at = parse_datetime(nudge.get("dueAt"))
     return bool(due_at and due_at.date() == now.date())
 
 
-def matches_overdue(nudge: Dict[str, Any], now: datetime) -> bool:
-    due_at = parse_datetime(nudge.get("dueAt"))
+def matches_overdue(nudge: Dict[str, Any], now: datetime, due_at: Optional[datetime] = None) -> bool:
+    if due_at is None and nudge.get("dueAt"):
+        due_at = parse_datetime(nudge.get("dueAt"))
     return bool(
         due_at
         and due_at < now
@@ -986,13 +1013,15 @@ def nudge_summary(now: Optional[datetime] = None) -> Dict[str, Any]:
         "overdue": 0,
     }
 
+    # Single-pass date parsing per nudge item to eliminate redundant string-to-datetime conversions
     for nudge in nudges:
         status = nudge.get("status", "pending")
         if status in counts:
             counts[status] += 1
-        if matches_due_today(nudge, now):
+        due_at = parse_datetime(nudge.get("dueAt"))
+        if matches_due_today(nudge, now, due_at=due_at):
             counts["due_today"] += 1
-        if matches_overdue(nudge, now):
+        if matches_overdue(nudge, now, due_at=due_at):
             counts["overdue"] += 1
 
     priority_rank = {"high": 0, "medium": 1, "low": 2}
@@ -1107,10 +1136,17 @@ async def list_nudges(
         nudges = [nudge for nudge in nudges if nudge.get("status") == status]
     if priority:
         nudges = [nudge for nudge in nudges if nudge.get("priority") == priority]
-    if dueToday:
-        nudges = [nudge for nudge in nudges if matches_due_today(nudge, now)]
-    if overdue:
-        nudges = [nudge for nudge in nudges if matches_overdue(nudge, now)]
+    if dueToday or overdue:
+        # Pre-parse dueAt dates for single-pass filtering
+        filtered = []
+        for nudge in nudges:
+            due_at = parse_datetime(nudge.get("dueAt"))
+            if dueToday and not matches_due_today(nudge, now, due_at=due_at):
+                continue
+            if overdue and not matches_overdue(nudge, now, due_at=due_at):
+                continue
+            filtered.append(nudge)
+        nudges = filtered
 
     nudges.sort(key=lambda item: (item.get("dueAt") or "9999", item.get("createdAt") or ""))
     return {"nudges": nudges, "count": len(nudges)}
