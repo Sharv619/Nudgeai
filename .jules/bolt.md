@@ -25,3 +25,7 @@
 ## 2026-03-07 - Pre-Compiled Single-Pass Action Verb Matching in Nudge Extraction
 **Learning:** In `clean_action_title()` and `infer_due_date()`, dynamically compiling regexes and sequentially iterating through `ACTION_VERBS` with separate `re.search()` calls created significant overhead on text extraction endpoints (~1240ms / 1000 requests). Pre-compiling a single combined regex `ACTION_VERBS_REGEX = re.compile(r"\b(" + "|".join(...) + r")\b")` at module load time performs a single-pass search across candidate text, reducing extraction latency from ~1.24ms to ~0.34ms per extraction (~3.7x speedup).
 **Action:** Pre-compile fixed keyword lists into a single combined `re.compile()` OR pattern at module load time rather than looping through individual keyword regexes dynamically inside hot request handlers.
+
+## 2026-03-08 - Debounced React Filter Inputs to Prevent Request Flooding
+**Learning:** In React components like `DataDisplay`, binding `useEffect` fetching logic directly to raw `filters` state triggers `loadData()` (which fires 4 concurrent backend and AI MCP tool requests) on every single keystroke while typing in text inputs like `eventType` or `locationType`. Introducing a 300ms `debouncedFilters` state reduces redundant API requests by ~85% during interactive typing (e.g., from 28 calls down to 4 for a 7-letter query), eliminating backend AI model load spikes and ensuring smooth UI responsiveness.
+**Action:** Always debounce text filter inputs in React components before triggering heavy data fetching routines or AI model inference endpoints.
