@@ -132,8 +132,17 @@ class DailySummarizer:
             ].items():
                 location_types_over_week[loc_type] += count
 
-            # Count activity types
-            for activity_type, count in summary["fitness_summary"]["activities"]:
+            # Count activity types safely from list of activity dicts, tuples, or strings
+            for act in summary["fitness_summary"]["activities"]:
+                if isinstance(act, dict):
+                    activity_type = act.get("type", "unknown")
+                    count = act.get("count", 1)
+                elif isinstance(act, (list, tuple)):
+                    activity_type = act[0] if len(act) > 0 else "unknown"
+                    count = act[1] if len(act) > 1 else 1
+                else:
+                    activity_type = str(act)
+                    count = 1
                 activity_types_over_week[activity_type] += count
 
             # Track busy levels
