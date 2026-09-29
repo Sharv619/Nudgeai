@@ -29,3 +29,7 @@
 ## 2026-03-08 - Mutation Tracking and Granular Store Access in File-Backed APIs
 **Learning:** In file-backed local API servers, unconditionally saving state files on every rule evaluation pass (e.g. `save_rule_state`) and loading all context files (5 JSON reads) when calculating subset status cards creates severe I/O overhead (~410ms / 1000 evaluations). Tracking a `rule_state_changed` boolean before executing `save_rule_state()` and creating a targeted `load_source_status()` helper that reads only required store files reduces evaluation latency by ~3.5x (~409.8ms down to ~153.6ms).
 **Action:** Always track state mutations before persisting store objects to disk in hot loop evaluations, and provide targeted store loaders for endpoints that only consume partial context states.
+
+## 2026-03-09 - Single-Pass Datetime Parsing in Summary Evaluation Loops
+**Learning:** Sequentially invoking `matches_due_today(nudge)` and `matches_overdue(nudge)` inside `nudge_summary()` or `list_nudges()` forced duplicate ISO string datetime parsing for every item in the store. Allowing matching helpers to accept an optional pre-parsed `parsed_due_at` object and leveraging Python 3.11+ native ISO 8601 string parsing in `parse_datetime()` eliminates redundant string operations and datetime copies, speeding up summary loop evaluation by ~2.4x (~1712ms down to ~705ms for 2000 runs over 500 nudges).
+**Action:** Pass pre-parsed datetime objects into item filter helpers within batch/list evaluation loops instead of re-parsing datetime strings repeatedly per item.
