@@ -227,11 +227,12 @@ def parse_datetime(value: Optional[str]) -> Optional[datetime]:
     if not value:
         return None
     try:
-        normalized = value.replace("Z", "+00:00")
-        parsed = datetime.fromisoformat(normalized)
+        parsed = datetime.fromisoformat(value)
         if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        return parsed.astimezone(timezone.utc)
+            return parsed.replace(tzinfo=timezone.utc)
+        elif parsed.tzinfo != timezone.utc:
+            return parsed.astimezone(timezone.utc)
+        return parsed
     except ValueError:
         return None
 
@@ -963,13 +964,21 @@ def evaluate_all_context_rules(now: Optional[datetime] = None, create_nudges: bo
     }
 
 
-def matches_due_today(nudge: Dict[str, Any], now: datetime) -> bool:
-    due_at = parse_datetime(nudge.get("dueAt"))
+def matches_due_today(
+    nudge: Dict[str, Any],
+    now: datetime,
+    parsed_due_at: Optional[datetime] = None,
+) -> bool:
+    due_at = parsed_due_at if parsed_due_at is not None else parse_datetime(nudge.get("dueAt"))
     return bool(due_at and due_at.date() == now.date())
 
 
-def matches_overdue(nudge: Dict[str, Any], now: datetime) -> bool:
-    due_at = parse_datetime(nudge.get("dueAt"))
+def matches_overdue(
+    nudge: Dict[str, Any],
+    now: datetime,
+    parsed_due_at: Optional[datetime] = None,
+) -> bool:
+    due_at = parsed_due_at if parsed_due_at is not None else parse_datetime(nudge.get("dueAt"))
     return bool(
         due_at
         and due_at < now
@@ -1004,9 +1013,11 @@ def nudge_summary(now: Optional[datetime] = None) -> Dict[str, Any]:
         status = nudge.get("status", "pending")
         if status in counts:
             counts[status] += 1
-        if matches_due_today(nudge, now):
+        due_str = nudge.get("dueAt")
+        parsed_due_at = parse_datetime(due_str) if due_str else None
+        if matches_due_today(nudge, now, parsed_due_at=parsed_due_at):
             counts["due_today"] += 1
-        if matches_overdue(nudge, now):
+        if matches_overdue(nudge, now, parsed_due_at=parsed_due_at):
             counts["overdue"] += 1
 
     priority_rank = {"high": 0, "medium": 1, "low": 2}
@@ -1121,10 +1132,17 @@ async def list_nudges(
         nudges = [nudge for nudge in nudges if nudge.get("status") == status]
     if priority:
         nudges = [nudge for nudge in nudges if nudge.get("priority") == priority]
-    if dueToday:
-        nudges = [nudge for nudge in nudges if matches_due_today(nudge, now)]
-    if overdue:
-        nudges = [nudge for nudge in nudges if matches_overdue(nudge, now)]
+    if dueToday or overdue:
+        filtered = []
+        for nudge in nudges:
+            due_str = nudge.get("dueAt")
+            parsed_due_at = parse_datetime(due_str) if due_str else None
+            if dueToday and not matches_due_today(nudge, now, parsed_due_at=parsed_due_at):
+                continue
+            if overdue and not matches_overdue(nudge, now, parsed_due_at=parsed_due_at):
+                continue
+            filtered.append(nudge)
+        nudges = filtered
 
     nudges.sort(key=lambda item: (item.get("dueAt") or "9999", item.get("createdAt") or ""))
     return {"nudges": nudges, "count": len(nudges)}
