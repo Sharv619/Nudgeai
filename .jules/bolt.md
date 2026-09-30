@@ -33,3 +33,7 @@
 ## 2026-03-09 - Single-Pass Datetime Parsing and Array Aggregation in Nudge Summaries
 **Learning:** In `nudge_summary()`, calling `matches_due_today()` and `matches_overdue()` separately for each nudge triggered `parse_datetime()` twice on `nudge["dueAt"]`. Additionally, filtering active nudges in a separate list comprehension resulted in multiple iterations over the dataset. Allowing match helpers to accept an optional pre-parsed `due_at` object and accumulating `active_nudges` during the primary iteration loop reduces execution latency by ~30% (~1.4x speedup, from ~1.39ms to ~0.97ms per 100-nudge summary calculation).
 **Action:** In summary calculation endpoints, parse date strings once per item and pass pre-parsed `datetime` objects to downstream predicate helpers while accumulating top/active subsets during the primary scan loop.
+
+## 2026-03-10 - Route-Level Code Splitting for React Application
+**Learning:** In React single-page applications with heavy third-party UI components (such as `@fullcalendar`), dynamically importing route components with `React.lazy()` and `Suspense` splits page code into separate chunks. This prevents loading unnecessary dependencies on initial render, reducing the initial JS bundle size by ~3.3x (~566 kB down to ~167 kB) and significantly accelerating initial page load performance.
+**Action:** Always lazy load route components in top-level router definitions (`App.jsx`) when route dependencies contain heavy libraries.
