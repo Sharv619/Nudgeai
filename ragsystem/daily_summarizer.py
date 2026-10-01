@@ -133,8 +133,10 @@ class DailySummarizer:
                 location_types_over_week[loc_type] += count
 
             # Count activity types
-            for activity_type, count in summary["fitness_summary"]["activities"]:
-                activity_types_over_week[activity_type] += count
+            # Note: summary["fitness_summary"]["activities"] is a list of activity dicts with "type" key
+            for activity in summary["fitness_summary"].get("activities", []):
+                act_type = activity.get("type", "unknown")
+                activity_types_over_week[act_type] += 1
 
             # Track busy levels
             daily_busy_levels.append(summary["calendar_summary"]["busyness_level"])
