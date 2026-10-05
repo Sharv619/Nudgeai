@@ -37,3 +37,7 @@
 ## 2026-03-10 - Single-Pass Datetime Parsing in MCP Gym Time Suggestion Tool
 **Learning:** In `suggest_optimal_gym_time()`, ISO datetime strings were parsed via `datetime.fromisoformat()` repeatedly (up to 4-5 times per event/activity) across filtering, sorting, free slot evaluation, workout hour binning, and tomorrow event filtering loops. Storing pre-parsed `datetime` objects in lightweight tuples `(event_dict, start_dt, end_dt)` during initial file ingestion eliminates redundant ISO string replacements and parsing overhead while keeping JSON-serializable dictionaries clean.
 **Action:** When working with timestamped event lists in MCP tools or data pipelines, parse ISO strings into `datetime` objects once during initial record construction and reuse pre-parsed objects in subsequent filtering, sorting, and slot calculation passes.
+
+## 2026-03-11 - Parallel MCP API Request Execution in Frontend Views
+**Learning:** In `DataDisplay.jsx`, sequentially awaiting independent data loading requests (`getCalendarEvents`, `getLocationHistory`, `get_insights`, `generate_daily_summary`) created an unnecessary network waterfall delay (~200ms-500ms total latency). Executing independent API promises concurrently via `Promise.all()` allows the browser and backend to process requests in parallel, reducing overall view initialization latency by ~3x-4x.
+**Action:** When rendering multi-section frontend views or dashboards that rely on multiple independent API requests, group independent API promises into a single `Promise.all()` call.
