@@ -51,13 +51,24 @@ class DailySummarizer:
             loc_res = batch_results[i * 3 + 1]
             fit_res = batch_results[i * 3 + 2]
 
+            cal_summary = self.pattern_analyzer._build_calendar_summary(cal_res)
+            loc_summary = self.pattern_analyzer._build_location_summary(loc_res)
+            fit_summary = self.pattern_analyzer._build_fitness_summary(fit_res)
+
             day_summary = {
                 "date": d_str,
-                "calendar_summary": self.pattern_analyzer._build_calendar_summary(cal_res),
-                "location_summary": self.pattern_analyzer._build_location_summary(loc_res),
-                "fitness_summary": self.pattern_analyzer._build_fitness_summary(fit_res),
+                "calendar_summary": cal_summary,
+                "location_summary": loc_summary,
+                "fitness_summary": fit_summary,
                 "day_rating": self.pattern_analyzer._calculate_day_rating(cal_res, loc_res, fit_res),
-                "recommendations": self.pattern_analyzer._generate_recommendations(cal_res, loc_res, fit_res),
+                "recommendations": self.pattern_analyzer._generate_recommendations(
+                    cal_res,
+                    loc_res,
+                    fit_res,
+                    calendar_summary=cal_summary,
+                    location_summary=loc_summary,
+                    fitness_summary=fit_summary,
+                ),
             }
             weekly_data[d_str] = day_summary
 
