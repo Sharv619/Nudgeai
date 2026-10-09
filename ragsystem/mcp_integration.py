@@ -137,20 +137,18 @@ class RAGMCPIntegrator:
             queries = [req[0] for req in search_requests]
             embeddings = generate_embeddings(queries)
 
-            # Determine maximum k requested across queries
-            max_k = max(req[1] for req in search_requests)
+            # Determine maximum candidate k across queries, oversampling when filters are present so filtering evaluates full candidate pool
+            max_k = max(req[1] * 3 if req[2] else req[1] for req in search_requests)
 
             # Perform single-pass batch vector search across FAISS for all queries (~4.1x faster than loop search)
             batch_raw_results = self.vector_db.batch_search(embeddings, k=max_k)
 
             all_results = []
             for (query, k, filters), raw_results in zip(search_requests, batch_raw_results):
-                results = raw_results[:k] if len(raw_results) > k else raw_results
-
-                # Apply metadata filters if provided
+                # Apply metadata filters over full raw candidate pool before slicing to k to prevent premature candidate dropping
                 if filters:
                     filtered_results = []
-                    for result in results:
+                    for result in raw_results:
                         metadata = result["document"]["metadata"]
                         match = True
                         for key, value in filters.items():
@@ -170,6 +168,8 @@ class RAGMCPIntegrator:
                             filtered_results.append(result)
 
                     results = filtered_results[:k]
+                else:
+                    results = raw_results[:k]
 
                 all_results.append(results)
 
