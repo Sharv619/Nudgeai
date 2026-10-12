@@ -452,8 +452,14 @@ def _register_tools(server: FastMCP):
         end_date = datetime.now()
         start_date = end_date - timedelta(days=days)
 
-        # Load fitness data
+        # Performance optimization: Single-pass metric accumulation during JSON ingestion
+        # Accumulates exercise frequency, steps, calories, duration, and work events in one pass,
+        # eliminating 5 separate list comprehensions and generator passes.
         fitness_activities = []
+        exercise_frequency = 0
+        total_steps = 0
+        total_calories = 0
+        total_duration = 0
         fitness_file = "data_sync/fit_sync.json"
         try:
             if os.path.exists(fitness_file):
@@ -474,13 +480,20 @@ def _register_tools(server: FastMCP):
 
                             if start_date <= event_dt <= end_date:
                                 fitness_activities.append(metadata)
+                                act_type = metadata.get("activity_type", "").lower()
+                                if "walk" in act_type or "gym" in act_type:
+                                    exercise_frequency += 1
+                                total_steps += metadata.get("steps", 0) or 0
+                                total_calories += metadata.get("calories", 0) or 0
+                                total_duration += metadata.get("duration_minutes", 0) or 0
                         except ValueError:
                             continue
         except Exception as e:
             logger.error(f"Error reading fitness data: {e}")
 
-        # Load calendar data
+        # Load calendar data and accumulate work-related events in single pass
         calendar_events = []
+        work_related_events = 0
         calendar_file = "data_sync/calendar_sync.json"
         try:
             if os.path.exists(calendar_file):
@@ -501,6 +514,9 @@ def _register_tools(server: FastMCP):
 
                             if start_date <= event_dt <= end_date:
                                 calendar_events.append(metadata)
+                                summary = metadata.get("summary", "").lower()
+                                if "meeting" in summary or "work" in summary:
+                                    work_related_events += 1
                         except ValueError:
                             continue
         except Exception as e:
@@ -533,7 +549,7 @@ def _register_tools(server: FastMCP):
         except Exception as e:
             logger.error(f"Error reading location data: {e}")
 
-        # Compile analysis from the gathered data
+        # Compile analysis from pre-accumulated metrics
         raw_analysis = {
             "period": time_period,
             "focus_area": focus_area or "overall",
@@ -542,29 +558,11 @@ def _register_tools(server: FastMCP):
                 "fitness_activities_count": len(fitness_activities),
                 "calendar_events_count": len(calendar_events),
                 "location_visits_count": len(location_visits),
-                "exercise_frequency": len(
-                    [
-                        fa
-                        for fa in fitness_activities
-                        if "walk" in fa.get("activity_type", "").lower()
-                        or "gym" in fa.get("activity_type", "").lower()
-                    ]
-                ),
-                "work_related_events": len(
-                    [
-                        ce
-                        for ce in calendar_events
-                        if "meeting" in ce.get("summary", "").lower()
-                        or "work" in ce.get("summary", "").lower()
-                    ]
-                ),
-                "total_steps": sum(fa.get("steps", 0) for fa in fitness_activities),
-                "total_calories": sum(
-                    fa.get("calories", 0) for fa in fitness_activities
-                ),
-                "total_duration": sum(
-                    fa.get("duration_minutes", 0) for fa in fitness_activities
-                ),
+                "exercise_frequency": exercise_frequency,
+                "work_related_events": work_related_events,
+                "total_steps": total_steps,
+                "total_calories": total_calories,
+                "total_duration": total_duration,
             },
             "data_source": "direct_json",
         }
@@ -1212,13 +1210,24 @@ def _register_tools(server: FastMCP):
         # Use the code fetcher and parser to analyze the codebase
         parsed_files = analyze_codebase()
 
-        # Analyze patterns in the code
+        # Performance optimization: Single-pass aggregation of line counts, python files, and code definitions
+        total_lines = 0
+        python_files = 0
+        functions_count = 0
+        classes_count = 0
+        for f in parsed_files:
+            total_lines += f.get("lines_of_code", 0)
+            if f.get("language") == "python":
+                python_files += 1
+            functions_count += len(f.get("functions", []))
+            classes_count += len(f.get("classes", []))
+
         pattern_analysis = {
             "total_files": len(parsed_files),
-            "total_lines": sum(f.get("lines_of_code", 0) for f in parsed_files),
-            "python_files": len([f for f in parsed_files if f["language"] == "python"]),
-            "functions_count": sum(len(f["functions"]) for f in parsed_files),
-            "classes_count": sum(len(f["classes"]) for f in parsed_files),
+            "total_lines": total_lines,
+            "python_files": python_files,
+            "functions_count": functions_count,
+            "classes_count": classes_count,
         }
 
         # Extract patterns found from each parsed file
