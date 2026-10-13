@@ -111,6 +111,18 @@ def test_rag_with_mcp_concepts():
         context = retriever.retrieve_and_format_context(query, k=2)
         print(f"      Context length: {len(context)} characters")
 
+    # Test batch retrieval optimization in RAGRetriever
+    print(f"\n⚡ Testing RAGRetriever Batch Retrieval Optimization...")
+    batch_results = retriever.retrieve_relevant_documents_batch(test_queries, k=2)
+    assert len(batch_results) == len(test_queries), f"Expected {len(test_queries)} result lists, got {len(batch_results)}"
+
+    for i, (query, batch_res) in enumerate(zip(test_queries, batch_results), 1):
+        seq_res = retriever.retrieve_relevant_documents(query, k=2)
+        assert len(batch_res) == len(seq_res), f"Query {i} mismatch in result count"
+        if batch_res and seq_res:
+            assert batch_res[0]["document"]["id"] == seq_res[0]["document"]["id"], f"Query {i} top document mismatch"
+    print(f"✅ Batch retrieval returned matches matching sequential calls across all {len(test_queries)} queries.")
+
     # Test the WhiteCircle compatibility by simulating how this would integrate
     print(f"\n🛡️  Testing WhiteCircle Integration Compatibility...")
 
