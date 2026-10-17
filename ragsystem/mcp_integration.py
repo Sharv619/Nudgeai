@@ -82,8 +82,9 @@ class RAGMCPIntegrator:
         Perform semantic search across all indexed data with optional filtering.
         """
         try:
-            # Generate embedding for the query
-            results = self.retriever.retrieve_relevant_documents(query, k=k)
+            # Retrieve candidates (larger pool if filtering is needed to avoid dropping results)
+            fetch_k = max(k * 2, 10) if filters else k
+            results = self.retriever.retrieve_relevant_documents(query, k=fetch_k)
 
             # Apply filters if provided
             if filters:
@@ -145,12 +146,11 @@ class RAGMCPIntegrator:
 
             all_results = []
             for (query, k, filters), raw_results in zip(search_requests, batch_raw_results):
-                results = raw_results[:k] if len(raw_results) > k else raw_results
-
-                # Apply metadata filters if provided
+                # Apply metadata filters across all candidate results returned by FAISS before slicing to k
+                candidates = raw_results
                 if filters:
                     filtered_results = []
-                    for result in results:
+                    for result in candidates:
                         metadata = result["document"]["metadata"]
                         match = True
                         for key, value in filters.items():
@@ -169,9 +169,9 @@ class RAGMCPIntegrator:
                         if match:
                             filtered_results.append(result)
 
-                    results = filtered_results[:k]
+                    candidates = filtered_results
 
-                all_results.append(results)
+                all_results.append(candidates[:k])
 
             return all_results
 

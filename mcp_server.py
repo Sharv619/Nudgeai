@@ -6,10 +6,12 @@ leveraging Hugging Face models for enhanced processing.
 """
 
 import asyncio
+import json
 import logging
 import os
+import re
 from typing import Any, Dict, List, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import TextContent, EmbeddedResource
@@ -196,10 +198,6 @@ def _register_tools(server: FastMCP):
         )
 
         # Load calendar data directly from sync file
-        import json
-        import os
-        from datetime import datetime
-
         calendar_file = "data_sync/calendar_sync.json"
         events = []
 
@@ -208,9 +206,11 @@ def _register_tools(server: FastMCP):
                 with open(calendar_file, "r") as f:
                     calendar_data = json.load(f)
 
-                # Parse date range
+                # Parse date range (inclusive of entire end date up to 23:59:59)
                 start_dt = datetime.strptime(start_date, "%Y-%m-%d")
-                end_dt = datetime.strptime(end_date, "%Y-%m-%d")
+                end_dt = datetime.strptime(end_date, "%Y-%m-%d").replace(
+                    hour=23, minute=59, second=59, microsecond=999999
+                )
 
                 # Filter events by date range
                 for item in calendar_data:
@@ -285,10 +285,6 @@ def _register_tools(server: FastMCP):
         )
 
         # Load location data directly from sync file
-        import json
-        import os
-        from datetime import datetime
-
         location_file = "data_sync/location_sync.json"
         locations = []
 
@@ -297,9 +293,11 @@ def _register_tools(server: FastMCP):
                 with open(location_file, "r") as f:
                     location_data = json.load(f)
 
-                # Parse date range
+                # Parse date range (inclusive of entire end date up to 23:59:59)
                 start_dt = datetime.strptime(start_date, "%Y-%m-%d")
-                end_dt = datetime.strptime(end_date, "%Y-%m-%d")
+                end_dt = datetime.strptime(end_date, "%Y-%m-%d").replace(
+                    hour=23, minute=59, second=59, microsecond=999999
+                )
 
                 # Filter locations by date range
                 for item in location_data:
@@ -439,11 +437,6 @@ def _register_tools(server: FastMCP):
             Analysis of habits with direct JSON data
         """
         logger.info(f"Analyzing habits for {time_period} period, focus: {focus_area}")
-
-        # Load data directly from sync files
-        import json
-        import os
-        from datetime import datetime, timedelta
 
         # Map time period to number of days
         period_map = {"day": 1, "week": 7, "month": 30}
@@ -785,9 +778,6 @@ def _register_tools(server: FastMCP):
             Dictionary with the answer and relevant information
         """
         logger.info(f"Answering general question: {question}")
-        
-        import re
-        from datetime import datetime
         
         # Check if this is a simple date/time question
         date_time_keywords = ["what day", "what date", "today", "current date", "day of week", "now"]
@@ -1275,11 +1265,6 @@ def _register_tools(server: FastMCP):
         logger.info(
             "Generating optimal gym time suggestions based on calendar and fitness data"
         )
-
-        # Load calendar events for today and the next few days
-        import json
-        import os
-        from datetime import datetime, timedelta
 
         # Optimization: Single reference for 'now' and top-level range bounds to prevent UnboundLocalError
         now = datetime.now()
@@ -1791,8 +1776,6 @@ def _register_prompts(server: FastMCP):
         if "latitude" in context.lower() and "longitude" in context.lower():
             try:
                 # This assumes the context contains something like "latitude: X.XX, longitude: Y.YY"
-                import re
-
                 lat_match = re.search(
                     r"latitude[=:]\s*(-?\d+\.?\d*)", context, re.IGNORECASE
                 )
