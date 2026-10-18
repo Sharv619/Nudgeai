@@ -97,8 +97,22 @@ def test_gym_suggestion_logic():
         hour=23
     )  # End at 11 PM
 
+    # Filter events overlapping today's active window [day_start, day_end]
+    todays_events = []
+    for event in calendar_events:
+        try:
+            e_start = datetime.fromisoformat(event["start_time"].replace("Z", "+00:00")).replace(tzinfo=None)
+            try:
+                e_end = datetime.fromisoformat(event["end_time"].replace("Z", "+00:00")).replace(tzinfo=None)
+            except (KeyError, ValueError):
+                e_end = e_start + timedelta(hours=1)
+            if e_start < day_end and e_end > day_start:
+                todays_events.append(event)
+        except (KeyError, ValueError):
+            continue
+
     # Sort events by start time
-    sorted_events = sorted(calendar_events, key=lambda x: x["start_time"])
+    sorted_events = sorted(todays_events, key=lambda x: x["start_time"])
 
     current_time = day_start
     for event in sorted_events:
